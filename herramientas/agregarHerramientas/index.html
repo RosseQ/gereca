@@ -31,13 +31,26 @@
                 <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">Agregar Herramienta</h2>
                 <p></p>
             </div>
-            <form style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
-                <div class="mb-3"><label class="form-label" for="name">Tipo de herramienta</label><input class="form-control" type="text" id="name" name="name"></div>
-                <div class="mb-3"><label class="form-label" for="subject">Descripcion</label><input class="form-control" type="text" id="subject" name="subject"></div>
-                <div class="mb-3"></div>
-                <div class="mb-3"></div>
-                <div class="mb-3"><button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);">Enviar</button></div>
+
+            <form action="/registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
+                <div class="mb-3">
+                    <label class="form-label" for="cod_barra">Codigo de barras</label>
+                    <input class="form-control" type="text" id="cod_barra" name="cod_barra">
+                    <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);margin: 5px;">Leer codigo de barras</button>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="tipo_h">Tipo de herramienta</label>
+                    <input class="form-control" type="text" id="tipo_h" name="tipo_h">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="desc_h">Descripcion</label>
+                    <input class="form-control" type="text" id="desc_h" name="desc_h">
+                </div>
+                <div class="mb-3">
+                    <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="enviar_h" name="enviar_h" value="Enviar">
+                </div>
             </form>
+
         </div>
     </section>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

@@ -31,24 +31,25 @@
                 <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">Agregar Usuario</h2>
                 <p></p>
             </div>
-            <form style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
+
+            <form action="/registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
                 <div class="mb-3">
                     <label class="form-label" for="username">Nombre de Usuario</label>
-                    <input class="form-control" type="text" id="username" name="username"></div>
+                    <input class="form-control" type="text" id="username" name="username">
+                </div>
                 <div class="mb-3">
                     <label class="form-label" for="nombres">Nombres</label>
-                    <input class="form-control" type="text" id="nombres" name="nombres"></div>
+                    <input class="form-control" type="text" id="nombres" name="nombres">
+                </div>
                 <div class="mb-3">
                     <label class="form-label" for="id_nivel_accesso">Nivel de Acceso</label>
-                    <input class="form-control" type="text" id="id_nivel_accesso" name="id_nivel_accesso"></div>
+                    <input class="form-control" type="text" id="id_nivel_accesso" name="id_nivel_accesso">
+                </div>
                 <div class="mb-3">
-                    <input type="submit" style="background: rgb(253,114,13);" id="enviar" name="enviar" value="Enviar">
+                    <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="enviar_u" name="enviar_u" value="Enviar">
                 </div>
             </form>
-
-            <?php
-            include("../../registro_a.php");
-            ?>
+            
 
         </div>
     </section>

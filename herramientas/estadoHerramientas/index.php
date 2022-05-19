@@ -1,3 +1,7 @@
+<?php
+include("../../db.php");
+?>
+
 <!DOCTYPE html>
 <html style="background: rgba(255,255,255,0);">
 
@@ -29,7 +33,7 @@
         <section class="clean-block clean-form dark" style="background: rgba(246,246,246,0);">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Ver Usuarios</h2>
+                    <h2 class="text-info">Estado de Herramientas</h2>
                     <p></p>
                 </div>
             </div>
@@ -37,24 +41,29 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th style="background: rgb(253,114,13);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);">Nombre de USUARIO</th>
-                            <th style="background: rgb(253,114,13);">Nombres</th>
-                            <th style="background: rgb(253,114,13);">Nivel de permiso</th>
+                            <th style="background: rgb(253,114,13);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);">Herramienta</th>
+                            <th style="background: rgb(253,114,13);">Estatus</th>
+                            <th style="background: rgb(253,114,13);">Usuario</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td style="background: rgba(253,114,13,0.36);">El pelusa Caligari</td>
-                            <td style="background: rgba(253,114,13,0.36);">Federico Diaz</td>
-                            <td style="background: rgba(253,114,13,0.36);">Administrador</td>
-                        </tr>
-                        <tr>
-                            <td style="background: rgba(253,114,13,0.36);">Juan Mecanico</td>
-                            <td style="background: rgba(253,114,13,0.36);">Juan Gutierrez</td>
-                            <td style="background: rgba(253,114,13,0.36);">Chambeador</td>
-                        </tr>
-                        <tr></tr>
-                    </tbody>
+                    <?php 
+                            $consulta = "SELECT desc_h, cat_acciones_herramienta.desc_acth, username FROM movimientos_herramientas
+                            INNER JOIN cat_usuarios ON cat_usuarios.id = movimientos_herramientas.id_usuario
+                            INNER JOIN cat_herramientas ON cat_herramientas.id = movimientos_herramientas.id_herramienta
+                            INNER JOIN cat_acciones_herramienta ON cat_acciones_herramienta.id = movimientos_herramientas.id_acciones_h;";
+                            $resultado = mysqli_query($conex,$consulta);
+                        while($mostrar = mysqli_fetch_array($resultado)){
+                        ?>
+                        <tbody>
+                            <tr>
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['desc_h'] ?></td>
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['desc_acth'] ?></td>
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['username'] ?></td>
+                            </tr>
+                        </tbody>
+                        <?php 
+                        }
+                        ?>
                 </table>
             </div>
         </section>
