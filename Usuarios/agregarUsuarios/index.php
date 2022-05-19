@@ -32,18 +32,31 @@
                 <p></p>
             </div>
             <form style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
-                <div class="mb-3"><label class="form-label" for="name">Nombre de Usuario</label><input class="form-control" type="text" id="name" name="name"></div>
-                <div class="mb-3"><label class="form-label" for="subject">Nombres</label><input class="form-control" type="text" id="subject" name="subject"></div>
-                <div class="mb-3"><label class="form-label" for="email">Nivel de Acceso</label><input class="form-control" type="text" id="id_nivel_accesso" name="id_nivel_accesso"></div>
-                <div class="mb-3"></div>
-                <div class="mb-3"><button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);">Enviar</button></div>
+                <div class="mb-3">
+                    <label class="form-label" for="username">Nombre de Usuario</label>
+                    <input class="form-control" type="text" id="username" name="username"></div>
+                <div class="mb-3">
+                    <label class="form-label" for="nombres">Nombres</label>
+                    <input class="form-control" type="text" id="nombres" name="nombres"></div>
+                <div class="mb-3">
+                    <label class="form-label" for="id_nivel_accesso">Nivel de Acceso</label>
+                    <input class="form-control" type="text" id="id_nivel_accesso" name="id_nivel_accesso"></div>
+                <div class="mb-3">
+                    <input type="submit" style="background: rgb(253,114,13);" id="enviar" name="enviar" value="Enviar">
+                </div>
             </form>
+
+            <?php
+            include("../../registro_a.php");
+            ?>
+
         </div>
     </section>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
+
 </body>
 
 </html>
