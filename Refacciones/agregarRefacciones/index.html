@@ -31,24 +31,21 @@
                 <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">Agregar Refaccion</h2>
             </div>
 
-            <form style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
+            <form action="/registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
                 <div class="mb-3">
-                    <label class="form-label" for="name">Descripcion</label><input class="form-control" type="text" id="name" name="name">
+                    <label class="form-label" for="desc_r">Descripcion</label>
+                    <input class="form-control" type="text" id="desc_r" name="desc_r">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="subject">Costo</label><input class="form-control" type="text" id="subject" name="subject">
+                    <label class="form-label" for="precio_r">Costo</label>
+                    <input class="form-control" type="text" id="precio_r" name="precio_r">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="email">Existencia</label><input class="form-control" type="email" id="email" name="email">
+                    <label class="form-label" for="existencias_r">Existencia</label>
+                    <input class="form-control" type="text" id="existencias_r" name="existencias_r">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="message">Fecha de compra de lote</label><input class="form-control" type="date">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="message">Fecha de termino de garantia del lote</label><input class="form-control" type="date">
-                </div>
-                <div class="mb-3">
-                    <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);">Enviar</button>
+                    <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="enviar_r" name="enviar_r" value="Enviar">
                 </div>
             </form>
             

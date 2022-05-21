@@ -53,7 +53,7 @@ include("../../db.php");
                             INNER JOIN cat_acciones_herramienta ON cat_acciones_herramienta.id = movimientos_herramientas.id_acciones_h;";
                             $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
-                        ?>
+                    ?>
                         <tbody>
                             <tr>
                                 <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['desc_h'] ?></td>
@@ -61,9 +61,9 @@ include("../../db.php");
                                 <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['username'] ?></td>
                             </tr>
                         </tbody>
-                        <?php 
+                    <?php 
                         }
-                        ?>
+                    ?>
                 </table>
             </div>
         </section>

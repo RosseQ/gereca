@@ -1,3 +1,7 @@
+<?php
+include("../../db.php");
+?>
+
 <!DOCTYPE html>
 <html style="background: rgba(255,255,255,0);">
 
@@ -37,36 +41,26 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th style="background: rgb(253,114,13);">ID de Lote</th>
                             <th style="background: rgb(253,114,13);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);">Descripcion</th>
-                            <th style="background: rgb(253,114,13);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);">Costo</th>
+                            <th style="background: rgb(253,114,13);">Costo</th>
                             <th style="background: rgb(253,114,13);">Existencia</th>
-                            <th style="background: rgb(253,114,13);">Fecha de compra</th>
-                            <th style="background: rgb(253,114,13);">Fecha de vencimiento de garantía</th>
-                            <th style="background: rgb(253,114,13);">Usada por</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td style="background: rgba(253,114,13,0.36);">1</td>
-                            <td style="background: rgba(253,114,13,0.36);">Filtro de motor</td>
-                            <td style="background: rgba(253,114,13,0.36);">10 pesitos</td>
-                            <td style="background: rgba(253,114,13,0.36);">2</td>
-                            <td style="background: rgba(253,114,13,0.36);">9/9/2021</td>
-                            <td style="background: rgba(253,114,13,0.36);">9/9/2022</td>
-                            <td style="background: rgba(253,114,13,0.36);">El pelusa</td>
-                        </tr>
-                        <tr>
-                            <td style="background: rgba(253,114,13,0.36);">2</td>
-                            <td style="background: rgba(253,114,13,0.36);">Bujias</td>
-                            <td style="background: rgba(253,114,13,0.36);">5 pesos</td>
-                            <td style="background: rgba(253,114,13,0.36);">3</td>
-                            <td style="background: rgba(253,114,13,0.36);">5/4/2022</td>
-                            <td style="background: rgba(253,114,13,0.36);">5/4/2023</td>
-                            <td style="background: rgba(253,114,13,0.36);">Juan Mecanico</td>
-                        </tr>
-                        <tr></tr>
-                    </tbody>
+                    <?php 
+                            $consulta = "SELECT * FROM cat_refacciones;";
+                            $resultado = mysqli_query($conex,$consulta);
+                        while($mostrar = mysqli_fetch_array($resultado)){
+                    ?>
+                        <tbody>
+                            <tr>
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['desc_r'] ?></td>
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['precio_r'] ?></td>
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['existencias_r'] ?></td>
+                            </tr>
+                        </tbody>
+                    <?php 
+                        }
+                    ?>
                 </table>
             </div>
         </section>

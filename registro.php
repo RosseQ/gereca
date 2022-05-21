@@ -19,19 +19,26 @@ if (isset($_POST['entrar'])){
         if ($fila == 1){
             header ("location:/Menu/index.html");
         } else {
+            header ("location:/index.html");
+            /*
             ?>
             <h3> Error al autenticar </h3>
             <?php
+            */
         }
     } else {
+        header ("location:/index.html");
+        /*
         ?>
         <h3> Complete los campos por favor </h3>
         <?php
+        */
     }
+    memory_free_result($resultado);
+    mysqli_close($conex);
 }
 
-memory_free_result($resultado);
-mysqli_close($conex);
+
 
 
 /*
@@ -41,9 +48,9 @@ Agregar Usuario
 */
 
 if (isset($_POST['enviar_u'])){
-    if (strlen($_POST['username']) >= 1 && strlen($_POST['nombres']) >= 1 && strlen($_POST['id_nivel_accesso']) >= 1 ){
+    if (strlen($_POST['username']) >= 1 && strlen($_POST['nombres']) >= 1 && strlen($_POST['password']) >= 1 && strlen($_POST['id_nivel_accesso']) >= 1 ){
         $username = trim($_POST['username']);
-        $password = 1234;
+        $password = trim($_POST['password']);
         $nombres = trim($_POST['nombres']);
         $id_nivel_accesso = trim($_POST['id_nivel_accesso']);
         $consulta = "INSERT INTO cat_usuarios(username, password, nombres, id_nivel_acceso) 
@@ -61,10 +68,11 @@ if (isset($_POST['enviar_u'])){
         <h3> Complete los campos por favor </h3>
         <?php
     }
+    memory_free_result($resultado);
+    mysqli_close($conex);
 }
 
-memory_free_result($resultado);
-mysqli_close($conex);
+
 
 /*
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -93,10 +101,52 @@ if (isset($_POST['enviar_h'])){
         <h3> Complete los campos por favor </h3>
         <?php
     }
+    memory_free_result($resultado);
+    mysqli_close($conex);
 }
 
-memory_free_result($resultado);
-mysqli_close($conex);
+
+
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Agregar Refaccion
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+if (isset($_POST['enviar_r'])){
+    if (strlen($_POST['desc_r']) >= 1 && strlen($_POST['precio_r']) >= 1 && strlen($_POST['existencias_r']) >= 1){
+        $desc_r = trim($_POST['desc_r']);
+        $precio_r = trim($_POST['precio_r']);
+        $existencias_r = trim($_POST['existencias_r']);
+        $consulta = "INSERT INTO cat_refacciones(desc_r, precio_r, existencias_r) 
+            VALUES ('$desc_r','$precio_r','$existencias_r')";
+        $resultado = mysqli_query($conex,$consulta);
+        if ($resultado){
+            header ("location:/Menu/index.html");
+        } else {
+            ?>
+            <h3> Hay un error al agregar la Refaccion </h3>
+            <?php
+        }
+    } else {
+        ?>
+        <h3> Complete los campos por favor </h3>
+        <?php
+    }
+    memory_free_result($resultado);
+    mysqli_close($conex);
+}
+
+
+
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+
+
 
 
 /*
