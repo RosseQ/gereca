@@ -58,8 +58,10 @@ include("../../db.php");
                                 <td style="background: rgba(253,114,13,0.36);" ><?php echo $mostrar['username'] ?></td>
                                 <td style="background: rgba(253,114,13,0.36);" ><?php echo $mostrar['nombres'] ?></td>
                                 <td style="background: rgba(253,114,13,0.36);" ><?php echo $mostrar['id_nivel_acceso'] ?></td>
-                                <td style="background: rgba(253,114,13,0.36);" ><button></button></td>
-                                <td style="background: rgba(253,114,13,0.36);" ><button><input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="eliminar_u" name="eliminar_u" value="ELiminar Ususario"> </button></td>
+                                <td style="background: rgba(253,114,13,0.36);" ><a href="">
+                                    <img src="/assets/img/modificar.png" alt="" width="50" height="50" align="center"/>
+                                <td style="background: rgba(253,114,13,0.36);" ><a href="">
+                                    <img src="/assets/img/deletear.png" alt="" width="50" height="50" align="center"/>
                             </tr>
                         </tbody>
                         <?php 
