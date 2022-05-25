@@ -44,6 +44,8 @@ include("../../db.php");
                             <th style="background: rgb(253,114,13);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);">Nombre de USUARIO</th>
                             <th style="background: rgb(253,114,13);">Nombres</th>
                             <th style="background: rgb(253,114,13);">Nivel de permiso</th>
+                            <th style="background: rgb(253,114,13);">Modificar</th>
+                            <th style="background: rgb(253,114,13);">Eliminar</th>
                         </tr>
                     </thead>
                         <?php 
@@ -56,6 +58,8 @@ include("../../db.php");
                                 <td style="background: rgba(253,114,13,0.36);" ><?php echo $mostrar['username'] ?></td>
                                 <td style="background: rgba(253,114,13,0.36);" ><?php echo $mostrar['nombres'] ?></td>
                                 <td style="background: rgba(253,114,13,0.36);" ><?php echo $mostrar['id_nivel_acceso'] ?></td>
+                                <td style="background: rgba(253,114,13,0.36);" ><button></button></td>
+                                <td style="background: rgba(253,114,13,0.36);" ><button><input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="eliminar_u" name="eliminar_u" value="ELiminar Ususario"> </button></td>
                             </tr>
                         </tbody>
                         <?php 
