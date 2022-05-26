@@ -47,17 +47,19 @@ include("../../db.php");
                         </tr>
                     </thead>
                     <?php 
-                            $consulta = "SELECT desc_h, cat_acciones_herramienta.desc_acth, username FROM movimientos_herramientas
-                            INNER JOIN cat_usuarios ON cat_usuarios.id = movimientos_herramientas.id_usuario
-                            INNER JOIN cat_herramientas ON cat_herramientas.id = movimientos_herramientas.id_herramienta
-                            INNER JOIN cat_acciones_herramienta ON cat_acciones_herramienta.id = movimientos_herramientas.id_acciones_h;";
+                            $consulta = "SELECT desc_h, cAh.desc_acth, username from cat_herramientas cH 
+                            LEFT JOIN movimientos_herramientas mH ON cH.id = mH.id_herramienta 
+                            LEFT JOIN cat_usuarios cU ON cU.id = mH.id_usuario
+                            LEFT JOIN cat_acciones_herramienta cAh ON cAh.id = mH.id_acciones_h;";
                             $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
                     ?>
                         <tbody>
                             <tr>
                                 <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['desc_h'] ?></td>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['desc_acth'] ?></td>
+                                <td style="background: rgba(253,114,13,0.36);">
+                                    <?php echo ($mostrar['desc_acth']? $mostrar['desc_acth'] : 'Disponible'); ?>                                        
+                                </td>
                                 <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['username'] ?></td>
                             </tr>
                         </tbody>

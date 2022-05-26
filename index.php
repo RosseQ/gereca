@@ -37,8 +37,13 @@
                     <div class="card mb-5">
                         <div class="card-body d-flex flex-column align-items-center">
                             <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4" style="background: rgba(13,110,253,0);"><img src="assets/img/logo-header.png"></div>
-                            
-                            <form action="/registro.php" method="POST" class="text-center" method="post" action="Menu/index.html">
+                            <?php if(isset($_GET['error'])){ ?>
+                            <div id="error" style="width: 100%; background: lightsalmon; text-align: center; border-radius: 2px; padding: 4px; ">
+                                <label style="color: whitesmoke;"><?php echo $_GET['error']; ?></label>
+                                <span class="close" style="font-size: 24px; color: whitesmoke; margin: auto;" onclick="getElementById('error').style.display = 'none' ">&times;</span>
+                            </div>
+                            <?php } ?>
+                            <form action="registro.php" method="POST" class="text-center">
                                 <div class="mb-3">
                                     <label class="form-label" for="username">Usuario:</label>
                                     <input class="form-control" type="text" id="username" name="username">

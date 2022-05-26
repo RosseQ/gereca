@@ -16,6 +16,7 @@ include("../../db.php");
     <link rel="stylesheet" href="assets/css/Features-Centered-Icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/otros.css" />
 </head>
 
 <body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
@@ -37,6 +38,7 @@ include("../../db.php");
                     <p></p>
                 </div>
             </div>
+
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -44,18 +46,27 @@ include("../../db.php");
                             <th style="background: rgb(253,114,13);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);">Descripcion</th>
                             <th style="background: rgb(253,114,13);">Costo</th>
                             <th style="background: rgb(253,114,13);">Existencia</th>
+                            <th style="background: rgb(253,114,13);">Eliminar</th>
                         </tr>
                     </thead>
                     <?php 
                             $consulta = "SELECT * FROM cat_refacciones;";
                             $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
+
                     ?>
                         <tbody>
                             <tr>
                                 <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['desc_r'] ?></td>
                                 <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['precio_r'] ?></td>
                                 <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['existencias_r'] ?></td>
+                                <td style="background: rgba(253,114,13,0.36);">
+                                    <form action="../../registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
+                                        <button type="submit" name="eliminar_r" id="eliminar_r" value="<?php echo $mostrar['id']; ?>" style="background: none !important; border: none !important;">
+                                            <img src="/assets/img/deletear.png" width="50" height="50" />
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         </tbody>
                     <?php 

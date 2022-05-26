@@ -1,10 +1,11 @@
 <?php
 include("db.php");
 
+
 /*
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Validar Login De Usuario
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------
+    Validar Login De Usuario
+---------------------------------------------------------------------------------------------------------------
 */
 
 if (isset($_POST['entrar'])){
@@ -16,35 +17,31 @@ if (isset($_POST['entrar'])){
 
         $fila = mysqli_num_rows ($resultado);
 
+
         if ($fila == 1){
-            header ("location:/Menu/index.html");
+            header ("location:menu/index.html");
         } else {
-            header ("location:/index.html");
-            /*
-            ?>
-            <h3> Error al autenticar </h3>
-            <?php
-            */
+            header ("location:index.php?error=el usuario no coincide con la contraseña");
         }
     } else {
-        header ("location:/index.html");
-        /*
-        ?>
-        <h3> Complete los campos por favor </h3>
-        <?php
-        */
+        header ("location:index.php");
     }
     memory_free_result($resultado);
     mysqli_close($conex);
-}
-
+};
 
 
 
 /*
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Agregar Usuario
+            U  S  U  A  R  I  O  S
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/*
+---------------------------------------------------------------------------------------------------------------
+    Agregar Usuario
+---------------------------------------------------------------------------------------------------------------
 */
 
 if (isset($_POST['enviar_u'])){
@@ -70,14 +67,58 @@ if (isset($_POST['enviar_u'])){
     }
     memory_free_result($resultado);
     mysqli_close($conex);
-}
+};
+
+
+/*
+---------------------------------------------------------------------------------------------------------------
+    Eliminar usuarios
+---------------------------------------------------------------------------------------------------------------
+*/
+
+
+
+/*
+---------------------------------------------------------------------------------------------------------------
+if (isset($_POST['eliminar_u'])){
+    if (strlen($_POST['username']) >= 1 && strlen($_POST['nombres']) >= 1 && strlen($_POST['password']) >= 1 && strlen($_POST['id_nivel_accesso']) >= 1 ){
+        $username = trim($_POST['username']);
+        $password = trim($_POST['password']);
+        $nombres = trim($_POST['nombres']);
+        $id_nivel_accesso = trim($_POST['id_nivel_accesso']);
+        $consulta = "INSERT INTO cat_usuarios(username, password, nombres, id_nivel_acceso) 
+            VALUES ('$username','$password','$nombres','$id_nivel_accesso')";
+        $resultado = mysqli_query($conex,$consulta);
+        if ($resultado){
+            header ("location:/Menu/index.html");
+        } else {
+            ?>
+            <h3> Hay un error al registral al usuario </h3>
+            <?php
+        }
+    } else {
+        ?>
+        <h3> Complete los campos por favor </h3>
+        <?php
+    }
+    memory_free_result($resultado);
+    mysqli_close($conex);
+---------------------------------------------------------------------------------------------------------------
+*/
+
 
 
 
 /*
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Agregar Herramienta
+            H  E  R  R  A  M  I  N  E  T  A  S
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/*
+---------------------------------------------------------------------------------------------------------------
+    Agregar Herramienta
+---------------------------------------------------------------------------------------------------------------
 */
 
 
@@ -103,14 +144,19 @@ if (isset($_POST['enviar_h'])){
     }
     memory_free_result($resultado);
     mysqli_close($conex);
-}
-
+};
 
 
 /*
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Agregar Refaccion
+            R  E  F  A  C  C  I  O  N  E  S
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/*
+---------------------------------------------------------------------------------------------------------------
+    Agregar Refaccion
+---------------------------------------------------------------------------------------------------------------
 */
 
 if (isset($_POST['enviar_r'])){
@@ -135,55 +181,32 @@ if (isset($_POST['enviar_r'])){
     }
     memory_free_result($resultado);
     mysqli_close($conex);
-}
-
+};
 
 
 /*
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Eliminar usuarios
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------
+    Eliminar Refaccion
+---------------------------------------------------------------------------------------------------------------
 */
 
+if (isset($_POST['eliminar_r'])){
 
-
-/*
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-if (isset($_POST['eliminar_u'])){
-    if (strlen($_POST['username']) >= 1 && strlen($_POST['nombres']) >= 1 && strlen($_POST['password']) >= 1 && strlen($_POST['id_nivel_accesso']) >= 1 ){
-        $username = trim($_POST['username']);
-        $password = trim($_POST['password']);
-        $nombres = trim($_POST['nombres']);
-        $id_nivel_accesso = trim($_POST['id_nivel_accesso']);
-        $consulta = "INSERT INTO cat_usuarios(username, password, nombres, id_nivel_acceso) 
-            VALUES ('$username','$password','$nombres','$id_nivel_accesso')";
-        $resultado = mysqli_query($conex,$consulta);
-        if ($resultado){
-            header ("location:/Menu/index.html");
-        } else {
-            ?>
-            <h3> Hay un error al registral al usuario </h3>
-            <?php
-        }
+    $desc_r = $_POST['eliminar_r'];
+    $consulta = "DELETE FROM cat_refacciones WHERE id = '$desc_r'";        
+    $resultado = mysqli_query($conex,$consulta);
+        
+    if ($resultado){
+        header ("location:Refacciones/verRefacciones");
     } else {
         ?>
-        <h3> Complete los campos por favor </h3>
+        <h3> Hay un error al eliminar la Refaccion </h3>
         <?php
     }
     memory_free_result($resultado);
     mysqli_close($conex);
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-*/
+};
 
 
 
-
-
-/*
-
-<?php 
-echo "<script> {window.alert ('Publicado correctamente'); location.href = 'aa.html'} </ script>";
-?>
-
-*/
 ?>
