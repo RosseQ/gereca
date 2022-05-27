@@ -76,7 +76,22 @@ if (isset($_POST['enviar_u'])){
 ---------------------------------------------------------------------------------------------------------------
 */
 
+if (isset($_POST['eliminar_u'])){
 
+    $username = $_POST['eliminar_u'];
+    $consulta = "DELETE FROM cat_usuarios WHERE id = '$username'";        
+    $resultado = mysqli_query($conex,$consulta);
+        
+    if ($resultado){
+        header ("location:Usuarios/verUsuarios");
+    } else {
+        ?>
+        <h3> Hay un error al eliminar el usuario </h3>
+        <?php
+    }
+    memory_free_result($resultado);
+    mysqli_close($conex);
+};
 
 /*
 ---------------------------------------------------------------------------------------------------------------

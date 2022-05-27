@@ -49,7 +49,7 @@ include("../../db.php");
                         </tr>
                     </thead>
                         <?php 
-                            $consulta = "SELECT username, nombres, id_nivel_acceso FROM cat_usuarios";
+                            $consulta = "SELECT id, username, nombres, id_nivel_acceso FROM cat_usuarios";
                             $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
                         ?>
@@ -61,7 +61,11 @@ include("../../db.php");
                                 <td style="background: rgba(253,114,13,0.36);" ><a href="">
                                     <img src="/assets/img/modificar.png" alt="" width="50" height="50" align="center"/>
                                 <td style="background: rgba(253,114,13,0.36);" ><a href="">
-                                    <img src="/assets/img/deletear.png" alt="" width="50" height="50" align="center"/>
+                                <form action="../../registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
+                                <button type="submit" name="eliminar_u" id="eliminar_u" value="<?php echo $mostrar['id']; ?>" style="background: none !important; border: none !important;">
+                                            <img src="/assets/img/deletear.png" width="50" height="50" />
+                                </button>
+                                </form>
                             </tr>
                         </tbody>
                         <?php 
