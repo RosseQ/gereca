@@ -24,7 +24,7 @@ include("../../db.php");
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="../../Menu/index.html">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../index.html">CERRAR SESION</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../index.php">CERRAR SESION</a></li>
                 </ul>
             </div>
         </div>
