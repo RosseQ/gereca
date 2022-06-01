@@ -9,3 +9,11 @@ if (document.getElementsByClassName('clean-product').length > 0) {
         vanillaZoom.init('#product-preview');
     };
 }
+
+function ValidarVacio() {
+    var x = document.forms["required"]["username"].value;
+    if (x == "") {
+      alert("Ningun campo puede estar vacio");
+      return false;
+    }
+}

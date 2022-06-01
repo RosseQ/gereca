@@ -49,15 +49,15 @@
                             <?php } ?>
                             <form action="registro.php" method="POST" class="text-center">
                                 <div class="mb-3">
-                                    <label class="form-label" for="username">Usuario:</label>
+                                    <label class="form-label" for="username" required>Usuario:</label>
                                     <input class="form-control" type="text" id="username" name="username">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="password">Contraseña:<br></label>
+                                    <label class="form-label" for="password" required>Contraseña:<br></label>
                                     <input class="form-control" type="password" id="password" name="password">
                                 </div>
                                 <div class="mb-3">
-                                    <input class="btn btn-primary d-block w-100" type="submit" id="entrar" name="entrar" value="Entrar">
+                                    <input class="btn btn-primary d-block w-100" type="submit" id="entrar" name="entrar" value="Entrar" onsubmit="return ValidarVacio()">
                                 </div>
                                 <p class="text-muted"></p>
                             </form>

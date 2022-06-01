@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="assets/css/Features-Centered-Icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
+    <link rel="icon" href="/assets/img/logo-icono.png">
 </head>
 
 <body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
@@ -28,32 +29,36 @@
     <section class="clean-block clean-form dark" style="background: url(&quot;assets/img/clipboard-image-1.png&quot;);">
         <div class="container">
             <div class="block-heading">
-                <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">Agregar Usuario</h2>
+                <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">Agregar Herramienta</h2>
                 <p></p>
             </div>
 
+            <?php if(isset($_GET['error'])){ ?>
+            <div id="error" style="width: 100%; background: lightsalmon; text-align: center; border-radius: 2px; padding: 4px; ">
+                <label style="color: whitesmoke;"><?php echo $_GET['error']; ?></label>
+                <span class="close" style="font-size: 24px; color: whitesmoke; margin: auto;" onclick="getElementById('error').style.display = 'none' ">&times;</span>
+            </div>
+            <?php } ?>
+
             <form action="/registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
                 <div class="mb-3">
-                    <label class="form-label" for="username">Nombre de Usuario</label>
-                    <input class="form-control" type="text" id="username" name="username">
+                    <label class="form-label" for="cod_barra">Codigo de barras</label>
+                    <input class="form-control" type="text" id="cod_barra" name="cod_barra">
+                    <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);margin: 5px;">Leer codigo de barras</button>
+                </div>
+                <div id="qr-reader" style="width: 600px"></div>
+                <div class="mb-3">
+                    <label class="form-label" for="tipo_h">Tipo de herramienta</label>
+                    <input class="form-control" type="text" id="tipo_h" name="tipo_h">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="nombres">Nombres</label>
-                    <input class="form-control" type="text" id="nombres" name="nombres">
+                    <label class="form-label" for="desc_h">Descripcion</label>
+                    <input class="form-control" type="text" id="desc_h" name="desc_h">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="password">Contraseña</label>
-                    <input class="form-control" type="password" id="password" name="password">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="id_nivel_accesso">Nivel de Acceso</label>
-                    <input class="form-control" type="text" id="id_nivel_accesso" name="id_nivel_accesso">
-                </div>
-                <div class="mb-3">
-                    <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="enviar_u" name="enviar_u" value="Enviar">
+                    <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="enviar_h" name="enviar_h" value="Enviar">
                 </div>
             </form>
-            
 
         </div>
     </section>
@@ -61,7 +66,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
-
+    <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
 </body>
 
 </html>

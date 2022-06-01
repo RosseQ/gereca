@@ -1,0 +1,4 @@
+Validaciones para inserts incompletos
+Articulos no pueden tener nombres duplicados
+Validacion para confirmar la eliminacion de un registro
+BarCode Lib

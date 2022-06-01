@@ -17,11 +17,10 @@ if (isset($_POST['entrar'])){
 
         $fila = mysqli_num_rows ($resultado);
 
-
         if ($fila == 1){
             header ("location:menu/index.html");
         } else {
-            header ("location:index.php?error=el usuario no coincide con la contraseña");
+            header ("location:index.php?error=El usuario o contraseña no validos.");
         }
     } else {
         header ("location:index.php");
@@ -47,24 +46,31 @@ if (isset($_POST['entrar'])){
 if (isset($_POST['enviar_u'])){
     if (strlen($_POST['username']) >= 1 && strlen($_POST['nombres']) >= 1 && strlen($_POST['password']) >= 1 && strlen($_POST['id_nivel_accesso']) >= 1 ){
         $username = trim($_POST['username']);
+        // $user_db = "SELECT username FROM cat_usuarios WHERE username LIKE '$username'";
+        // $user_case = strcasecmp($username,$user_validation);
+        // $user_validation = mysqli_query($conex,$user_db);
+        // memory_free_result($user_validation);
+        // mysqli_close($conex;)
         $password = trim($_POST['password']);
         $nombres = trim($_POST['nombres']);
         $id_nivel_accesso = trim($_POST['id_nivel_accesso']);
-        $consulta = "INSERT INTO cat_usuarios(username, password, nombres, id_nivel_acceso) 
-            VALUES ('$username','$password','$nombres','$id_nivel_accesso')";
-        $resultado = mysqli_query($conex,$consulta);
-        if ($resultado){
-            header ("location:/Menu/index.html");
+        if (($username == $user_validation) && ($user_case == 0)){
+            header ("location:/Usuarios/agregarUsuarios/index.php?error=Ya hay un usuario con este nombre.");
         } else {
-            ?>
-            <h3> Hay un error al registral al usuario </h3>
-            <?php
+            header ("location:/Usuarios/agregarUsuarios/index.php");
+            $consulta = "INSERT INTO cat_usuarios(username, password, nombres, id_nivel_acceso) 
+                VALUES ('$username','$password','$nombres','$id_nivel_accesso')";
+            $resultado = mysqli_query($conex,$consulta);
+        }
+        if ($resultado){
+            header ("location:/Usuarios/verUsuarios/index.php");
+        } else {
+            header ("location:/Usuarios/agregarUsuarios/index.php?error=Hubo un error al registrar usuario.");
         }
     } else {
-        ?>
-        <h3> Complete los campos por favor </h3>
-        <?php
+        header ("location:/Usuarios/agregarUsuarios/index.php?error=Llene todos los campos por favor.");
     }
+    // memory_free_result($resultado);
     memory_free_result($resultado);
     mysqli_close($conex);
 };
@@ -148,14 +154,10 @@ if (isset($_POST['enviar_h'])){
         if ($resultado){
             header ("location:/Menu/index.html");
         } else {
-            ?>
-            <h3> Hay un error al agregar la Herramienta </h3>
-            <?php
+            header ("location:/herramientas/agregarHerramientas/index.php?error=Llene todos los campos por favor.");
         }
     } else {
-        ?>
-        <h3> Complete los campos por favor </h3>
-        <?php
+        header ("location:/herramientas/agregarHerramientas/index.php?error=Llene todos los campos por favor.");
     }
     memory_free_result($resultado);
     mysqli_close($conex);
