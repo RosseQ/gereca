@@ -50,7 +50,9 @@ include("../../db.php");
                         </tr>
                     </thead>
                         <?php 
-                            $consulta = "SELECT id, username, nombres, id_nivel_acceso FROM cat_usuarios";
+                            $consulta = "SELECT cat_usuarios.id, username, nombres, cat_nivel_acceso.desc FROM cat_usuarios
+                            INNER JOIN cat_nivel_acceso
+                            ON cat_usuarios.id_nivel_acceso = cat_nivel_acceso.id";
                             $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
                         ?>
@@ -58,7 +60,7 @@ include("../../db.php");
                             <tr>
                                 <td style="background: rgba(253,114,13,0.36);" ><?php echo $mostrar['username'] ?></td>
                                 <td style="background: rgba(253,114,13,0.36);" ><?php echo $mostrar['nombres'] ?></td>
-                                <td style="background: rgba(253,114,13,0.36);" ><?php echo $mostrar['id_nivel_acceso'] ?></td>
+                                <td style="background: rgba(253,114,13,0.36);" ><?php echo $mostrar['desc'] ?></td>
                                 <td style="background: rgba(253,114,13,0.36);" >
                                 <form action="../modificarUsuarios/index.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
                                     <button type="submit" name="modificar_u" id="modificar_u" value="<?php echo $mostrar['id']; ?>" style="background: none !important; border: none !important;">
