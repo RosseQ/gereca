@@ -36,6 +36,7 @@ include("../../db.php");
                     <h2 class="text-info">Ver Usuarios</h2>
                     <p></p>
                 </div>
+                </div>
             </div>
             <div class="table-responsive">
                 <table class="table">
@@ -58,14 +59,20 @@ include("../../db.php");
                                 <td style="background: rgba(253,114,13,0.36);" ><?php echo $mostrar['username'] ?></td>
                                 <td style="background: rgba(253,114,13,0.36);" ><?php echo $mostrar['nombres'] ?></td>
                                 <td style="background: rgba(253,114,13,0.36);" ><?php echo $mostrar['id_nivel_acceso'] ?></td>
-                                <td style="background: rgba(253,114,13,0.36);" ><a href="">
-                                    <img src="/assets/img/modificar.png" alt="" width="50" height="50" align="center"/>
-                                <td style="background: rgba(253,114,13,0.36);" ><a href="">
-                                <form action="../../registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
-                                <button type="submit" name="eliminar_u" id="eliminar_u" value="<?php echo $mostrar['id']; ?>" style="background: none !important; border: none !important;">
+                                <td style="background: rgba(253,114,13,0.36);" >
+                                <form action="../modificarUsuarios/index.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
+                                    <button type="submit" name="modificar_u" id="modificar_u" value="<?php echo $mostrar['id']; ?>" style="background: none !important; border: none !important;">
+                                        <img src="/assets/img/modificar.png" width="50" height="50" />
+                                    </button>
+                                    </form>
+                                </td>
+                                <td style="background: rgba(253,114,13,0.36);" >
+                                    <form action="../../registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
+                                        <button type="submit" name="eliminar_u" id="eliminar_u" value="<?php echo $mostrar['id']; ?>" style="background: none !important; border: none !important;">
                                             <img src="/assets/img/deletear.png" width="50" height="50" />
-                                </button>
-                                </form>
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         </tbody>
                         <?php 
@@ -75,6 +82,11 @@ include("../../db.php");
             </div>
         </section>
     </section>
+    <div class="text-center d-flex flex-column align-items-center align-items-xl-center">
+        <form action="../agregarUsuarios/index.php">
+            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Agregar usuario</button>
+        </form>
+    </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>

@@ -31,19 +31,40 @@
                 <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">Modificar Usuario</h2>
                 <p></p>
             </div>
-            <form style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
-                <div class="mb-3"><label class="form-label" for="name">Nombre de Usuario</label><input class="form-control" type="text" id="name" name="name"><button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);">Modificar</button></div>
-                <div class="mb-3"><label class="form-label" for="name">Nombre de Usuario</label><input class="form-control" type="text" id="name" name="name"><button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);">Modificar</button></div>
-                <div class="mb-3"><label class="form-label" for="subject">Permisos</label><select class="form-select">
-                        <optgroup label="This is a group">
-                            <option value="12" selected="">This is item 1</option>
-                            <option value="13">This is item 2</option>
-                            <option value="14">This is item 3</option>
+            <?php if(isset($_GET['error'])){ ?>
+            <div id="error" style="width: 100%; background: lightsalmon; text-align: center; border-radius: 2px; padding: 4px; ">
+                <label style="color: whitesmoke;"><?php echo $_GET['error']; ?></label>
+                <span class="close" style="font-size: 24px; color: whitesmoke; margin: auto;" onclick="getElementById('error').style.display = 'none' ">&times;</span>
+            </div>
+            <?php } ?>
+            <form action="/registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
+                <div class="mb-3">
+                    <label class="form-label" for="username">Nombre de Usuario</label>
+                    <input class="form-control" type="text" id="username" name="username">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="nombres">Nombres</label>
+                    <input class="form-control" type="text" id="nombres" name="nombres">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="password">Contraseña</label>
+                    <input class="form-control" type="text" id="password" name="password">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="id_nivel_accesso">Nivel de Acceso</label>
+                    <input class="form-control" type="text" id="id_nivel_accesso" name="id_nivel_accesso">
+                </div>
+                <!-- ESTE NO FUNCIONA PERO DEBERIA SER ASI EN ABMOS -->
+                <!-- <div class="mb-3"><label class="form-label" for="subject">Permisos</label><select class="form-select">
+                        <optgroup label="Seleccionar rol">
+                            <option value="1" selected="">Usuario Comun</option>
+                            <option value="2">Administrador</option>
                         </optgroup>
-                    </select><button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);">Modificar</button></div>
-                <div class="mb-3"></div>
-                <div class="mb-3"></div>
-                <div class="mb-3"><button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);">Enviar</button></div>
+                </div> -->
+                <br/>
+                <div class="mb-3">
+                    <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="modificar_u" name="modificar_u" value="Modificar">
+                </div>
             </form>
         </div>
     </section>

@@ -23,7 +23,7 @@ if (isset($_POST['entrar'])){
             header ("location:index.php?error=El usuario o contraseña no validos.");
         }
     } else {
-        header ("location:index.php");
+        header ("location:index.php?error=El usuario o contraseña no validos.");
     }
     memory_free_result($resultado);
     mysqli_close($conex);
@@ -75,6 +75,42 @@ if (isset($_POST['enviar_u'])){
     mysqli_close($conex);
 };
 
+/*
+---------------------------------------------------------------------------------------------------------------
+    Modificar Usuario
+---------------------------------------------------------------------------------------------------------------
+*/
+
+if (isset($_POST['modificar_u'])){
+
+    $id = $_POST['modificar_u'];
+
+    if (strlen($_POST['username']) >= 1 && strlen($_POST['nombres']) >= 1 && strlen($_POST['password']) >= 1 && strlen($_POST['id_nivel_accesso']) >= 1 ){
+        $username = trim($_POST['username']);
+        $nombres = trim($_POST['nombres']);
+        $password = trim($_POST['password']);
+        $id_nivel_accesso = trim($_POST['id_nivel_accesso']);
+        if (($username == $user_validation) && ($user_case == 0)){
+            header ("location:/Usuarios/modificarUsuarios/index.php?error=Ya hay un usuario con este nombre.");
+        } else {
+            header ("location:/Usuarios/modificarUsuarios/index.php");
+            $consulta = "UPDATE cat_usuarios
+            SET username = '$username', nombres = '$nombres', password = '$password', id_nivel_accesso = $id_nivel_accesso
+            WHERE id = '$id'";
+            $resultado = mysqli_query($conex,$consulta);
+        }
+        if ($resultado){
+            header ("location:/Usuarios/verUsuarios/index.php");
+        } else {
+            header ("location:/Usuarios/modificarUsuarios/index.php?error=Hubo un error al registrar usuario.");
+        }
+    } else {
+        header ("location:/Usuarios/modificarUsuarios/index.php?error=Llene todos los campos por favor.");
+    }
+    memory_free_result($resultado);
+    mysqli_close($conex);
+};
+
 
 /*
 ---------------------------------------------------------------------------------------------------------------
@@ -91,44 +127,11 @@ if (isset($_POST['eliminar_u'])){
     if ($resultado){
         header ("location:Usuarios/verUsuarios");
     } else {
-        ?>
-        <h3> Hay un error al eliminar el usuario </h3>
-        <?php
+        header ("location:/Usuarios/verUsuarios/index.php?error=Error al eliminar usuario.");
     }
     memory_free_result($resultado);
     mysqli_close($conex);
 };
-
-/*
----------------------------------------------------------------------------------------------------------------
-if (isset($_POST['eliminar_u'])){
-    if (strlen($_POST['username']) >= 1 && strlen($_POST['nombres']) >= 1 && strlen($_POST['password']) >= 1 && strlen($_POST['id_nivel_accesso']) >= 1 ){
-        $username = trim($_POST['username']);
-        $password = trim($_POST['password']);
-        $nombres = trim($_POST['nombres']);
-        $id_nivel_accesso = trim($_POST['id_nivel_accesso']);
-        $consulta = "INSERT INTO cat_usuarios(username, password, nombres, id_nivel_acceso) 
-            VALUES ('$username','$password','$nombres','$id_nivel_accesso')";
-        $resultado = mysqli_query($conex,$consulta);
-        if ($resultado){
-            header ("location:/Menu/index.html");
-        } else {
-            ?>
-            <h3> Hay un error al registral al usuario </h3>
-            <?php
-        }
-    } else {
-        ?>
-        <h3> Complete los campos por favor </h3>
-        <?php
-    }
-    memory_free_result($resultado);
-    mysqli_close($conex);
----------------------------------------------------------------------------------------------------------------
-*/
-
-
-
 
 /*
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

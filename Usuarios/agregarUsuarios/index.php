@@ -49,7 +49,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="password">Contraseña</label>
-                    <input class="form-control" type="password" id="password" name="password">
+                    <input class="form-control" type="text" id="password" name="password">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="id_nivel_accesso">Nivel de Acceso</label>
@@ -63,6 +63,12 @@
 
         </div>
     </section>
+        
+    <div class="text-center d-flex flex-column align-items-center align-items-xl-center">
+        <form action="../verUsuarios/index.php">
+            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Lista de Usuarios</button>
+        </form>
+    </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
