@@ -51,11 +51,12 @@
                     <label class="form-label" for="password">Contraseña</label>
                     <input class="form-control" type="text" id="password" name="password">
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="id_nivel_accesso">Nivel de Acceso</label>
-                    <input class="form-control" type="text" id="id_nivel_accesso" name="id_nivel_accesso">
+                <div class="mb-3"><label class="form-label" for="id_nivel_accesso">Permisos</label>
+                    <select class="form-select" id="id_nivel_accesso" name="id_nivel_accesso">
+                        <option id="id_nivel_accesso" name="id_nivel_accesso" value="2" selected>Trabajador</option>
+                        <option id="id_nivel_accesso" name="id_nivel_accesso" value="1">Administrador</option>
+                    </select>
                 </div>
-                <div class="mb-3">
                     <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="enviar_u" name="enviar_u" value="Enviar">
                 </div>
             </form>
