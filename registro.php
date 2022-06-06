@@ -166,6 +166,27 @@ if (isset($_POST['enviar_h'])){
     mysqli_close($conex);
 };
 
+/*
+---------------------------------------------------------------------------------------------------------------
+    Eliminar  Herramienta
+---------------------------------------------------------------------------------------------------------------
+*/
+
+if (isset($_POST['eliminar_h'])){
+
+    $id = $_POST['eliminar_h'];
+    $consulta = "DELETE FROM cat_herramientas WHERE id = '$id'";        
+    $resultado = mysqli_query($conex,$consulta);
+        
+    if ($resultado){
+        header ("location:herramientas/estadoHerramientas");
+    } else {
+        header ("location:/herramientas/estadoHerramientas/index.php?error=Error al eliminar la herramienta.");
+    }
+    memory_free_result($resultado);
+    mysqli_close($conex);
+};
+
 
 /*
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

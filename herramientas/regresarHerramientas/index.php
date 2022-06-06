@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="assets/css/Features-Centered-Icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
+    <link rel="icon" href="/assets/img/logo-icono.png">
 </head>
 
 <body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
@@ -28,25 +29,20 @@
     <section class="clean-block clean-form dark" style="background: url(&quot;assets/img/clipboard-image-1.png&quot;);">
         <div class="container">
             <div class="block-heading">
-                <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">Agregar Refaccion</h2>
+                <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">Regresar Herramienta</h2>
+                <p></p>
             </div>
 
-            <form action="/registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
+            <form style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
+
                 <div class="mb-3">
-                    <label class="form-label" for="desc_r">Descripcion</label>
-                    <input class="form-control" type="text" id="desc_r" name="desc_r">
+                    <div id="reader"></div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="precio_r">Costo</label>
-                    <input class="form-control" type="text" id="precio_r" name="precio_r">
+                <div class="mb-3"><label class="form-label" for="subject">Herramienta</label>
+                    <input class="form-control" type="text" id="subject" name="subject">
+                    <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);border-radius: -20px;margin: 5px;">Leer codigo de barras</button>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="existencias_r">Existencia</label>
-                    <input class="form-control" type="text" id="existencias_r" name="existencias_r">
-                </div>
-                <div class="mb-3">
-                    <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="enviar_r" name="enviar_r" value="Enviar">
-                </div>
+                <div class="mb-3"><button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);">Enviar</button></div>
             </form>
             
         </div>
@@ -55,6 +51,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
+
+    <script type="text/javascript">
+        function onScanSuccess(qrCodeMessage) {
+            document.getElementById('result').value = qrCodeMessage;
+        }
+        function onScanError(errorMessage) {
+          //handle scan error
+        }
+        var html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader", { fps: 10, qrbox: 250 });
+        html5QrcodeScanner.render(onScanSuccess, onScanError);
+    </script>
+
 </body>
 
 </html>

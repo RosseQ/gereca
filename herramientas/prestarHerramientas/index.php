@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="assets/css/Features-Centered-Icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
+    <link rel="icon" href="/assets/img/logo-icono.png">
 </head>
 
 <body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
@@ -33,6 +34,10 @@
             </div>
 
             <form style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
+            
+                <div class="mb-3">
+                    <div id="reader"></div>
+                </div>
                 <div class="mb-3">
                     <label class="form-label" for="subject">Herramienta</label>
                     <input class="form-control" type="text" id="subject-1" name="subject">
@@ -53,6 +58,19 @@
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
     <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
+
+    <script type="text/javascript">
+        function onScanSuccess(qrCodeMessage) {
+            document.getElementById('result').value = qrCodeMessage;
+        }
+        function onScanError(errorMessage) {
+          //handle scan error
+        }
+        var html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader", { fps: 10, qrbox: 250 });
+        html5QrcodeScanner.render(onScanSuccess, onScanError);
+    </script>
+
 </body>
 
 </html>

@@ -16,6 +16,7 @@ include("../../db.php");
     <link rel="stylesheet" href="assets/css/Features-Centered-Icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
+    <link rel="icon" href="/assets/img/logo-icono.png">
 </head>
 
 <body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
@@ -44,10 +45,11 @@ include("../../db.php");
                             <th style="background: rgb(253,114,13);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);">Herramienta</th>
                             <th style="background: rgb(253,114,13);">Estatus</th>
                             <th style="background: rgb(253,114,13);">Usuario</th>
+                            <th style="background: rgb(253,114,13);">Eliminar</th>
                         </tr>
                     </thead>
                     <?php 
-                            $consulta = "SELECT desc_h, cAh.desc_acth, username from cat_herramientas cH 
+                            $consulta = "SELECT cH.id, desc_h, cAh.desc_acth, username from cat_herramientas cH 
                             LEFT JOIN movimientos_herramientas mH ON cH.id = mH.id_herramienta 
                             LEFT JOIN cat_usuarios cU ON cU.id = mH.id_usuario
                             LEFT JOIN cat_acciones_herramienta cAh ON cAh.id = mH.id_acciones_h;";
@@ -57,10 +59,15 @@ include("../../db.php");
                         <tbody>
                             <tr>
                                 <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['desc_h'] ?></td>
-                                <td style="background: rgba(253,114,13,0.36);">
-                                    <?php echo ($mostrar['desc_acth']? $mostrar['desc_acth'] : 'Disponible'); ?>                                        
-                                </td>
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo ($mostrar['desc_acth']? $mostrar['desc_acth'] : 'Disponible'); ?></td>
                                 <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['username'] ?></td>
+                                <td style="background: rgba(253,114,13,0.36);" >
+                                    <form action="../../registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
+                                        <button type="submit" name="eliminar_h" id="eliminar_h" value="<?php echo $mostrar['id']; ?>" style="background: none !important; border: none !important;">
+                                            <img src="/assets/img/deletear.png" width="50" height="50" />
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         </tbody>
                     <?php 

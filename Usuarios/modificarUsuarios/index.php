@@ -15,6 +15,7 @@ include("../../db.php");
     <link rel="stylesheet" href="assets/css/Features-Centered-Icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
+    <link rel="icon" href="/assets/img/logo-icono.png">
 </head>
 
 <body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
@@ -62,7 +63,7 @@ include("../../db.php");
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="nombres">Nombres</label>
-                        <input class="form-control" type="text" id="nombres" name="nombres" value="<?php echo $mostrar['username']; ?>">
+                        <input class="form-control" type="text" id="nombres" name="nombres" value="<?php echo $mostrar['nombres']; ?>">
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="password">Contraseña</label>
