@@ -75,6 +75,8 @@ if (isset($_POST['enviar_u'])){
     mysqli_close($conex);
 };
 
+
+
 /*
 ---------------------------------------------------------------------------------------------------------------
     Modificar Usuario
@@ -112,6 +114,7 @@ if (isset($_POST['modificar_u'])){
 };
 
 
+
 /*
 ---------------------------------------------------------------------------------------------------------------
     Eliminar usuarios
@@ -133,6 +136,8 @@ if (isset($_POST['eliminar_u'])){
     mysqli_close($conex);
 };
 
+
+
 /*
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             H  E  R  R  A  M  I  N  E  T  A  S
@@ -146,6 +151,7 @@ if (isset($_POST['eliminar_u'])){
 */
 
 
+
 if (isset($_POST['enviar_h'])){
     if (strlen($_POST['cod_barra']) >= 1 && strlen($_POST['tipo_h']) >= 1 && strlen($_POST['desc_h']) >= 1){
         $cod_barra = trim($_POST['cod_barra']);
@@ -157,7 +163,7 @@ if (isset($_POST['enviar_h'])){
         if ($resultado){
             header ("location:/Menu/index.html");
         } else {
-            header ("location:/herramientas/agregarHerramientas/index.php?error=Llene todos los campos por favor.");
+            header ("location:/herramientas/agregarHerramientas/index.php?error=Hubo un error al registrar la Herramienta.");
         }
     } else {
         header ("location:/herramientas/agregarHerramientas/index.php?error=Llene todos los campos por favor.");
@@ -165,6 +171,8 @@ if (isset($_POST['enviar_h'])){
     memory_free_result($resultado);
     mysqli_close($conex);
 };
+
+
 
 /*
 ---------------------------------------------------------------------------------------------------------------
@@ -188,6 +196,64 @@ if (isset($_POST['eliminar_h'])){
 };
 
 
+
+/*
+---------------------------------------------------------------------------------------------------------------
+    Prestar Herramienta
+---------------------------------------------------------------------------------------------------------------
+*/
+
+if (isset($_POST['usar_h'])){
+    
+    if (strlen($_POST['cantidad']) >= 1){
+        $username_r = $_POST['username_r'];
+        $cod_barra = $_POST['cod_barra'];
+        $cantidad = $_POST['cantidad'];
+
+        $cantidad = (int)$cantidad;
+        
+        $consulta = "SELECT id, existencias_r FROM cat_refacciones WHERE cod_barra = '$cod_barra';";
+        $resultado = mysqli_query($conex,$consulta);
+        $mostrar_r = mysqli_fetch_array($resultado);
+        
+        $id_r = $mostrar_r['id'];
+        $existencias_r = $mostrar_r['existencias_r'];
+        
+        $con_f = ($existencias_r - $cantidad);
+        
+        if($con_f >= 0){
+            
+            $update = "UPDATE cat_refacciones SET existencias_r = '$con_f'  WHERE cod_barra = '$cod_barra';";
+            $resultado = mysqli_query($conex,$update);
+
+            if ($resultado){
+
+                $consulta = "SELECT * FROM cat_usuarios WHERE username = '$username_r';";
+                $resultado = mysqli_query($conex,$consulta);
+                $mostrar_u = mysqli_fetch_array($resultado);
+    
+                $id_u = $mostrar_u['id'];
+                $fecha_ur = date("y/m/d");
+
+                $inser = "INSERT INTO movimientos_refaccion(id_usuario, id_refaccion, id_accion_refaccion, fecha_ur)
+                VALUES ('$id_u','$id_r','2', '$fecha_ur');";
+                $resultado = mysqli_query($conex,$inser);
+
+                header ("location:/Menu/index.html");
+            } else {
+                header ("location:/Refacciones/usarRefacciones/index.php?error=Error al solicitar la Refaccion.");
+            }
+
+        }
+    } else {
+        header ("location:/Refacciones/usarRefacciones/index.php?error=Error, Complete todos los campos por favor.");
+    }
+    memory_free_result($resultado);
+    mysqli_close($conex);
+};
+
+
+
 /*
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             R  E  F  A  C  C  I  O  N  E  S
@@ -201,24 +267,64 @@ if (isset($_POST['eliminar_h'])){
 */
 
 if (isset($_POST['enviar_r'])){
-    if (strlen($_POST['desc_r']) >= 1 && strlen($_POST['precio_r']) >= 1 && strlen($_POST['existencias_r']) >= 1){
+    if (strlen($_POST['cod_barra']) >= 1 && strlen($_POST['desc_r']) >= 1 && strlen($_POST['precio_r']) >= 1 && strlen($_POST['existencias_r']) >= 1){
+
+        $cod_barra = trim($_POST['cod_barra']);
         $desc_r = trim($_POST['desc_r']);
         $precio_r = trim($_POST['precio_r']);
-        $existencias_r = trim($_POST['existencias_r']);
-        $consulta = "INSERT INTO cat_refacciones(desc_r, precio_r, existencias_r) 
-            VALUES ('$desc_r','$precio_r','$existencias_r')";
+        $cantidad = trim($_POST['existencias_r']);
+        $cantidad = (int)$cantidad;
+
+        $consulta = "SELECT * FROM cat_refacciones WHERE cod_barra = '$cod_barra';";
         $resultado = mysqli_query($conex,$consulta);
-        if ($resultado){
-            header ("location:/Menu/index.html");
-        } else {
-            ?>
-            <h3> Hay un error al agregar la Refaccion </h3>
-            <?php
+        $mostrar_r = mysqli_fetch_array($resultado);
+
+        $id_r = $mostrar_r['id'];
+        $cod_barra_r = $mostrar_r['cod_barra'];
+        $existencias_r = $mostrar_r['existencias_r'];
+        
+        $con_f = ($existencias_r + $cantidad);
+        
+        if($cod_barra = $cod_barra_r){
+
+            $update = "UPDATE cat_refacciones SET existencias_r = '$con_f'  WHERE cod_barra = '$cod_barra';";
+            $resultado = mysqli_query($conex,$update);
+
+            if ($resultado){
+    
+                $fecha_ur = date("y/m/d");
+
+                $inser = "INSERT INTO movimientos_refaccion(id_usuario, id_refaccion, id_accion_refaccion, fecha_ur)
+                VALUES ('1','$id_r','1', '$fecha_ur');";
+                $resultado = mysqli_query($conex,$inser);
+
+                header ("location:/Menu/index.html");
+            } else {
+                header ("location:/Refacciones/agregarRefacciones/index.php?error=Error al añadir la Refaccion.");
+            }
+
+        }else {
+
+            $consulta = "INSERT INTO cat_refacciones(cod_barra, desc_r, precio_r, existencias_r) 
+                VALUES ('$cod_barra', $desc_r','$precio_r','$existencias_r')";
+            $resultado = mysqli_query($conex,$consulta);
+
+
+            if ($resultado){
+
+                $inser = "INSERT INTO movimientos_refaccion(id_usuario, id_refaccion, id_accion_refaccion, fecha_ur)
+                VALUES ('1','$id_r','1', '$fecha_ur');";
+                $resultado = mysqli_query($conex,$inser);
+
+                header ("location:/Menu/index.html");
+            } else {
+                header ("location:/Refacciones/agregarRefacciones/index.php?error=Error al añadir la Refaccion.");
+            }
+
         }
+
     } else {
-        ?>
-        <h3> Complete los campos por favor </h3>
-        <?php
+        header ("location:/Refacciones/agregarRefacciones/index.php?error=Error, Complete los campos por favor.");
     }
     memory_free_result($resultado);
     mysqli_close($conex);
@@ -240,9 +346,64 @@ if (isset($_POST['eliminar_r'])){
     if ($resultado){
         header ("location:Refacciones/verRefacciones");
     } else {
-        ?>
-        <h3> Hay un error al eliminar la Refaccion </h3>
-        <?php
+        header ("location:/Refacciones/verRefacciones/index.php?error=Error al eliminar la Refaccion.");
+    }
+    memory_free_result($resultado);
+    mysqli_close($conex);
+};
+
+
+
+/*
+---------------------------------------------------------------------------------------------------------------
+    Prestar Refaccion
+---------------------------------------------------------------------------------------------------------------
+*/
+
+if (isset($_POST['usar_r'])){
+    
+    if (strlen($_POST['cantidad']) >= 1){
+        $username_r = $_POST['username_r'];
+        $cod_barra = $_POST['cod_barra'];
+        $cantidad = $_POST['cantidad'];
+
+        $cantidad = (int)$cantidad;
+        
+        $consulta = "SELECT id, existencias_r FROM cat_refacciones WHERE cod_barra = '$cod_barra';";
+        $resultado = mysqli_query($conex,$consulta);
+        $mostrar_r = mysqli_fetch_array($resultado);
+        
+        $id_r = $mostrar_r['id'];
+        $existencias_r = $mostrar_r['existencias_r'];
+        
+        $con_f = ($existencias_r - $cantidad);
+        
+        if($con_f >= 0){
+            
+            $update = "UPDATE cat_refacciones SET existencias_r = '$con_f'  WHERE cod_barra = '$cod_barra';";
+            $resultado = mysqli_query($conex,$update);
+
+            if ($resultado){
+
+                $consulta = "SELECT * FROM cat_usuarios WHERE username = '$username_r';";
+                $resultado = mysqli_query($conex,$consulta);
+                $mostrar_u = mysqli_fetch_array($resultado);
+    
+                $id_u = $mostrar_u['id'];
+                $fecha_ur = date("y/m/d");
+
+                $inser = "INSERT INTO movimientos_refaccion(id_usuario, id_refaccion, id_accion_refaccion, fecha_ur)
+                VALUES ('$id_u','$id_r','2', '$fecha_ur');";
+                $resultado = mysqli_query($conex,$inser);
+
+                header ("location:/Menu/index.html");
+            } else {
+                header ("location:/Refacciones/usarRefacciones/index.php?error=Error al solicitar la Refaccion.");
+            }
+
+        }
+    } else {
+        header ("location:/Refacciones/usarRefacciones/index.php?error=Error, Complete todos los campos por favor.");
     }
     memory_free_result($resultado);
     mysqli_close($conex);

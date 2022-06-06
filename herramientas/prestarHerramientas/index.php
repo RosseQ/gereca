@@ -38,17 +38,22 @@
                 <div class="mb-3">
                     <div id="reader"></div>
                 </div>
+                
                 <div class="mb-3">
                     <label class="form-label" for="subject">Herramienta</label>
                     <input class="form-control" type="text" id="subject-1" name="subject">
                     <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);margin: 5px;">Leer codigo de barras</button>
                 </div>
+
                 <div class="mb-3">
                     <label class="form-label" for="name">Nombre de Usuario</label>
-                    <input class="form-control" type="text" id="subject" name="subject"></div>
+                    <input class="form-control" type="text" id="subject" name="subject">
+                </div>
+
                 <div class="mb-3">
                     <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);">Enviar</button>
                 </div>
+
             </form>
             
         </div>

@@ -32,22 +32,31 @@
                 <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">Usar Refacción</h2>
             </div>
 
-            <form style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
+            <form action="/registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
                 
                 <div class="mb-3">
                     <div id="reader"></div>
                 </div>
+
                 <div class="mb-3">
-                    <label class="form-label" for="subject">Refacción</label>
-                    <input class="form-control" type="text" id="result" name="subject">
-                    <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);margin: 5px;border-radius: -20px;">Leer codigo de barras</button>
-                <div class="mb-3">
-                    <label class="form-label" for="name">Nombre de Usuario</label>
-                    <input class="form-control" type="text" id="subject-1" name="subject">
+                    <label class="form-label" for="cod_barra">Refacción</label>
+                    <input class="form-control" type="number" id="cod_barra" name="cod_barra">
                 </div>
+
                 <div class="mb-3">
-                    <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);">Enviar</button>
+                    <label class="form-label" for="cantidad">Cantidad</label>
+                    <input class="form-control" type="number" id="cantidad" name="cantidad">
                 </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="username_r">Nombre del Trabajador</label>
+                    <input class="form-control" type="text" id="username_r" name="username_r">
+                </div>
+
+                <div class="mb-3">
+                    <input class="btn btn-primary" method="post" type="submit" style="background: rgb(253,114,13);" id="usar_r" name="usar_r" value="Enviar">
+                </div>
+
             </form>
             
         </div>

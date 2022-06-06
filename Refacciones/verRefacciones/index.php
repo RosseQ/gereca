@@ -54,7 +54,7 @@ include("../../db.php");
                             $consulta = "SELECT * FROM cat_refacciones;";
                             $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
-
+                            
                     ?>
                         <tbody>
                             <tr>

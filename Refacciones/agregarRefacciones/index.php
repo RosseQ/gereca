@@ -34,6 +34,10 @@
 
             <form action="/registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
                 <div class="mb-3">
+                    <label class="form-label" for="cod_barra">Codigo de Barras</label>
+                    <input class="form-control" type="text" id="cod_barra" name="cod_barra">
+                </div>
+                <div class="mb-3">
                     <label class="form-label" for="desc_r">Descripcion</label>
                     <input class="form-control" type="text" id="desc_r" name="desc_r">
                 </div>
@@ -43,7 +47,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="existencias_r">Existencia</label>
-                    <input class="form-control" type="text" id="existencias_r" name="existencias_r">
+                    <input class="form-control" type="number" id="existencias_r" name="existencias_r">
                 </div>
                 <div class="mb-3">
                     <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="enviar_r" name="enviar_r" value="Enviar">
