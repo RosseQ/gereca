@@ -1,3 +1,48 @@
+<?php
+
+require "db.php";
+
+session_start();
+
+if ($_POST){
+
+    if (strlen($_POST['username']) >= 1 && strlen($_POST['password']) >= 1 ){
+        $username = trim($_POST['username']);
+        $password = trim($_POST['password']);
+        $consulta = "SELECT * FROM cat_usuarios WHERE username ='$username' AND password = '$password'";
+        $resultado = $conex->query($consulta);
+		$num = $resultado->num_rows;
+        $mostrar = mysqli_fetch_array($resultado);
+
+        $id_u = $mostrar['id'];
+
+        if ($num>0){
+            $row = $resultado->fetch_assoc();
+			$password_bd = $row['password'];
+
+            if($password_bd == $pass_c){
+				
+				$_SESSION['id'] = $row['id'];
+                $_SESSION['username'] = $row['username'];
+				
+                $consulta = "INSERT INTO bitacora_acceso(id_usuario, fecha_ingreso) 
+                    VALUES ('$username','$password','$nombres','$id_nivel_accesso')";
+                $resultado = mysqli_query($conex,$consulta);
+            
+				header ("location:/Menu");
+				
+			} else {
+                header ("location:index.php?error=El usuario o contraseña no validos.");
+            }
+        } else {
+            header ("location:index.php?error=El usuario o contraseña no validos.");
+        }
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -47,7 +92,7 @@
                                 <span class="close" style="font-size: 24px; color: whitesmoke; margin: auto;" onclick="getElementById('error').style.display = 'none' ">&times;</span>
                             </div>
                             <?php } ?>
-                            <form action="registro.php" method="POST" class="text-center">
+                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="text-center">
                                 <div class="mb-3">
                                     <label class="form-label" for="username" required>Usuario:</label>
                                     <input class="form-control" type="text" id="username" name="username"

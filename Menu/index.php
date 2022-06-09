@@ -1,3 +1,17 @@
+<?php
+	
+	session_start();
+	
+	if(!isset($_SESSION['id'])){
+		header("Location: index.php");
+	}
+	
+    $id_u = $_SESSION['id'];
+    $username = $_SESSION['username'];
+	
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -16,7 +30,7 @@
 
 <body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.html">CAMINOSA | Mi Taller</a>
+        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">CAMINOSA | Mi Taller</a>
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
                 <span class="visually-hidden">Toggle navigation</span>
                 <span class="navbar-toggler-icon"></span>
@@ -24,8 +38,8 @@
             
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../index.php">CERRAR SESION</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.php">INICIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../logout.php">CERRAR SESION</a></li>
                 </ul>
             </div>
         </div>

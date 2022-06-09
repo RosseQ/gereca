@@ -7,8 +7,11 @@ include("db.php");
     Validar Login De Usuario
 ---------------------------------------------------------------------------------------------------------------
 */
-
+/*
 if (isset($_POST['entrar'])){
+
+    session_start();
+
     if (strlen($_POST['username']) >= 1 && strlen($_POST['password']) >= 1 ){
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
@@ -27,7 +30,7 @@ if (isset($_POST['entrar'])){
             $resultado = mysqli_query($conex,$consulta);
             
 
-            header ("location:menu/index.html");
+            header ("location:menu/index.php");
         } else {
             header ("location:index.php?error=El usuario o contraseña no validos.");
         }
@@ -38,7 +41,7 @@ if (isset($_POST['entrar'])){
     mysqli_close($conex);
 };
 
-
+*/
 
 /*
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -72,7 +75,7 @@ if (isset($_POST['enviar_u'])){
             $resultado = mysqli_query($conex,$consulta);
         }
         if ($resultado){
-            header ("location:/Usuarios/verUsuarios/index.php");
+            header ("location:/Usuarios/verUsuarios");
         } else {
             header ("location:/Usuarios/agregarUsuarios/index.php?error=Hubo un error al registrar usuario.");
         }
@@ -111,7 +114,7 @@ if (isset($_POST['modificar_u'])){
             $resultado = mysqli_query($conex,$consulta);
         }
         if ($resultado){
-            header ("location:/Usuarios/verUsuarios/index.php");
+            header ("location:/Usuarios/verUsuarios");
         } else {
             header ("location:/Usuarios/modificarUsuarios/index.php?error=Hubo un error al registrar usuario.");
         }
@@ -184,7 +187,7 @@ if (isset($_POST['enviar_h'])){
             $resultado = mysqli_query($conex,$inser);
             
 
-            header ("location:/Menu/index.html");
+            header ("location:herramientas/estadoHerramientas");
         } else {
             header ("location:/herramientas/agregarHerramientas/index.php?error=Hubo un error al registrar la Herramienta.");
         }
@@ -489,7 +492,7 @@ if (isset($_POST['usar_r'])){
                     VALUES ('$id_u','$id_r','2', '$fecha_ur');";
                     $resultado = mysqli_query($conex,$inser);
 
-                    header ("location:/Menu/index.html");
+                    header ("location:Refacciones/verRefacciones");
                 } else {
                     header ("location:/Refacciones/usarRefacciones/index.php?error=Error al solicitar la Refaccion.");
                 }
