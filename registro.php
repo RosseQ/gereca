@@ -382,7 +382,7 @@ if (isset($_POST['enviar_r'])){
         }else {
 
             $consulta = "INSERT INTO cat_refacciones(cod_barra, desc_r, precio_r, existencias_r) 
-                VALUES ('$cod_barra', $desc_r','$precio_r','$existencias_r')";
+                VALUES ('$cod_barra', '$desc_r','$precio_r','$existencias_r')";
             $resultado = mysqli_query($conex,$consulta);
 
             if ($resultado){
