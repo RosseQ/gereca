@@ -17,7 +17,11 @@
 
 <body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.html">CAMINOSA | Mi Taller</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.html">CAMINOSA | Mi Taller</a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+            <span class="visually-hidden">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="../../Menu/index.html">INICIO</a></li>
@@ -33,16 +37,18 @@
                 <p></p>
             </div>
 
-            <form style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
+            <form action="/registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
 
                 <div class="mb-3">
                     <div id="reader"></div>
                 </div>
-                <div class="mb-3"><label class="form-label" for="subject">Herramienta</label>
-                    <input class="form-control" type="text" id="subject" name="subject">
-                    <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);border-radius: -20px;margin: 5px;">Leer codigo de barras</button>
+                <div class="mb-3"><label class="form-label" for="cod_barra">Herramienta</label>
+                    <input class="form-control" type="number" id="cod_barra" name="cod_barra"
+                        maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
-                <div class="mb-3"><button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);">Enviar</button></div>
+                <div class="mb-3">
+                    <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="regresar_h" name="regresar_h" value="Enviar">
+                </div>
             </form>
             
         </div>

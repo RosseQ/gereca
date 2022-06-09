@@ -53,7 +53,8 @@ include("../../db.php");
                         <?php 
                             $consulta = "SELECT cat_usuarios.id, username, nombres, cat_nivel_acceso.desc FROM cat_usuarios
                             INNER JOIN cat_nivel_acceso
-                            ON cat_usuarios.id_nivel_acceso = cat_nivel_acceso.id";
+                            ON cat_usuarios.id_nivel_acceso = cat_nivel_acceso.id
+                            WHERE estatus ='visible'";
                             $resultado = mysqli_query($conex,$consulta);
                             while($mostrar = mysqli_fetch_array($resultado)){
                         ?>
@@ -69,9 +70,10 @@ include("../../db.php");
                                         </button>
                                     </form>
                                 </td>
-                                <td style="background: rgba(253,114,13,0.36);" >
+                                <td style="background: rgba(253,114,13,0.36);">
                                     <form action="../../registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
-                                        <button type="submit" name="eliminar_u" id="eliminar_u" value="<?php echo $mostrar['id']; ?>" style="background: none !important; border: none !important;">
+                                        <button type="submit" name="eliminar_u" id="eliminar_u" value="<?php echo $mostrar['id']; ?>" 
+                                            style="background: none !important; border: none !important;" onclick="return ConfirmarDelete()" >
                                             <img src="/assets/img/deletear.png" width="50" height="50" />
                                         </button>
                                     </form>
@@ -94,6 +96,21 @@ include("../../db.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
+
+    <script type="text/javascript">
+        function ConfirmarDelete()
+        {
+            var respuesta = confirm("¿Estas seguro que Deceas Eliminarlo?");
+
+            if (respuesta == true){
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+    </script>
+
 </body>
 
 </html>

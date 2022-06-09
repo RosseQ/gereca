@@ -42,15 +42,18 @@
             <form action="/registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
                 <div class="mb-3">
                     <label class="form-label" for="username">Nombre de Usuario</label>
-                    <input class="form-control" type="text" id="username" name="username">
+                    <input class="form-control" type="text" id="username" name="username"
+                        maxlength="15" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="nombres">Nombres</label>
-                    <input class="form-control" type="text" id="nombres" name="nombres">
+                    <input class="form-control" type="text" id="nombres" name="nombres"
+                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="password">Contraseña</label>
-                    <input class="form-control" type="text" id="password" name="password">
+                    <input class="form-control" type="text" id="password" name="password"
+                        maxlength="8" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3"><label class="form-label" for="id_nivel_accesso">Permisos</label>
                     <select class="form-select" id="id_nivel_accesso" name="id_nivel_accesso">

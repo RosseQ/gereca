@@ -50,11 +50,13 @@
                             <form action="registro.php" method="POST" class="text-center">
                                 <div class="mb-3">
                                     <label class="form-label" for="username" required>Usuario:</label>
-                                    <input class="form-control" type="text" id="username" name="username">
+                                    <input class="form-control" type="text" id="username" name="username"
+                                        maxlength="10" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="password" required>Contraseña:<br></label>
-                                    <input class="form-control" type="password" id="password" name="password">
+                                    <input class="form-control" type="password" id="password" name="password" 
+                                        maxlength="8" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                                 </div>
                                 <div class="mb-3">
                                     <input class="btn btn-primary d-block w-100" type="submit" id="entrar" name="entrar" value="Entrar" onsubmit="return ValidarVacio()">

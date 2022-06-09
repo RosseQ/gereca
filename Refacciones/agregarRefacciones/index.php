@@ -35,19 +35,23 @@
             <form action="/registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
                 <div class="mb-3">
                     <label class="form-label" for="cod_barra">Codigo de Barras</label>
-                    <input class="form-control" type="text" id="cod_barra" name="cod_barra">
+                    <input class="form-control" type="text" id="cod_barra" name="cod_barra"
+                        maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="desc_r">Descripcion</label>
-                    <input class="form-control" type="text" id="desc_r" name="desc_r">
+                    <input class="form-control" type="text" id="desc_r" name="desc_r"
+                        maxlength="150" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="precio_r">Costo</label>
-                    <input class="form-control" type="text" id="precio_r" name="precio_r">
+                    <input class="form-control" type="text" id="precio_r" name="precio_r"
+                        maxlength="8" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="existencias_r">Existencia</label>
-                    <input class="form-control" type="number" id="existencias_r" name="existencias_r">
+                    <input class="form-control" type="number" id="existencias_r" name="existencias_r" min="1"
+                        maxlength="4" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
                     <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="enviar_r" name="enviar_r" value="Enviar">

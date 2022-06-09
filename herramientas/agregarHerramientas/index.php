@@ -44,7 +44,6 @@
                 <div class="mb-3">
                     <label class="form-label" for="cod_barra">Codigo de barras</label>
                     <input class="form-control" type="text" id="cod_barra" name="cod_barra">
-                    <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);margin: 5px;">Leer codigo de barras</button>
                 </div>
                 <div id="qr-reader" style="width: 600px"></div>
                 <div class="mb-3">

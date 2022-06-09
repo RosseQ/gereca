@@ -37,20 +37,23 @@
                 <div class="mb-3">
                     <div id="reader"></div>
                 </div>
-
+                
                 <div class="mb-3">
                     <label class="form-label" for="cod_barra">Refacción</label>
-                    <input class="form-control" type="number" id="cod_barra" name="cod_barra">
+                    <input class="form-control" type="number" id="cod_barra" name="cod_barra"
+                        maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="cantidad">Cantidad</label>
-                    <input class="form-control" type="number" id="cantidad" name="cantidad">
+                    <input class="form-control" type="number" id="cantidad" name="cantidad" min="1"
+                        maxlength="4" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="username_r">Nombre del Trabajador</label>
-                    <input class="form-control" type="text" id="username_r" name="username_r">
+                    <input class="form-control" type="text" id="username_r" name="username_r"
+                        maxlength="15" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))">
                 </div>
 
                 <div class="mb-3">

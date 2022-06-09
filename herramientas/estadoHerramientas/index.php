@@ -49,21 +49,22 @@ include("../../db.php");
                         </tr>
                     </thead>
                     <?php 
-                            $consulta = "SELECT cH.id, desc_h, cAh.desc_acth, username from cat_herramientas cH 
+                            $consulta = "SELECT DISTINCT cH.id, cH.desc_h, cH.estado, cU.username from cat_herramientas cH 
                             LEFT JOIN movimientos_herramientas mH ON cH.id = mH.id_herramienta 
                             LEFT JOIN cat_usuarios cU ON cU.id = mH.id_usuario
-                            LEFT JOIN cat_acciones_herramienta cAh ON cAh.id = mH.id_acciones_h;";
+                            WHERE cH.estatus = 'visible';";
                             $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
                     ?>
                         <tbody>
                             <tr>
                                 <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['desc_h'] ?></td>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo ($mostrar['desc_acth']? $mostrar['desc_acth'] : 'Disponible'); ?></td>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['username'] ?></td>
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['estado']?></td>
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['username']?></td>
                                 <td style="background: rgba(253,114,13,0.36);" >
                                     <form action="../../registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
-                                        <button type="submit" name="eliminar_h" id="eliminar_h" value="<?php echo $mostrar['id']; ?>" style="background: none !important; border: none !important;">
+                                        <button type="submit" name="eliminar_h" id="eliminar_h" value="<?php echo $mostrar['id']; ?>" 
+                                            style="background: none !important; border: none !important;" onclick="return ConfirmarDelete()">
                                             <img src="/assets/img/deletear.png" width="50" height="50" />
                                         </button>
                                     </form>
@@ -77,11 +78,34 @@ include("../../db.php");
             </div>
         </section>
     </section>
+    <div style=" display: flex; justify-content: center; align-items: center;">
+        <form action="../prestarHerramientas/index.php">
+            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Prestar Herramienta</button>
+        </form>
+        <form action="../agregarRefacciones/index.php">
+            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Agregar Herramienta</button>
+        </form>
+    </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
     <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
+
+    <script type="text/javascript">
+        function ConfirmarDelete()
+        {
+            var respuesta = confirm("¿Estas seguro que Deceas Eliminarlo?");
+
+            if (respuesta == true){
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+    </script>
+
 </body>
 
 </html>

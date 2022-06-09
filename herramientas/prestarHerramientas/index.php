@@ -33,25 +33,26 @@
                 <p></p>
             </div>
 
-            <form style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
+            <form action="/registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
             
                 <div class="mb-3">
                     <div id="reader"></div>
                 </div>
                 
                 <div class="mb-3">
-                    <label class="form-label" for="subject">Herramienta</label>
-                    <input class="form-control" type="text" id="subject-1" name="subject">
-                    <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);margin: 5px;">Leer codigo de barras</button>
+                    <label class="form-label" for="cod_barra">Herramienta</label>
+                    <input class="form-control" type="number" id="cod_barra" name="cod_barra"
+                        maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="name">Nombre de Usuario</label>
-                    <input class="form-control" type="text" id="subject" name="subject">
+                    <label class="form-label" for="username_h">Nombre del Trabajador</label>
+                    <input class="form-control" type="text" id="username_h" name="username_h"
+                        maxlength="15" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))">
                 </div>
 
                 <div class="mb-3">
-                    <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);">Enviar</button>
+                    <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="usar_h" name="usar_h" value="Enviar">
                 </div>
 
             </form>
