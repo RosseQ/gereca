@@ -29,8 +29,8 @@ if (isset($_POST['enviar_u'])){
             header ("location:/Usuarios/agregarUsuarios/index.php?error=Ya hay un usuario con este nombre.");
         } else {
             header ("location:/Usuarios/agregarUsuarios/index.php");
-            $consulta = "INSERT INTO cat_usuarios(username, password, nombres, id_nivel_acceso) 
-                VALUES ('$username','$password','$nombres','$id_nivel_accesso')";
+            $consulta = "INSERT INTO cat_usuarios(username, password, nombres, id_nivel_acceso, estatus) 
+                VALUES ('$username','$password','$nombres','$id_nivel_accesso','visible')";
             $resultado = mysqli_query($conex,$consulta);
         }
         if ($resultado){
@@ -68,7 +68,7 @@ if (isset($_POST['modificar_u'])){
         } else {
             header ("location:/Usuarios/modificarUsuarios/index.php");
             $consulta = "UPDATE cat_usuarios
-            SET username = '$username', nombres = '$nombres', password = '$password', id_nivel_accesso = $id_nivel_accesso
+            SET username = '$username', nombres = '$nombres', password = '$password', id_nivel_accesso = $id_nivel_accesso,
             WHERE id = '$id'";
             $resultado = mysqli_query($conex,$consulta);
         }

@@ -1,4 +1,5 @@
 <?php
+include("../../db.php");
 
     session_start();
         
@@ -58,10 +59,24 @@
                         maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
 
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label class="form-label" for="username_h">Nombre del Trabajador</label>
                     <input class="form-control" type="text" id="username_h" name="username_h"
                         maxlength="15" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))">
+                </div> -->
+                
+                <div class="mb-3"><label class="form-label" for="username_h">Trabajador</label>
+                    <select class="form-select" id="username_h" name="username_h">
+                        <?php 
+                            $consulta = "SELECT username, nombres
+                            FROM cat_usuarios
+                            WHERE estatus ='visible'";
+                            $resultado = mysqli_query($conex,$consulta);
+                            while($mostrar = mysqli_fetch_array($resultado)){
+                        ?>
+                            <option id="username_h" name="username_h" value="<?php echo $mostrar['username'] ?>" selected><?php echo $mostrar['nombres'] ?></option>
+                        <?php }?>
+                    </select>
                 </div>
 
                 <div class="mb-3">

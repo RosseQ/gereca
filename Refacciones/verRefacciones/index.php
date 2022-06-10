@@ -62,8 +62,8 @@ include("../../db.php");
                         </tr>
                     </thead>
                     <?php 
-                            $consulta = "SELECT * FROM cat_refacciones WHERE estatus = 'visible';";
-                            $resultado = mysqli_query($conex,$consulta);
+                        $consulta = "SELECT * FROM cat_refacciones WHERE estatus = 'visible';";
+                        $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
                     ?>
                         <tbody>
