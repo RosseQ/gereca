@@ -1,3 +1,16 @@
+<?php
+
+    session_start();
+        
+    if(!isset($_SESSION['id'])){
+        header("Location: ../../index.php");
+    }
+
+    $id_u = $_SESSION['id'];
+    $username = $_SESSION['username'];
+
+?>
+
 <!DOCTYPE html>
 <html style="background: rgba(255,255,255,0);">
 
@@ -21,7 +34,7 @@
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="../../Menu/index.php">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../index.php">CERRAR SESION</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../logout.php">CERRAR SESION</a></li>
                 </ul>
             </div>
         </div>
@@ -43,16 +56,19 @@
             <form action="/registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
                 <div class="mb-3">
                     <label class="form-label" for="cod_barra">Codigo de barras</label>
-                    <input class="form-control" type="text" id="cod_barra" name="cod_barra">
+                    <input class="form-control" type="text" id="cod_barra" name="cod_barra"
+                        maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div id="qr-reader" style="width: 600px"></div>
                 <div class="mb-3">
                     <label class="form-label" for="tipo_h">Tipo de herramienta</label>
-                    <input class="form-control" type="text" id="tipo_h" name="tipo_h">
+                    <input class="form-control" type="text" id="tipo_h" name="tipo_h"
+                        maxlength="15" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="desc_h">Descripcion</label>
-                    <input class="form-control" type="text" id="desc_h" name="desc_h">
+                    <input class="form-control" type="text" id="desc_h" name="desc_h"
+                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
                 <div class="mb-3">
                     <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="enviar_h" name="enviar_h" value="Enviar">

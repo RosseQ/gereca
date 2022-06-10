@@ -22,14 +22,14 @@ if ($_POST){
 
             if($password_bd == $pass_c){
 				
-				$_SESSION['id'] = $row['id'];
-                $_SESSION['username'] = $row['username'];
+				$_SESSION['id'] = $mostrar['id'];
+                $_SESSION['username'] = $mostrar['username'];
 				
                 $consulta = "INSERT INTO bitacora_acceso(id_usuario, fecha_ingreso) 
                     VALUES ('$username','$password','$nombres','$id_nivel_accesso')";
                 $resultado = mysqli_query($conex,$consulta);
             
-				header ("location:/Menu");
+				header ("location:Menu/");
 				
 			} else {
                 header ("location:index.php?error=El usuario o contraseña no validos.");

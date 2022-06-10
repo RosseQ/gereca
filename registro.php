@@ -3,47 +3,6 @@ include("db.php");
 
 
 /*
----------------------------------------------------------------------------------------------------------------
-    Validar Login De Usuario
----------------------------------------------------------------------------------------------------------------
-*/
-/*
-if (isset($_POST['entrar'])){
-
-    session_start();
-
-    if (strlen($_POST['username']) >= 1 && strlen($_POST['password']) >= 1 ){
-        $username = trim($_POST['username']);
-        $password = trim($_POST['password']);
-        $consulta = "SELECT * FROM cat_usuarios WHERE username ='$username' AND password = '$password'";
-        $resultado = mysqli_query($conex,$consulta);
-        $mostrar = mysqli_fetch_array($resultado);
-
-        $id_u = $mostrar['id'];
-
-        $fila = mysqli_num_rows ($resultado);
-
-        if ($fila == 1){
-
-            $consulta = "INSERT INTO bitacora_acceso(id_usuario, fecha_ingreso) 
-                VALUES ('$username','$password','$nombres','$id_nivel_accesso')";
-            $resultado = mysqli_query($conex,$consulta);
-            
-
-            header ("location:menu/index.php");
-        } else {
-            header ("location:index.php?error=El usuario o contraseña no validos.");
-        }
-    } else {
-        header ("location:index.php?error=El usuario o contraseña no validos.");
-    }
-    memory_free_result($resultado);
-    mysqli_close($conex);
-};
-
-*/
-
-/*
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             U  S  U  A  R  I  O  S
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

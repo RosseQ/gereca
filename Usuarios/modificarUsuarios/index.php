@@ -1,6 +1,18 @@
 <?php
 include("../../db.php");
+
+	session_start();
+	
+	if(!isset($_SESSION['id'])){
+		header("Location: ../../index.php");
+	}
+	
+    $id_u = $_SESSION['id'];
+    $username = $_SESSION['username'];
+
 ?>
+
+
 <!DOCTYPE html>
 <html style="background: rgba(255,255,255,0);">
 
@@ -24,7 +36,7 @@ include("../../db.php");
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="../../Menu/index.php">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../index.php">CERRAR SESION</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../logout.php">CERRAR SESION</a></li>
                 </ul>
             </div>
         </div>
