@@ -46,7 +46,13 @@ include("../../db.php");
                 <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">Agregar Refaccion</h2>
             </div>
 
-            <form action="/registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
+            <?php if(isset($_GET['error'])){ ?>
+            <div id="error" style="width: 100%; background: lightsalmon; text-align: center; border-radius: 2px; padding: 4px; ">
+                <label style="color: whitesmoke;"><?php echo $_GET['error']; ?></label>
+                <span class="close" style="font-size: 24px; color: whitesmoke; margin: auto;" onclick="getElementById('error').style.display = 'none' ">&times;</span>
+            </div>
+            <?php } ?>
+            <form action="../../registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
                 <div class="mb-3">
                     <label class="form-label" for="cod_barra">Codigo de Barras</label>
                     <input class="form-control" type="text" id="cod_barra" name="cod_barra"

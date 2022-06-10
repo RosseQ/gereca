@@ -52,14 +52,15 @@ include("../../db.php");
                 <table class="table">
                     <thead>
                         <tr>
-                            <th style="background: rgb(253,114,13);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);">Herramienta</th>
+                            <th style="background: rgb(253,114,13);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);">Codigo de Barras</th>
+                            <th style="background: rgb(253,114,13);">Herramienta</th>
                             <th style="background: rgb(253,114,13);">Estatus</th>
                             <th style="background: rgb(253,114,13);">Usuario</th>
                             <th style="background: rgb(253,114,13);">Eliminar</th>
                         </tr>
                     </thead>
                     <?php 
-                            $consulta = "SELECT cH.id, cH.desc_h, cH.estado, cU.username from cat_herramientas cH 
+                            $consulta = "SELECT cH.id, cH.cod_barra, cH.desc_h, cH.estado, cU.username from cat_herramientas cH 
                             LEFT JOIN movimientos_herramientas mH ON cH.id = mH.id_herramienta 
                             LEFT JOIN cat_usuarios cU ON cU.id = mH.id_usuario 
                             WHERE cH.estatus = 'visible' 
@@ -69,6 +70,7 @@ include("../../db.php");
                     ?>
                         <tbody>
                             <tr>
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['cod_barra'] ?></td>
                                 <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['desc_h'] ?></td>
                                 <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['estado']?></td>
                                 <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['username']?></td>

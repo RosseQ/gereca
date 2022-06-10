@@ -25,8 +25,8 @@ if ($_POST){
 				$_SESSION['id'] = $mostrar['id'];
                 $_SESSION['username'] = $mostrar['username'];
 				
-                $consulta = "INSERT INTO bitacora_acceso(id_usuario, fecha_ingreso) 
-                    VALUES ('$username','$password','$nombres','$id_nivel_accesso')";
+                $consulta = "INSERT INTO bitacora_acceso(id_usuario) 
+                    VALUES ('$id_u', now())";
                 $resultado = mysqli_query($conex,$consulta);
             
 				header ("location:Menu/");

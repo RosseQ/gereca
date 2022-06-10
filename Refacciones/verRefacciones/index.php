@@ -55,7 +55,8 @@ include("../../db.php");
                 <table class="table">
                     <thead>
                         <tr>
-                            <th style="background: rgb(253,114,13);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);">Descripcion</th>
+                            <th style="background: rgb(253,114,13);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);">Codigo de Barra</th>
+                            <th style="background: rgb(253,114,13);">Descripcion</th>
                             <th style="background: rgb(253,114,13);">Costo</th>
                             <th style="background: rgb(253,114,13);">Existencia</th>
                             <th style="background: rgb(253,114,13);">Eliminar</th>
@@ -68,6 +69,7 @@ include("../../db.php");
                     ?>
                         <tbody>
                             <tr>
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['cod_barra'] ?></td>
                                 <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['desc_r'] ?></td>
                                 <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['precio_r'] ?></td>
                                 <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['existencias_r'] ?></td>

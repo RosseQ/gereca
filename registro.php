@@ -128,8 +128,8 @@ if (isset($_POST['enviar_h'])){
         $cod_barra = trim($_POST['cod_barra']);
         $tipo_h = trim($_POST['tipo_h']);
         $desc_h = trim($_POST['desc_h']);
-        $consulta = "INSERT INTO cat_herramientas(cod_barra,tipo_h, desc_h) 
-            VALUES ('$cod_barra','$tipo_h','$desc_h')";
+        $consulta = "INSERT INTO cat_herramientas(cod_barra,tipo_h, desc_h, estado, estatus) 
+            VALUES ('$cod_barra','$tipo_h','$desc_h', 'Disponible', 'visible')";
         $resultado = mysqli_query($conex,$consulta);
         if ($resultado){
             /*
@@ -333,7 +333,7 @@ if (isset($_POST['enviar_r'])){
                 $fecha_ur = date("y/m/d H:i:s");
 
                 $inser = "INSERT INTO movimientos_refaccion(id_usuario, id_refaccion, id_accion_refaccion, fecha_ur)
-                VALUES ('1','$id_r','1', '$fecha_ur');";
+                VALUES (1,'$id_r', 1, '$fecha_ur');";
                 $resultado = mysqli_query($conex,$inser);
 
                 header ("location:Refacciones/verRefacciones");
@@ -341,25 +341,25 @@ if (isset($_POST['enviar_r'])){
                 header ("location:/Refacciones/agregarRefacciones/index.php?error=Error al añadir la Refaccion.");
             }
 
-        }else {
+        } else {
 
-            $consulta = "INSERT INTO cat_refacciones(cod_barra, desc_r, precio_r, existencias_r) 
-                VALUES ('$cod_barra', '$desc_r','$precio_r','$existencias_r')";
-            $resultado = mysqli_query($conex,$consulta);
+            $agregar = "INSERT INTO cat_refacciones(cod_barra, desc_r, precio_r, existencias_r, estatus) 
+                VALUES ('$cod_barra', '$desc_r','$precio_r','$existencias_r', 'visible');";
+            $resultado = mysqli_query($conex,$agregar);
 
             if ($resultado){
+    
+                $fecha_ur = date("y/m/d H:i:s");
 
                 $inser = "INSERT INTO movimientos_refaccion(id_usuario, id_refaccion, id_accion_refaccion, fecha_ur)
-                VALUES ('1','$id_r','1', '$fecha_ur');";
+                VALUES (1,'$id_r', 2, '$fecha_ur');";
                 $resultado = mysqli_query($conex,$inser);
 
                 header ("location:Refacciones/verRefacciones");
             } else {
                 header ("location:/Refacciones/agregarRefacciones/index.php?error=Error al añadir la Refaccion.");
             }
-
         }
-
     } else {
         header ("location:/Refacciones/agregarRefacciones/index.php?error=Error, Complete los campos por favor.");
     }
