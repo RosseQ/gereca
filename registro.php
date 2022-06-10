@@ -17,11 +17,6 @@ include("db.php");
 if (isset($_POST['enviar_u'])){
     if (strlen($_POST['username']) >= 1 && strlen($_POST['nombres']) >= 1 && strlen($_POST['password']) >= 1 && strlen($_POST['id_nivel_accesso']) >= 1 ){
         $username = trim($_POST['username']);
-        // $user_db = "SELECT username FROM cat_usuarios WHERE username LIKE '$username'";
-        // $user_case = strcasecmp($username,$user_validation);
-        // $user_validation = mysqli_query($conex,$user_db);
-        // memory_free_result($user_validation);
-        // mysqli_close($conex;)
         $password = trim($_POST['password']);
         $nombres = trim($_POST['nombres']);
         $id_nivel_accesso = trim($_POST['id_nivel_accesso']);
@@ -132,13 +127,7 @@ if (isset($_POST['enviar_h'])){
             VALUES ('$cod_barra','$tipo_h','$desc_h', 'Disponible', 'visible')";
         $resultado = mysqli_query($conex,$consulta);
         if ($resultado){
-            /*
-            $consulta = "SELECT * FROM cat_usuarios WHERE username = '$username_h';";
-            $resultado = mysqli_query($conex,$consulta);
-            $mostrar_u = mysqli_fetch_array($resultado);
-        
-            $id_u = $mostrar_u['id'];
-            */
+
             $fecha_uh = date("y/m/d H:i:s");
 
             $inser = "INSERT INTO movimientos_herramientas(id_usuario, id_herramienta, id_acciones_h, fecha_uh)
@@ -172,13 +161,7 @@ if (isset($_POST['eliminar_h'])){
     $resultado = mysqli_query($conex,$update);
         
     if ($resultado){
-        /*
-        $consulta = "SELECT * FROM cat_usuarios WHERE username = '$username_h';";
-        $resultado = mysqli_query($conex,$consulta);
-        $mostrar_u = mysqli_fetch_array($resultado);
-    
-        $id_u = $mostrar_u['id'];
-        */
+
         $fecha_uh = date("y/m/d H:i:s");
 
         $inser = "INSERT INTO movimientos_herramientas(id_usuario, id_herramienta, id_acciones_h, fecha_uh)
@@ -261,13 +244,6 @@ if (isset($_POST['regresar_h'])){
 
         $id_h = $mostrar_h['id'];
 
-        /*
-        $consulta = "SELECT * FROM cat_usuarios WHERE username = '$username_h';";
-        $resultado = mysqli_query($conex,$consulta);
-        $mostrar_u = mysqli_fetch_array($resultado);
-    
-        $id_u = $mostrar_u['id'];
-        */
         $fecha_uh = date("y/m/d H:i:s");
 
         $inser = "INSERT INTO movimientos_herramientas(id_usuario, id_herramienta, id_acciones_h, fecha_uh)
@@ -381,13 +357,6 @@ if (isset($_POST['eliminar_r'])){
     $resultado = mysqli_query($conex,$update);
         
     if ($resultado){
-        /*
-        $consulta = "SELECT * FROM cat_usuarios WHERE username = '$username_r';";
-        $resultado = mysqli_query($conex,$consulta);
-        $mostrar_u = mysqli_fetch_array($resultado);
-    
-        $id_u = $mostrar_u['id'];
-        */
         $fecha_ur = date("y/m/d H:i:s");
 
         $inser = "INSERT INTO movimientos_refaccion(id_usuario, id_refaccion, id_accion_refaccion, fecha_ur)
