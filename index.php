@@ -6,7 +6,7 @@ session_start();
 
 if ($_POST){
 
-    if (strlen($_POST['username']) >= 1 && strlen($_POST['password']) >= 1 ){
+    if (strlen($_POST['username']) >= 1 xor strlen($_POST['password']) >= 1 ){
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
         $consulta = "SELECT * FROM cat_usuarios WHERE username ='$username' AND password = '$password'";
@@ -37,6 +37,8 @@ if ($_POST){
         } else {
             header ("location:index.php?error=El usuario o contraseña no validos.");
         }
+    } else {
+        header ("location:index.php?error=Introduzca su usuario y/o contraseña.");
     }
 }
 

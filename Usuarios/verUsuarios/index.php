@@ -57,7 +57,7 @@ include("../../db.php");
                             <th style="background: rgb(253,114,13);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);">Nombre de USUARIO</th>
                             <th style="background: rgb(253,114,13);">Nombres</th>
                             <th style="background: rgb(253,114,13);">Nivel de permiso</th>
-                            <th style="background: rgb(253,114,13);">Modificar</th>
+                            <!-- <th style="background: rgb(253,114,13);">Modificar</th> -->
                             <th style="background: rgb(253,114,13);">Eliminar</th>
                         </tr>
                     </thead>
@@ -74,13 +74,13 @@ include("../../db.php");
                                 <td style="background: rgba(253,114,13,0.36);" ><?php echo $mostrar['username'] ?></td>
                                 <td style="background: rgba(253,114,13,0.36);" ><?php echo $mostrar['nombres'] ?></td>
                                 <td style="background: rgba(253,114,13,0.36);" ><?php echo $mostrar['desc'] ?></td>
-                                <td style="background: rgba(253,114,13,0.36);" >
+                                <!-- <td style="background: rgba(253,114,13,0.36);" >
                                     <form action="../modificarUsuarios/index.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
                                         <button type="submit" name="edituser" id="edituser" value="<?php echo $mostrar['id']; ?>" style="background: none !important; border: none !important;">
                                             <img src="/assets/img/modificar.png" width="50" height="50" />
                                         </button>
                                     </form>
-                                </td>
+                                </td> -->
                                 <td style="background: rgba(253,114,13,0.36);">
                                     <form action="../../registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
                                         <button type="submit" name="eliminar_u" id="eliminar_u" value="<?php echo $mostrar['id']; ?>" 
@@ -103,6 +103,14 @@ include("../../db.php");
             <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Agregar usuario</button>
         </form>
     </div>
+    <!-- <div class="text-center row gy-3 row-cols-md-2">
+        <form action="../agregarUsuarios/index.php">
+            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Agregar usuario</button>
+        </form>
+        <form action="../modificarUsuarios/index.php">
+            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Modificar usuario</button>
+        </form>
+    </div> -->
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
