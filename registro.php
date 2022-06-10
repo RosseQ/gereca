@@ -323,25 +323,7 @@ if (isset($_POST['enviar_r'])){
         
         $con_f = ($existencias_r + $cantidad);
         
-        if($cod_barra = $cod_barra_r){
-
-            $update = "UPDATE cat_refacciones SET existencias_r = '$con_f', estatus = 'visible'  WHERE cod_barra = '$cod_barra';";
-            $resultado = mysqli_query($conex,$update);
-
-            if ($resultado){
-    
-                $fecha_ur = date("y/m/d H:i:s");
-
-                $inser = "INSERT INTO movimientos_refaccion(id_usuario, id_refaccion, id_accion_refaccion, fecha_ur)
-                VALUES (1,'$id_r', 1, '$fecha_ur');";
-                $resultado = mysqli_query($conex,$inser);
-
-                header ("location:Refacciones/verRefacciones");
-            } else {
-                header ("location:/Refacciones/agregarRefacciones/index.php?error=Error al añadir la Refaccion.");
-            }
-
-        } else {
+        if($cod_barra !== $cod_barra_r){
 
             $agregar = "INSERT INTO cat_refacciones(cod_barra, desc_r, precio_r, existencias_r, estatus) 
                 VALUES ('$cod_barra', '$desc_r','$precio_r','$existencias_r', 'visible');";
@@ -353,6 +335,24 @@ if (isset($_POST['enviar_r'])){
 
                 $inser = "INSERT INTO movimientos_refaccion(id_usuario, id_refaccion, id_accion_refaccion, fecha_ur)
                 VALUES (1,'$id_r', 2, '$fecha_ur');";
+                $resultado = mysqli_query($conex,$inser);
+
+                header ("location:Refacciones/verRefacciones");
+            } else {
+                header ("location:/Refacciones/agregarRefacciones/index.php?error=Error al añadir la Refaccion.");
+            }
+
+        } else {
+
+            $update = "UPDATE cat_refacciones SET existencias_r = '$con_f', estatus = 'visible'  WHERE cod_barra = '$cod_barra';";
+            $resultado = mysqli_query($conex,$update);
+
+            if ($resultado){
+    
+                $fecha_ur = date("y/m/d H:i:s");
+
+                $inser = "INSERT INTO movimientos_refaccion(id_usuario, id_refaccion, id_accion_refaccion, fecha_ur)
+                VALUES (1,'$id_r', 1, '$fecha_ur');";
                 $resultado = mysqli_query($conex,$inser);
 
                 header ("location:Refacciones/verRefacciones");
@@ -407,7 +407,7 @@ if (isset($_POST['eliminar_r'])){
 
 /*
 ---------------------------------------------------------------------------------------------------------------
-    Prestar Refaccion
+    Usar Refaccion
 ---------------------------------------------------------------------------------------------------------------
 */
 
@@ -431,32 +431,39 @@ if (isset($_POST['usar_r'])){
             $id_r = $mostrar_r['id'];
             $existencias_r = $mostrar_r['existencias_r'];
             
-            $con_f = ($existencias_r - $cantidad);
-            
-            if($con_f >= 0){
+            if ($existencias_r < $cantidad) {
+                header ("location:/Refacciones/usarRefacciones/index.php?error=Error, no hay suficientes existencias.");
+            } else {
+
+                $con_f = ($existencias_r - $cantidad);
+
+                if($con_f >= 0){
                 
-                $update = "UPDATE cat_refacciones SET existencias_r = '$con_f'  WHERE cod_barra = '$cod_barra';";
-                $resultado = mysqli_query($conex,$update);
-
-                if ($resultado){
-
-                    $consulta = "SELECT * FROM cat_usuarios WHERE username = '$username_r';";
-                    $resultado = mysqli_query($conex,$consulta);
-                    $mostrar_u = mysqli_fetch_array($resultado);
-        
-                    $id_u = $mostrar_u['id'];
-                    $fecha_ur = date("y/m/d H:i:s");
-
-                    $inser = "INSERT INTO movimientos_refaccion(id_usuario, id_refaccion, id_accion_refaccion, fecha_ur)
-                    VALUES ('$id_u','$id_r','2', '$fecha_ur');";
-                    $resultado = mysqli_query($conex,$inser);
-
-                    header ("location:Refacciones/verRefacciones");
-                } else {
-                    header ("location:/Refacciones/usarRefacciones/index.php?error=Error al solicitar la Refaccion.");
+                    $update = "UPDATE cat_refacciones SET existencias_r = '$con_f'  WHERE cod_barra = '$cod_barra';";
+                    $resultado = mysqli_query($conex,$update);
+    
+                    if ($resultado){
+    
+                        $consulta = "SELECT * FROM cat_usuarios WHERE username = '$username_r';";
+                        $resultado = mysqli_query($conex,$consulta);
+                        $mostrar_u = mysqli_fetch_array($resultado);
+            
+                        $id_u = $mostrar_u['id'];
+                        $fecha_ur = date("y/m/d H:i:s");
+    
+                        $inser = "INSERT INTO movimientos_refaccion(id_usuario, id_refaccion, id_accion_refaccion, fecha_ur)
+                        VALUES ('$id_u','$id_r','2', '$fecha_ur');";
+                        $resultado = mysqli_query($conex,$inser);
+    
+                        header ("location:Refacciones/verRefacciones");
+                    } else {
+                        header ("location:/Refacciones/usarRefacciones/index.php?error=Error al solicitar la Refaccion.");
+                    }
+    
                 }
-
             }
+            
+            
         }else{
             header ("location:/Refacciones/usarRefacciones/index.php?error=Error, Refaccion no encontrada.");
         }

@@ -55,7 +55,7 @@ include("../../db.php");
             <form action="../../registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
                 <div class="mb-3">
                     <label class="form-label" for="cod_barra">Codigo de Barras</label>
-                    <input class="form-control" type="text" id="cod_barra" name="cod_barra"
+                    <input class="form-control" type="number" id="cod_barra" name="cod_barra"
                         maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
@@ -65,7 +65,7 @@ include("../../db.php");
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="precio_r">Costo</label>
-                    <input class="form-control" type="text" id="precio_r" name="precio_r"
+                    <input class="form-control" type="number" id="precio_r" name="precio_r"
                         maxlength="8" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">

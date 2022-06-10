@@ -55,7 +55,7 @@ include("../../db.php");
                 
                 <div class="mb-3">
                     <label class="form-label" for="cod_barra">Herramienta</label>
-                    <input class="form-control" type="number" id="cod_barra" name="cod_barra"
+                    <input class="form-control" type="text" id="cod_barra" name="cod_barra"
                         maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
 
@@ -95,7 +95,7 @@ include("../../db.php");
 
     <script type="text/javascript">
         function onScanSuccess(qrCodeMessage) {
-            document.getElementById('result').value = qrCodeMessage;
+            document.getElementById('cod_barra').value = qrCodeMessage;
         }
         function onScanError(errorMessage) {
           //handle scan error

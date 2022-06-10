@@ -40,12 +40,18 @@ include("../../db.php");
             </div>
         </div>
     </nav>
+    
     <section class="clean-block clean-form dark" style="background: url(&quot;assets/img/clipboard-image-1.png&quot;);">
         <div class="container">
             <div class="block-heading">
                 <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">Usar Refacción</h2>
             </div>
-
+            <?php if(isset($_GET['error'])){ ?>
+            <div id="error" style="width: 100%; background: lightsalmon; text-align: center; border-radius: 2px; padding: 4px; ">
+                <label style="color: whitesmoke;"><?php echo $_GET['error']; ?></label>
+                <span class="close" style="font-size: 24px; color: whitesmoke; margin: auto;" onclick="getElementById('error').style.display = 'none' ">&times;</span>
+            </div>
+            <?php } ?>
             <form action="/registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
                 
                 <div class="mb-3">
@@ -99,7 +105,7 @@ include("../../db.php");
 
     <script type="text/javascript">
         function onScanSuccess(qrCodeMessage) {
-            document.getElementById('result').value = qrCodeMessage;
+            document.getElementById('cod_barra').value = qrCodeMessage;
         }
         function onScanError(errorMessage) {
           //handle scan error
