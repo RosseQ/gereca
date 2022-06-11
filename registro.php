@@ -283,13 +283,13 @@ if (isset($_POST['regresar_h'])){
 if (isset($_POST['enviar_r'])){
     if (strlen($_POST['cod_barra']) >= 1 && strlen($_POST['desc_r']) >= 1 && strlen($_POST['precio_r']) >= 1 && strlen($_POST['existencias_r']) >= 1){
 
-        $cod_barra = trim($_POST['cod_barra']);
-        $desc_r = trim($_POST['desc_r']);
-        $precio_r = trim($_POST['precio_r']);
-        $cantidad = trim($_POST['existencias_r']);
-        $cantidad = (int)$cantidad;
+        $cod_barra_rn = trim($_POST['cod_barra']);
+        $desc_rn = trim($_POST['desc_r']);
+        $precio_rn = trim($_POST['precio_r']);
+        $cantidad_rn = trim($_POST['existencias_r']);
+        $cantidad_rn = (int)$cantidad_rn;
 
-        $consulta = "SELECT * FROM cat_refacciones WHERE cod_barra = '$cod_barra';";
+        $consulta = "SELECT * FROM cat_refacciones WHERE cod_barra = '$cod_barra_rn';";
         $resultado = mysqli_query($conex,$consulta);
         $mostrar_r = mysqli_fetch_array($resultado);
 
@@ -297,30 +297,11 @@ if (isset($_POST['enviar_r'])){
         $cod_barra_r = $mostrar_r['cod_barra'];
         $existencias_r = $mostrar_r['existencias_r'];
         
-        $con_f = ($existencias_r + $cantidad);
+        $con_f = ($existencias_r + $cantidad_rn);
         
-        if($cod_barra !== $cod_barra_r){
+        if($cod_barra = $cod_barra_r){
 
-            $agregar = "INSERT INTO cat_refacciones(cod_barra, desc_r, precio_r, existencias_r, estatus) 
-                VALUES ('$cod_barra', '$desc_r','$precio_r','$existencias_r', 'visible');";
-            $resultado = mysqli_query($conex,$agregar);
-
-            if ($resultado){
-    
-                $fecha_ur = date("y/m/d H:i:s");
-
-                $inser = "INSERT INTO movimientos_refaccion(id_usuario, id_refaccion, id_accion_refaccion, fecha_ur)
-                VALUES (1,'$id_r', 2, '$fecha_ur');";
-                $resultado = mysqli_query($conex,$inser);
-
-                header ("location:Refacciones/verRefacciones");
-            } else {
-                header ("location:/Refacciones/agregarRefacciones/index.php?error=Error al añadir la Refaccion.");
-            }
-
-        } else {
-
-            $update = "UPDATE cat_refacciones SET existencias_r = '$con_f', estatus = 'visible'  WHERE cod_barra = '$cod_barra';";
+            $update = "UPDATE cat_refacciones SET existencias_r = '$con_f', estatus = 'visible'  WHERE cod_barra = '$cod_barra_rn';";
             $resultado = mysqli_query($conex,$update);
 
             if ($resultado){
@@ -335,7 +316,26 @@ if (isset($_POST['enviar_r'])){
             } else {
                 header ("location:/Refacciones/agregarRefacciones/index.php?error=Error al añadir la Refaccion.");
             }
+
+        } else {
+
+            $consulta = "INSERT INTO cat_refacciones(cod_barra, desc_r, precio_r, existencias_r,estatus) 
+                VALUES ('$cod_barra_rn', '$desc_rn','$precio_rn','$cantidad_rn','visible')";
+            $resultado = mysqli_query($conex,$consulta);
+
+            if ($resultado){
+
+                $inser = "INSERT INTO movimientos_refaccion(id_usuario, id_refaccion, id_accion_refaccion, fecha_ur)
+                VALUES ('1','$id_r','1', '$fecha_ur');";
+                $resultado = mysqli_query($conex,$inser);
+
+                header ("location:Refacciones/verRefacciones");
+            } else {
+                header ("location:/Refacciones/agregarRefacciones/index.php?error=Error al añadir la Refaccion.");
+            }
+            
         }
+
     } else {
         header ("location:/Refacciones/agregarRefacciones/index.php?error=Error, Complete los campos por favor.");
     }
