@@ -98,19 +98,19 @@ include("../../db.php");
             </div>
         </section>
     </section>
-    <div class="text-center d-flex flex-column align-items-center align-items-xl-center">
+    <!-- <div class="text-center d-flex flex-column align-items-center align-items-xl-center">
         <form action="../agregarUsuarios/index.php">
             <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Agregar usuario</button>
         </form>
-    </div>
-    <!-- <div class="text-center row gy-3 row-cols-md-2">
+    </div> -->
+    <div class="text-center row gy-3 row-cols-md-2">
         <form action="../agregarUsuarios/index.php">
             <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Agregar usuario</button>
         </form>
         <form action="../modificarUsuarios/index.php">
             <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Modificar usuario</button>
         </form>
-    </div> -->
+    </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>

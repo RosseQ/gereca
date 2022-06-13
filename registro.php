@@ -15,12 +15,12 @@ include("db.php");
 */
 
 if (isset($_POST['enviar_u'])){
-    if (strlen($_POST['username']) >= 1 && strlen($_POST['nombres']) >= 1 && strlen($_POST['password']) >= 1 && strlen($_POST['id_nivel_accesso']) >= 1 ){
+    if (strlen($_POST['username']) >= 1 && strlen($_POST['nombres']) >= 1 && strlen($_POST['password']) >= 1){
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
         $nombres = trim($_POST['nombres']);
         $id_nivel_accesso = trim($_POST['id_nivel_accesso']);
-        if (($username == $user_validation) && ($user_case == 0)){
+        if ($username == $user_validation){
             header ("location:/Usuarios/agregarUsuarios/index.php?error=Ya hay un usuario con este nombre.");
         } else {
             header ("location:/Usuarios/agregarUsuarios/index.php");
@@ -51,31 +51,28 @@ if (isset($_POST['enviar_u'])){
 
 if (isset($_POST['modificar_u'])){
 
-    $id = $_POST['modificar_u'];
+    if (strlen($_POST['username_mod']) >= 1 && strlen($_POST['nombres_mod']) >= 1 && strlen($_POST['password_mod']) >= 1 ){
+        $id_mod = trim($_POST['id_mod']);
+        $username_mod = trim($_POST['username_mod']);
+        $nombres_mod = trim($_POST['nombres_mod']);
+        $password_mod = trim($_POST['password_mod']);
+        $id_nivel_accesso_mod = trim($_POST['id_nivel_accesso_mod']);
 
-    if (strlen($_POST['username']) >= 1 && strlen($_POST['nombres']) >= 1 && strlen($_POST['password']) >= 1 && strlen($_POST['id_nivel_accesso']) >= 1 ){
-        $username = trim($_POST['username']);
-        $nombres = trim($_POST['nombres']);
-        $password = trim($_POST['password']);
-        $id_nivel_accesso = trim($_POST['id_nivel_accesso']);
-        if (($username == $user_validation) && ($user_case == 0)){
-            header ("location:/Usuarios/modificarUsuarios/index.php?error=Ya hay un usuario con este nombre.");
-        } else {
-            header ("location:/Usuarios/modificarUsuarios/index.php");
-            $consulta = "UPDATE cat_usuarios
-            SET username = '$username', nombres = '$nombres', password = '$password', id_nivel_accesso = $id_nivel_accesso,
-            WHERE id = '$id'";
-            $resultado = mysqli_query($conex,$consulta);
-        }
-        if ($resultado){
+        $consulta_mod = "UPDATE cat_usuarios
+            SET username = '$username_mod', nombres = '$nombres_mod',
+            password = '$password_mod', id_nivel_accesso = '$id_nivel_accesso_mod'
+            WHERE id = '$id_mod'
+        ";
+        $resultado_mod = mysqli_query($conex,$consulta_mod);
+        if ($resultado_mod){
             header ("location:/Usuarios/verUsuarios");
         } else {
-            header ("location:/Usuarios/modificarUsuarios/index.php?error=Hubo un error al registrar usuario.");
+            header ("location:/Usuarios/modificarUsuarios/index.php?error=Hubo un error al modificar usuario.");
         }
     } else {
         header ("location:/Usuarios/modificarUsuarios/index.php?error=Llene todos los campos por favor.");
     }
-    memory_free_result($resultado);
+    memory_free_result($resultado_mod);
     mysqli_close($conex);
 };
 
