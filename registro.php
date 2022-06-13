@@ -50,19 +50,18 @@ if (isset($_POST['enviar_u'])){
 */
 
 if (isset($_POST['modificar_u'])){
-
     if (strlen($_POST['username_mod']) >= 1 && strlen($_POST['nombres_mod']) >= 1 && strlen($_POST['password_mod']) >= 1 ){
-        $id_mod = trim($_POST['id_mod']);
-        $username_mod = trim($_POST['username_mod']);
-        $nombres_mod = trim($_POST['nombres_mod']);
-        $password_mod = trim($_POST['password_mod']);
-        $id_nivel_accesso_mod = trim($_POST['id_nivel_accesso_mod']);
+        $id = trim($_POST['id_mod']);
+        $username = trim($_POST['username_mod']);
+        $nombres = trim($_POST['nombres_mod']);
+        $password = trim($_POST['password_mod']);
+        $id_nivel_acceso = trim($_POST['id_nivel_acceso_mod']);
 
         $consulta_mod = "UPDATE cat_usuarios
-            SET username = '$username_mod', nombres = '$nombres_mod',
-            password = '$password_mod', id_nivel_accesso = '$id_nivel_accesso_mod'
-            WHERE id = '$id_mod'
-        ";
+            SET username = '$username', nombres = '$nombres',
+            password = '$password', id_nivel_acceso = '$id_nivel_acceso'
+            WHERE id = '$id'"
+        ;
         $resultado_mod = mysqli_query($conex,$consulta_mod);
         if ($resultado_mod){
             header ("location:/Usuarios/verUsuarios");

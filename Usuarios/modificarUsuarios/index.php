@@ -66,7 +66,7 @@ include("../../db.php");
                             $resultado = mysqli_query($conex,$consulta);
                             while($mostrar = mysqli_fetch_array($resultado)){
                         ?>
-                            <option id="id_mod" name="id_mod" value="<?php echo $mostrar['id'] ?>"><?php echo $mostrar['id'] ?></option>
+                            <option id="id_mod" name="id_mod" value="<?php echo $mostrar['id'] ?>"><?php echo $mostrar['id'] ?> : <?php echo $mostrar['nombres'] ?></option>
                             
                         <?php }?>
                     </select>
@@ -86,10 +86,10 @@ include("../../db.php");
                     <input class="form-control" type="text" id="password_mod" name="password_mod" value=""
                         maxlength="8" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
-                <div class="mb-3"><label class="form-label" for="id_nivel_accesso_mod">Permisos</label>
-                    <select class="form-select" id="id_nivel_accesso_mod" name="id_nivel_accesso_mod">
-                        <option id="id_nivel_accesso_mod" name="id_nivel_accesso_mod" value="2" selected>Trabajador</option>
-                        <option id="id_nivel_accesso_mod" name="id_nivel_accesso_mod" value="1">Administrador</option>
+                <div class="mb-3"><label class="form-label" for="id_nivel_acceso_mod">Permisos</label>
+                    <select class="form-select" id="id_nivel_acceso_mod" name="id_nivel_acceso_mod">
+                        <option id="id_nivel_acceso_mod" name="id_nivel_acceso_mod" value="2" selected>Trabajador</option>
+                        <option id="id_nivel_acceso_mod" name="id_nivel_acceso_mod" value="1">Administrador</option>
                     </select>
                 </div>
                 <div class="mb-3">
