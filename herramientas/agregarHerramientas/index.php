@@ -1,17 +1,6 @@
 <?php
 include("../../db.php");
-
-    session_start();
-        
-    if(!isset($_SESSION['id'])){
-        header("Location: ../../index.php");
-    }
-
-    $id_u = $_SESSION['id'];
-    $username = $_SESSION['username'];
-
 ?>
-
 <!DOCTYPE html>
 <html style="background: rgba(255,255,255,0);">
 
@@ -55,43 +44,78 @@ include("../../db.php");
 
             <form action="/registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
                 <div class="mb-3">
-                    <label class="form-label" for="cod_barra">Economico</label>
-                    <input class="form-control" type="text" id="cod_barra" name="cod_barra"
-                        maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                </div>
-                <div id="qr-reader" style="width: 600px"></div>
-                <div class="mb-3">
-                    <label class="form-label" for="tipo_h">Tipo de unidad</label>
-                    <input class="form-control" type="text" id="tipo_h" name="tipo_h"
-                        maxlength="15" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))">
+                    <label class="form-label" for="id_v">Economico</label>
+                    <input class="form-control" type="text" id="id_v" name="id_v"
+                        maxlength="11" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="desc_h">Modelo</label>
-                    <input class="form-control" type="text" id="desc_h" name="desc_h"
+                    <label class="form-label" for="tipounidad_v">Tipo de unidad</label>
+                    <input class="form-control" type="text" id="tipounidad_v" name="tipounidad_v"
                         maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
                 <div class="mb-3">
+                    <label class="form-label" for="modelo_v">Modelo</label>
+                    <input class="form-control" type="text" id="modelo_v" name="modelo_v"
+                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
+                </div>
+                <!-- <div class="mb-3">
                     <label class="form-label" for="desc_h">Clase de vehiculo</label>
                     <input class="form-control" type="text" id="desc_h" name="desc_h"
                         maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
+                </div> -->
+                <div class="mb-3"><label class="form-label" for="clase_vehiculo">Clase de vehiculo</label>
+                    <select class="form-select" id="clase_vehiculo" name="clase_vehiculo">
+                        <?php 
+                            $consulta = "SELECT id_Cat_Clase_Vehiculo, descripcion
+                            FROM cat_clase_Vehiculo";
+                            $resultado = mysqli_query($conex,$consulta);
+                            while($mostrar = mysqli_fetch_array($resultado)){
+                        ?>
+                            <option id="clase_vehiculo" name="clase_vehiculo" value="<?php echo $mostrar['id_Cat_Clase_Vehiculo'] ?>" selected><?php echo $mostrar['descripcion'] ?></option>
+                        <?php }?>
+                    </select>
                 </div>
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label class="form-label" for="desc_h">Categoria</label>
                     <input class="form-control" type="text" id="desc_h" name="desc_h"
                         maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
+                </div> -->
+                <div class="mb-3"><label class="form-label" for="tipo_vehiculo">Tipo</label>
+                    <select class="form-select" id="tipo_vehiculo" name="tipo_vehiculo">
+                        <?php 
+                            $consulta = "SELECT id_Cat_Tipo, descripcion
+                            FROM cat_tipo";
+                            $resultado = mysqli_query($conex,$consulta);
+                            while($mostrar = mysqli_fetch_array($resultado)){
+                        ?>
+                            <option id="tipo_vehiculo" name="tipo_vehiculo" value="<?php echo $mostrar['id_Cat_Tipo'] ?>" selected><?php echo $mostrar['descripcion'] ?></option>
+                        <?php }?>
+                    </select>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="desc_h">Tipo de adaptacion</label>
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="desc_h">Adaptacion</label>
                     <input class="form-control" type="text" id="desc_h" name="desc_h"
                         maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
+                </div> -->
+                <div class="mb-3"><label class="form-label" for="adaptacion_v">Adaptacion</label>
+                    <select class="form-select" id="adaptacion_v" name="adaptacion_v">
+                        <?php 
+                            $consulta = "SELECT id_Cat_Adaptacion, descripcion
+                            FROM cat_adaptacion";
+                            $resultado = mysqli_query($conex,$consulta);
+                            while($mostrar = mysqli_fetch_array($resultado)){
+                        ?>
+                            <option id="adaptacion_v" name="adaptacion_v" value="<?php echo $mostrar['id_Cat_Adaptacion'] ?>" selected><?php echo $mostrar['descripcion'] ?></option>
+                        <?php }?>
+                    </select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="desc_h">Placas</label>
-                    <input class="form-control" type="text" id="desc_h" name="desc_h"
-                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
+                    <label class="form-label" for="placas_v">Placas</label>
+                    <input class="form-control" type="text" id="placas_v" name="placas_v"
+                        maxlength="7" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
                 <div class="mb-3">
-                    <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="enviar_h" name="enviar_h" value="Enviar">
+                    <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="agregar_v" name="agregar_v" value="Enviar">
                 </div>
             </form>
 
@@ -101,7 +125,6 @@ include("../../db.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
-    <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
 </body>
 
 </html>

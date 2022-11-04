@@ -114,26 +114,22 @@ if (isset($_POST['eliminar_u'])){
 
 
 
-if (isset($_POST['enviar_h'])){
-    if (strlen($_POST['cod_barra']) >= 1 && strlen($_POST['tipo_h']) >= 1 && strlen($_POST['desc_h']) >= 1){
-        $cod_barra = trim($_POST['cod_barra']);
-        $tipo_h = trim($_POST['tipo_h']);
-        $desc_h = trim($_POST['desc_h']);
-        $consulta = "INSERT INTO cat_herramientas(cod_barra,tipo_h, desc_h, estado, estatus) 
-            VALUES ('$cod_barra','$tipo_h','$desc_h', 'Disponible', 'visible')";
+if (isset($_POST['agregar_v'])){
+    if (strlen($_POST['id_v']) >= 1 && strlen($_POST['tipounidad_v']) >= 1 && strlen($_POST['modelo_v']) >= 1 && strlen($_POST['placas_v']) >= 1){
+        $id_v = trim($_POST['id_v']);
+        $tipounidad_v = trim($_POST['tipounidad_v']);
+        $modelo_v = trim($_POST['modelo_v']);
+        $clase_vehiculo = trim($_POST['clase_vehiculo']);
+        $tipo_vehiculo = trim($_POST['tipo_vehiculo']);
+        $adaptacion_v = trim($_POST['adaptacion_v']);
+        $placas_v = trim($_POST['placas_v']);
+        $consulta = "INSERT INTO Vehiculos (id_Vehiculo, tipo_unidad, modelo, id_Cat_Clase_Vehiculo, id_Cat_Tipo, id_Cat_Adaptacion, placas) 
+            VALUES ('$id_v','$tipounidad_v','$modelo_v', '$clase_vehiculo', '$tipo_vehiculo', '$adaptacion_v', '$placas_v')";
         $resultado = mysqli_query($conex,$consulta);
         if ($resultado){
-
-            $fecha_uh = date("y/m/d H:i:s");
-
-            $inser = "INSERT INTO movimientos_herramientas(id_usuario, id_herramienta, id_acciones_h, fecha_uh)
-                VALUES ('1','$id','3', '$fecha_uh');";
-            $resultado = mysqli_query($conex,$inser);
-            
-
-            header ("location:herramientas/estadoHerramientas");
+            header ("location:/herramientas/agregarHerramientas/index.php?error=Registro Exitoso.");
         } else {
-            header ("location:/herramientas/agregarHerramientas/index.php?error=Hubo un error al registrar la Herramienta.");
+            header ("location:/herramientas/agregarHerramientas/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
         }
     } else {
         header ("location:/herramientas/agregarHerramientas/index.php?error=Llene todos los campos por favor.");

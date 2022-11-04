@@ -41,7 +41,7 @@
                     <div class="card mb-5">
                         <div class="card-body d-flex flex-column align-items-center">
                             <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4" style="background: rgba(13,110,253,0);"><img src="assets/img/logoHeader.png"></div>
-                            <form method="POST" action="../../Menu/index.php" class="text-center">
+                            <form method="POST" action="./Menu/index.php" class="text-center">
                                 <div class="mb-3">
                                     <input class="btn btn-primary d-block w-100" type="submit" value="Entrar">
                                 </div>
