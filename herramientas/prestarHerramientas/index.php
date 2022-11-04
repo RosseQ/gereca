@@ -29,7 +29,7 @@ include("../../db.php");
     <link rel="icon" href="/assets/img/logo-icono.png">
 </head>
 
-<body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
+<body style="background: url(&quot;assets/img/idealese.jpg&quot;), #fd720d;">
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
         <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">CAMINOSA | Mi Taller</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
@@ -40,7 +40,7 @@ include("../../db.php");
             </div>
         </div>
     </nav>
-    <section class="clean-block clean-form dark" style="background: url(&quot;assets/img/clipboard-image-1.png&quot;);">
+    <section class="clean-block clean-form dark" style="background: url(&quot;assets/img/idealese.jpg&quot;);">
         <div class="container">
             <div class="block-heading">
                 <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">Prestar Herramienta</h2>

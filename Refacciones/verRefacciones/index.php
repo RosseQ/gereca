@@ -33,11 +33,10 @@ include("../../db.php");
 
 <body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">CAMINOSA | Mi Taller</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">RECESA</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="../../Menu/index.php">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../logout.php">CERRAR SESION</a></li>
                 </ul>
             </div>
         </div>
@@ -46,7 +45,7 @@ include("../../db.php");
         <section class="clean-block clean-form dark" style="background: rgba(246,246,246,0);">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Ver Refacciones</h2>
+                    <h2 class="text-info">Ver Tarifas</h2>
                     <p></p>
                 </div>
             </div>

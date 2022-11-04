@@ -58,17 +58,17 @@
                 <div class="text-center d-flex flex-column align-items-center align-items-xl-center">
                     <h1>Vehiculos</h1>
                     <div class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon lg" style="background: rgba(13,110,253,0);">
-                        <img src="assets/img/logovehiculo.png" style="transform: scale(0.11);background: rgba(253,126,20,0);opacity: 1;">
+                        
                     </div>
                     <div class="px-3">
 
                         
                        
                         <form action="../herramientas/agregarHerramientas/index.php">
-                            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Agregar vehiculo</button>
+                            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Agregar vehiculo</button>
                         </form>
                         <form action="../herramientas/estadoHerramientas/index.php">
-                            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Ver Vehiculo</button>
+                            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Ver Vehiculo</button>
                         </form>
                         
                     </div>
@@ -77,39 +77,35 @@
 
             <div class="col">
                 <div class="text-center d-flex flex-column align-items-center align-items-xl-center">
-                    <h1>Refacciones</h1>
+                    <h1></h1>
                     <div class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon lg" style="background: rgba(13,110,253,0);">
-                        <img src="assets/img/logovehiculo.png" style="transform: scale(0.13);">
-                    </div>
+                        
+                    </div><!-- 
                     <div class="px-3">
 
-                        <form action="../Refacciones/usarRefacciones/index.php">
-                            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Usar Refacción</button>
-                        </form>
                         <form action="../Refacciones/agregarRefacciones/index.php">
-                            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Agregar Refacción</button>
+                            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Agregar Tarifa</button>
                         </form>
                         <form action="../Refacciones/verRefacciones/index.php">
-                            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Ver Refacciones</button>
+                            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Ver Ingresos</button>
                         </form>
 
-                    </div>
+                    </div>-->
                 </div>
             </div>
 
             <div class="col">
                 <div class="text-center d-flex flex-column align-items-center align-items-xl-center">
-                    <h1>Usuarios</h1>
+                    <h1>Ver Ingresos</h1>
                     <div class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon lg" style="background: rgba(13,110,253,0);">
-                        <img src="assets/img/USUARIOS%20SOLO%20LOGO.png" style="transform: scale(0.17);">
+                        
                     </div>
                     <div class="px-3">
-
-                        <form action="../Usuarios/agregarUsuarios/index.php">
-                            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Agregar usuario</button>
+                    <form action="../Refacciones/agregarRefacciones/index.php">
+                            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Agregar Tarifa</button>
                         </form>
                         <form action="../Usuarios/verUsuarios/index.php">
-                            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Ver Usuarios</button>
+                            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Ver Ingresos</button>
                         </form>
 
                     </div>

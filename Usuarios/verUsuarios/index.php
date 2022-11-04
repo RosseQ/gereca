@@ -32,11 +32,10 @@ include("../../db.php");
 
 <body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">CAMINOSA | Mi Taller</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">RECESA</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="../../Menu/index.php">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../logout.php">CERRAR SESION</a></li>
                 </ul>
             </div>
         </div>
@@ -45,7 +44,7 @@ include("../../db.php");
         <section class="clean-block clean-form dark" style="background: rgba(246,246,246,0);">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Ver Usuarios</h2>
+                    <h2 class="text-info">Ver Tarifas</h2>
                     <p></p>
                 </div>
                 </div>
@@ -55,10 +54,14 @@ include("../../db.php");
                     <thead>
                         <tr>
                             <th style="background: rgb(253,114,13);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);">Nombre de USUARIO</th>
-                            <th style="background: rgb(253,114,13);">Nombres</th>
-                            <th style="background: rgb(253,114,13);">Nivel de permiso</th>
-                            <!-- <th style="background: rgb(253,114,13);">Modificar</th> -->
-                            <th style="background: rgb(253,114,13);">Eliminar</th>
+                            <th style="background: rgb(253,114,13);">Id ingreso</th>
+                            <th style="background: rgb(253,114,13);">Economico</th>
+                            <th style="background: rgb(253,114,13);">Tipo de renta</th>
+                            <th style="background: rgb(253,114,13);">Dias</th>
+                            <th style="background: rgb(253,114,13);">Tarifa</th>
+                            <th style="background: rgb(253,114,13);">Costo de mantenimiento</th>
+                            <th style="background: rgb(253,114,13);">total neto</th>
+                            <th style="background: rgb(253,114,13);">fecha de ingreso</th>
                         </tr>
                     </thead>
                         <?php 
@@ -85,7 +88,7 @@ include("../../db.php");
                                     <form action="../../registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
                                         <button type="submit" name="eliminar_u" id="eliminar_u" value="<?php echo $mostrar['id']; ?>" 
                                             style="background: none !important; border: none !important;" onclick="return ConfirmarDelete()" >
-                                            <img src="/assets/img/deletear.png" width="50" height="50" />
+                                            <!-- <img src="/assets/img/deletear.png" width="50" height="50" />-->
                                         </button>
                                     </form>
                                 </td>
@@ -103,14 +106,7 @@ include("../../db.php");
             <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Agregar usuario</button>
         </form>
     </div> -->
-    <div class="text-center row gy-3 row-cols-md-2">
-        <form action="../agregarUsuarios/index.php">
-            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Agregar usuario</button>
-        </form>
-        <form action="../modificarUsuarios/index.php">
-            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Modificar usuario</button>
-        </form>
-    </div>
+    
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>

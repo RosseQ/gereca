@@ -31,11 +31,10 @@ include("../../db.php");
 
 <body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">CAMINOSA | Mi Taller</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">RECESA</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="../../Menu/index.php">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../logout.php">CERRAR SESION</a></li>
                 </ul>
             </div>
         </div>
@@ -43,7 +42,7 @@ include("../../db.php");
     <section class="clean-block clean-form dark" style="background: url(&quot;assets/img/clipboard-image-1.png&quot;);">
         <div class="container">
             <div class="block-heading">
-                <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">Agregar Refaccion</h2>
+                <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">Agregar Ingreso</h2>
             </div>
 
             <?php if(isset($_GET['error'])){ ?>
@@ -54,24 +53,44 @@ include("../../db.php");
             <?php } ?>
             <form action="../../registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
                 <div class="mb-3">
-                    <label class="form-label" for="cod_barra">Codigo de Barras</label>
+                    <label class="form-label" for="cod_barra">ID ingreso</label>
                     <input class="form-control" type="number" id="cod_barra" name="cod_barra"
                         maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="desc_r">Descripcion</label>
+                    <label class="form-label" for="desc_r">Economico</label>
                     <input class="form-control" type="text" id="desc_r" name="desc_r"
                         maxlength="150" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="precio_r">Costo</label>
+                    <label class="form-label" for="precio_r">tipo de renta</label>
                     <input class="form-control" type="number" id="precio_r" name="precio_r"
                         maxlength="8" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="existencias_r">Existencia</label>
+                    <label class="form-label" for="existencias_r">Dias</label>
                     <input class="form-control" type="number" id="existencias_r" name="existencias_r" min="1"
                         maxlength="4" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="cod_barra">Tarifa</label>
+                    <input class="form-control" type="number" id="cod_barra" name="cod_barra"
+                        maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="cod_barra">Costo del mantenimiento</label>
+                    <input class="form-control" type="number" id="cod_barra" name="cod_barra"
+                        maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="cod_barra">Total neto</label>
+                    <input class="form-control" type="number" id="cod_barra" name="cod_barra"
+                        maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="cod_barra">Fecha de ingreso</label>
+                    <input class="form-control" type="number" id="cod_barra" name="cod_barra"
+                        maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
                     <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="enviar_r" name="enviar_r" value="Enviar">
