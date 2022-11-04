@@ -127,12 +127,12 @@ if (isset($_POST['agregar_v'])){
             VALUES ('$id_v','$tipounidad_v','$modelo_v', '$clase_vehiculo', '$tipo_vehiculo', '$adaptacion_v', '$placas_v')";
         $resultado = mysqli_query($conex,$consulta);
         if ($resultado){
-            header ("location:/herramientas/agregarHerramientas/index.php?error=Registro Exitoso.");
+            header ("location:/Vehiculos/agregarVehiculos/index.php?error=Registro Exitoso.");
         } else {
-            header ("location:/herramientas/agregarHerramientas/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
+            header ("location:/Vehiculos/agregarVehiculos/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
         }
     } else {
-        header ("location:/herramientas/agregarHerramientas/index.php?error=Llene todos los campos por favor.");
+        header ("location:/Vehiculos/agregarVehiculos/index.php?error=Llene todos los campos por favor.");
     }
     memory_free_result($resultado);
     mysqli_close($conex);
@@ -149,21 +149,21 @@ if (isset($_POST['agregar_v'])){
 if (isset($_POST['eliminar_h'])){
 
     $id = $_POST['eliminar_h'];  
-    $update = "UPDATE cat_herramientas SET estatus = 'invisible'  WHERE id = '$id';";
+    $update = "UPDATE cat_Vehiculos SET estatus = 'invisible'  WHERE id = '$id';";
     $resultado = mysqli_query($conex,$update);
         
     if ($resultado){
 
         $fecha_uh = date("y/m/d H:i:s");
 
-        $inser = "INSERT INTO movimientos_herramientas(id_usuario, id_herramienta, id_acciones_h, fecha_uh)
+        $inser = "INSERT INTO movimientos_Vehiculos(id_usuario, id_herramienta, id_acciones_h, fecha_uh)
             VALUES ('1','$id','4', '$fecha_uh');";
         $resultado = mysqli_query($conex,$inser);
         
 
-        header ("location:herramientas/estadoHerramientas");
+        header ("location:Vehiculos/estadoVehiculos");
     } else {
-        header ("location:/herramientas/estadoHerramientas/index.php?error=Error al eliminar la herramienta.");
+        header ("location:/Vehiculos/estadoVehiculos/index.php?error=Error al eliminar la herramienta.");
     }
 
     memory_free_result($resultado);
@@ -184,7 +184,7 @@ if (isset($_POST['usar_h'])){
         $username_h = $_POST['username_h'];
         $cod_barra = $_POST['cod_barra'];
         
-        $consulta_h = "SELECT * FROM cat_herramientas WHERE cod_barra = '$cod_barra';";
+        $consulta_h = "SELECT * FROM cat_Vehiculos WHERE cod_barra = '$cod_barra';";
         $resultado = mysqli_query($conex,$consulta_h);
         $mostrar_h = mysqli_fetch_array($resultado);
 
@@ -197,21 +197,21 @@ if (isset($_POST['usar_h'])){
         $id_u = $mostrar_u['id'];
         $fecha_uh = date("y/m/d H:i:s");
 
-        $inser = "INSERT INTO movimientos_herramientas(id_usuario, id_herramienta, id_acciones_h, fecha_uh)
+        $inser = "INSERT INTO movimientos_Vehiculos(id_usuario, id_herramienta, id_acciones_h, fecha_uh)
             VALUES ('$id_u','$id_h','1', '$fecha_uh');";
         $resultado = mysqli_query($conex,$inser);
         if ($resultado){
 
-            $update = "UPDATE cat_herramientas SET estado = 'Prestada'  WHERE cod_barra = '$cod_barra';";
+            $update = "UPDATE cat_Vehiculos SET estado = 'Prestada'  WHERE cod_barra = '$cod_barra';";
             $resultado = mysqli_query($conex,$update);
 
-            header ("location:herramientas/estadoHerramientas");
+            header ("location:Vehiculos/estadoVehiculos");
         } else {
-            header ("location:/herramientas/estadoHerramientas/index.php?error=Error al solicitar la Herramienta.");
+            header ("location:/Vehiculos/estadoVehiculos/index.php?error=Error al solicitar la Herramienta.");
         }
 
     } else {
-        header ("location:/herramientas/estadoHerramientas/index.php?error=Error, Complete todos los campos por favor.");
+        header ("location:/Vehiculos/estadoVehiculos/index.php?error=Error, Complete todos los campos por favor.");
     }
     memory_free_result($resultado);
     mysqli_close($conex);
@@ -230,7 +230,7 @@ if (isset($_POST['regresar_h'])){
     if (strlen($_POST['cod_barra']) >= 1){
         $cod_barra = $_POST['cod_barra'];
         
-        $consulta_h = "SELECT * FROM cat_herramientas WHERE cod_barra = '$cod_barra';";
+        $consulta_h = "SELECT * FROM cat_Vehiculos WHERE cod_barra = '$cod_barra';";
         $resultado = mysqli_query($conex,$consulta_h);
         $mostrar_h = mysqli_fetch_array($resultado);
 
@@ -238,21 +238,21 @@ if (isset($_POST['regresar_h'])){
 
         $fecha_uh = date("y/m/d H:i:s");
 
-        $inser = "INSERT INTO movimientos_herramientas(id_usuario, id_herramienta, id_acciones_h, fecha_uh)
+        $inser = "INSERT INTO movimientos_Vehiculos(id_usuario, id_herramienta, id_acciones_h, fecha_uh)
             VALUES ('1','$id_h','2', '$fecha_uh');";
         $resultado = mysqli_query($conex,$inser);
         if ($resultado){
 
-            $update = "UPDATE cat_herramientas SET estado = 'Disponible'  WHERE cod_barra = '$cod_barra';";
+            $update = "UPDATE cat_Vehiculos SET estado = 'Disponible'  WHERE cod_barra = '$cod_barra';";
             $resultado = mysqli_query($conex,$update);
 
-            header ("location:herramientas/estadoHerramientas");
+            header ("location:Vehiculos/estadoVehiculos");
         } else {
-            header ("location:/herramientas/estadoHerramientas/index.php?error=Error al solicitar la Herramienta.");
+            header ("location:/Vehiculos/estadoVehiculos/index.php?error=Error al solicitar la Herramienta.");
         }
 
     } else {
-        header ("location:/herramientas/estadoHerramientas/index.php?error=Error, Complete todos los campos por favor.");
+        header ("location:/Vehiculos/estadoVehiculos/index.php?error=Error, Complete todos los campos por favor.");
     }
     memory_free_result($resultado);
     mysqli_close($conex);

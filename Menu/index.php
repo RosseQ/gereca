@@ -50,10 +50,10 @@
 
                         
                        
-                        <form action="../herramientas/agregarHerramientas/index.php">
+                        <form action="../Vehiculos/agregarVehiculos/index.php">
                             <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Agregar vehiculo</button>
                         </form>
-                        <form action="../herramientas/estadoHerramientas/index.php">
+                        <form action="../Vehiculos/estadoVehiculos/index.php">
                             <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Ver Vehiculo</button>
                         </form>
                         

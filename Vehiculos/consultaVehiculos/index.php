@@ -63,8 +63,8 @@ include("../../db.php");
                         </tr>
                     </thead>
                     <?php 
-                            $consulta = "SELECT cH.id, cH.cod_barra, cH.desc_h, cH.estado, cU.username from cat_herramientas cH 
-                            LEFT JOIN movimientos_herramientas mH ON cH.id = mH.id_herramienta 
+                            $consulta = "SELECT cH.id, cH.cod_barra, cH.desc_h, cH.estado, cU.username from cat_Vehiculos cH 
+                            LEFT JOIN movimientos_Vehiculos mH ON cH.id = mH.id_herramienta 
                             LEFT JOIN cat_usuarios cU ON cU.id = mH.id_usuario 
                             WHERE cH.estatus = 'visible' 
                             GROUP BY cH.desc_h ORDER BY fecha_uh;";
