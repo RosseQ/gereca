@@ -63,7 +63,7 @@ if ($_POST){
 
 <body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" >CAMINOSA | Mi Taller</a>
+        <div class="container"><a class="navbar-brand logo" >RECESA</a>
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
                 <span class="visually-hidden">Toggle navigation</span>
                 <span class="navbar-toggler-icon"></span>
@@ -87,7 +87,7 @@ if ($_POST){
                 <div class="col-md-6 col-xl-4">
                     <div class="card mb-5">
                         <div class="card-body d-flex flex-column align-items-center">
-                            <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4" style="background: rgba(13,110,253,0);"><img src="assets/img/logo-header.png"></div>
+                            <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4" style="background: rgba(13,110,253,0);"><img src="assets/img/logoHeader.png"></div>
                             <?php if(isset($_GET['error'])){ ?>
                             <div id="error" style="width: 100%; background: lightsalmon; text-align: center; border-radius: 2px; padding: 4px; ">
                                 <label style="color: whitesmoke;"><?php echo $_GET['error']; ?></label>

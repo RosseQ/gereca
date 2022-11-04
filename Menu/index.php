@@ -30,7 +30,7 @@
 
 <body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">CAMINOSA | Mi Taller</a>
+        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">RECESA</a>
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
                 <span class="visually-hidden">Toggle navigation</span>
                 <span class="navbar-toggler-icon"></span>
@@ -39,7 +39,7 @@
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="index.php">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../logout.php">CERRAR SESION</a></li>
+                    
                 </ul>
             </div>
         </div>
@@ -56,23 +56,19 @@
         <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
             <div class="col">
                 <div class="text-center d-flex flex-column align-items-center align-items-xl-center">
-                    <h1>Herramientas</h1>
+                    <h1>Vehiculos</h1>
                     <div class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon lg" style="background: rgba(13,110,253,0);">
-                        <img src="assets/img/SOLO%20LOGO.png" style="transform: scale(0.11);background: rgba(253,126,20,0);opacity: 1;">
+                        <img src="assets/img/logovehiculo.png" style="transform: scale(0.11);background: rgba(253,126,20,0);opacity: 1;">
                     </div>
                     <div class="px-3">
 
-                        <form action="../herramientas/prestarHerramientas/index.php">
-                            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Prestar Herramientas</button>
-                        </form>
-                        <form action="../herramientas/regresarHerramientas/index.php">
-                            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Regresar Herramientas</button>
-                        </form>
+                        
+                       
                         <form action="../herramientas/agregarHerramientas/index.php">
-                            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Agregar Herramienta</button>
+                            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Agregar vehiculo</button>
                         </form>
                         <form action="../herramientas/estadoHerramientas/index.php">
-                            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Estado de Herramientas</button>
+                            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Ver Vehiculo</button>
                         </form>
                         
                     </div>
@@ -83,7 +79,7 @@
                 <div class="text-center d-flex flex-column align-items-center align-items-xl-center">
                     <h1>Refacciones</h1>
                     <div class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon lg" style="background: rgba(13,110,253,0);">
-                        <img src="assets/img/REFACCIONES%20SOLO%20LOGO.png" style="transform: scale(0.13);">
+                        <img src="assets/img/logovehiculo.png" style="transform: scale(0.13);">
                     </div>
                     <div class="px-3">
 
