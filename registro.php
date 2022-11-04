@@ -161,9 +161,9 @@ if (isset($_POST['eliminar_h'])){
         $resultado = mysqli_query($conex,$inser);
         
 
-        header ("location:Vehiculos/estadoVehiculos");
+        header ("location:Vehiculos/consultaVehiculos");
     } else {
-        header ("location:/Vehiculos/estadoVehiculos/index.php?error=Error al eliminar la herramienta.");
+        header ("location:/Vehiculos/consultaVehiculos/index.php?error=Error al eliminar la herramienta.");
     }
 
     memory_free_result($resultado);
@@ -205,13 +205,13 @@ if (isset($_POST['usar_h'])){
             $update = "UPDATE cat_Vehiculos SET estado = 'Prestada'  WHERE cod_barra = '$cod_barra';";
             $resultado = mysqli_query($conex,$update);
 
-            header ("location:Vehiculos/estadoVehiculos");
+            header ("location:Vehiculos/consultaVehiculos");
         } else {
-            header ("location:/Vehiculos/estadoVehiculos/index.php?error=Error al solicitar la Herramienta.");
+            header ("location:/Vehiculos/consultaVehiculos/index.php?error=Error al solicitar la Herramienta.");
         }
 
     } else {
-        header ("location:/Vehiculos/estadoVehiculos/index.php?error=Error, Complete todos los campos por favor.");
+        header ("location:/Vehiculos/consultaVehiculos/index.php?error=Error, Complete todos los campos por favor.");
     }
     memory_free_result($resultado);
     mysqli_close($conex);
@@ -246,13 +246,13 @@ if (isset($_POST['regresar_h'])){
             $update = "UPDATE cat_Vehiculos SET estado = 'Disponible'  WHERE cod_barra = '$cod_barra';";
             $resultado = mysqli_query($conex,$update);
 
-            header ("location:Vehiculos/estadoVehiculos");
+            header ("location:Vehiculos/consultaVehiculos");
         } else {
-            header ("location:/Vehiculos/estadoVehiculos/index.php?error=Error al solicitar la Herramienta.");
+            header ("location:/Vehiculos/consultaVehiculos/index.php?error=Error al solicitar la Herramienta.");
         }
 
     } else {
-        header ("location:/Vehiculos/estadoVehiculos/index.php?error=Error, Complete todos los campos por favor.");
+        header ("location:/Vehiculos/consultaVehiculos/index.php?error=Error, Complete todos los campos por favor.");
     }
     memory_free_result($resultado);
     mysqli_close($conex);

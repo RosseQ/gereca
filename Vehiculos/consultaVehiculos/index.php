@@ -1,15 +1,5 @@
 <?php
 include("../../db.php");
-
-    session_start();
-        
-    if(!isset($_SESSION['id'])){
-        header("Location: ../../index.php");
-    }
-
-    $id_u = $_SESSION['id'];
-    $username = $_SESSION['username'];
-
 ?>
 
 <!DOCTYPE html>
@@ -51,40 +41,49 @@ include("../../db.php");
                 <table class="table">
                     <thead>
                         <tr>
-                            <th style="background: rgb(253,114,13);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);">Codigo de Barras</th>
-                            <th style="background: rgb(253,114,13);">Economico</th>
-                            <th style="background: rgb(253,114,13);">Tipo de unidad</th>
+                            <th style="background: rgb(253,114,13);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);">Economico</th>
+                            <!-- <th style="background: rgb(253,114,13);">Economico</th> -->
+                            <th style="background: rgb(253,114,13);">Tipo de Unidad</th>
                             <th style="background: rgb(253,114,13);">Modelo</th>
-                            <th style="background: rgb(253,114,13);">Clase de vehiculo</th>
+                            <th style="background: rgb(253,114,13);">Clase de Vehiculo</th>
                             <th style="background: rgb(253,114,13);">Categoria</th>
-                            <th style="background: rgb(253,114,13);">Tipo de adaptacion</th>
+                            <th style="background: rgb(253,114,13);">Adaptación</th>
                             <th style="background: rgb(253,114,13);">Placas</th>
-                            <th style="background: rgb(253,114,13);">Eliminar</th>
+                            <!-- <th style="background: rgb(253,114,13);">Eliminar</th> -->
                         </tr>
                     </thead>
                     <?php 
-                            $consulta = "SELECT cH.id, cH.cod_barra, cH.desc_h, cH.estado, cU.username from cat_Vehiculos cH 
-                            LEFT JOIN movimientos_Vehiculos mH ON cH.id = mH.id_herramienta 
-                            LEFT JOIN cat_usuarios cU ON cU.id = mH.id_usuario 
-                            WHERE cH.estatus = 'visible' 
-                            GROUP BY cH.desc_h ORDER BY fecha_uh;";
+                            $consulta = "select Vehiculos.id_Vehiculo as 'Economico',
+                            Vehiculos.tipo_unidad as 'Tipo de Unidad',
+                            Vehiculos.modelo as 'Modelo',
+                            Cat_Clase_Vehiculo.descripcion as 'Clase de Vehiculo',
+                            Cat_Tipo.descripcion as 'Tipo',
+                            Cat_Adaptacion.descripcion as 'Adaptación',
+                            Vehiculos.placas as 'Placas'
+                            from Vehiculos
+                            inner join Cat_Clase_Vehiculo on Vehiculos.id_Cat_Clase_Vehiculo = Cat_Clase_Vehiculo.id_Cat_Clase_Vehiculo
+                            inner join Cat_Tipo on Vehiculos.id_Cat_Tipo = Cat_Tipo.id_Cat_Tipo
+                            inner join Cat_Adaptacion on Vehiculos.id_Cat_Adaptacion = Cat_Adaptacion.id_Cat_Adaptacion;";
                             $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
                     ?>
                         <tbody>
                             <tr>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['cod_barra'] ?></td>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['desc_h'] ?></td>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['estado']?></td>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['username']?></td>
-                                <td style="background: rgba(253,114,13,0.36);" >
-                                    <form action="../../registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
-                                        <button type="submit" name="eliminar_h" id="eliminar_h" value="<?php echo $mostrar['id']; ?>" 
-                                            style="background: none !important; border: none !important;" onclick="return ConfirmarDelete()">
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['Economico'] ?></td>
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['Tipo de Unidad'] ?></td>
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['Modelo']?></td>
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['Clase de Vehiculo']?></td>
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['Tipo']?></td>
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['Adaptación']?></td>
+                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['Placas']?></td>
+                                <!-- <td style="background: rgba(253,114,13,0.36);" > -->
+                                    <!-- <form action="../../registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;"> -->
+                                        <!-- <button type="submit" name="eliminar_h" id="eliminar_h" value="<?php echo $mostrar['Vehiculos.id_Vehiculo']; ?>"  -->
+                                            <!-- style="background: none !important; border: none !important;" onclick="return ConfirmarDelete()"> -->
                                             <!-- <img src="/assets/img/deletear.png" width="50" height="50" />-->
-                                        </button>
-                                    </form>
-                                </td>
+                                        <!-- </button> -->
+                                    <!-- </form> -->
+                                <!-- </td> -->
                             </tr>
                         </tbody>
                     <?php 
