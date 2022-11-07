@@ -1,3 +1,6 @@
+<?php
+include("../../db.php");
+?>
 <!DOCTYPE html>
 <html style="background: rgba(255,255,255,0);">
 
@@ -38,48 +41,65 @@
             </div>
             <?php } ?>
             <form action="../../registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label class="form-label" for="cod_barra">ID ingreso</label>
                     <input class="form-control" type="number" id="cod_barra" name="cod_barra"
                         maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="desc_r">Economico</label>
-                    <input class="form-control" type="text" id="desc_r" name="desc_r"
+                </div> -->
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="idVehiculo_i">Economico</label>
+                    <input class="form-control" type="text" id="idVehiculo_i" name="idVehiculo_i"
                         maxlength="150" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
+                </div> -->
+                <div class="mb-3"><label class="form-label" for="idVehiculo_i">Vehiculo</label>
+                    <select class="form-select" id="idVehiculo_i" name="idVehiculo_i">
+                        <?php 
+                            $consulta = "SELECT id_Vehiculo, tipo_unidad
+                            FROM vehiculos";
+                            $resultado = mysqli_query($conex,$consulta);
+                            while($mostrar = mysqli_fetch_array($resultado)){
+                        ?>
+                            <option id="idVehiculo_i" name="idVehiculo_i" value="<?php echo $mostrar['id_Vehiculo'] ?>"><?php echo $mostrar['tipo_unidad'] ?></option>
+                        <?php }?>
+                    </select>
+                </div>
+                <div class="mb-3"><label class="form-label" for="tipoRenta_i">Tipo de Renta</label>
+                    <select class="form-select" id="tipoRenta_i" name="tipoRenta_i">
+                        <?php 
+                            $consulta = "SELECT id_Cat_Tipo_Renta, descripcion
+                            FROM cat_tipo_renta";
+                            $resultado = mysqli_query($conex,$consulta);
+                            while($mostrar = mysqli_fetch_array($resultado)){
+                        ?>
+                            <option id="tipoRenta_i" name="tipoRenta_i" value="<?php echo $mostrar['id_Cat_Tipo_Renta'] ?>"><?php echo $mostrar['descripcion'] ?></option>
+                        <?php }?>
+                    </select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="precio_r">tipo de renta</label>
-                    <input class="form-control" type="number" id="precio_r" name="precio_r"
-                        maxlength="8" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="existencias_r">Dias</label>
-                    <input class="form-control" type="number" id="existencias_r" name="existencias_r" min="1"
+                    <label class="form-label" for="dias_i">Dias</label>
+                    <input class="form-control" type="number" id="dias_i" name="dias_i" min="1"
                         maxlength="4" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="cod_barra">Tarifa</label>
-                    <input class="form-control" type="number" id="cod_barra" name="cod_barra"
-                        maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                    <label class="form-label" for="tarifa_i">Tarifa</label>
+                    <input class="form-control" type="number" id="tarifa_i" name="tarifa_i" value=0
+                        maxlength="255" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="cod_barra">Costo del mantenimiento</label>
-                    <input class="form-control" type="number" id="cod_barra" name="cod_barra"
-                        maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                    <label class="form-label" for="costo_i">Costo del Mantenimiento</label>
+                    <input class="form-control" type="number" id="costo_i" name="costo_i" value=0
+                        maxlength="255" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="utilidad_i">Total Neto</label>
+                    <h2 id="utilidad_i"></h2>
+                </div> -->
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="fecha_i">Fecha de Ingreso</label>
+                    <input class="form-control" type="Date" id="fecha_i" name="fecha_i">
+                </div> -->
                 <div class="mb-3">
-                    <label class="form-label" for="cod_barra">Total neto</label>
-                    <input class="form-control" type="number" id="cod_barra" name="cod_barra"
-                        maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="cod_barra">Fecha de ingreso</label>
-                    <input class="form-control" type="number" id="cod_barra" name="cod_barra"
-                        maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                </div>
-                <div class="mb-3">
-                    <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="enviar_r" name="enviar_r" value="Enviar">
+                    <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="nuevoingreso" name="nuevoingreso" value="Enviar">
                 </div>
             </form>
             
@@ -89,6 +109,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script type="application/javascript">
+        function calcularcosto() {
+            var xtarifa = document.getElementById('tarifa_i').value;
+            var xcosto = document.getElementById('costo_i').value;
+            var xutilidad = xtarifa - xcosto;
+            document.getElementById('utilidad_i').value = xutilidad;
+        }
+    </script>
 </body>
 
 </html>

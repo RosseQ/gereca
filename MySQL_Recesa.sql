@@ -42,7 +42,7 @@ create table Vehiculos
 );
 create table Ingresos
 (
-	id_Ingresos int not null,
+	id_Ingresos int not null auto_increment,
 	id_Vehiculo int not null,
 	id_Cat_Tipo_Renta int not null,
 	dias int,
@@ -108,11 +108,11 @@ values
 
 select * from Vehiculos
 
-insert into Ingresos (id_Ingresos, id_Vehiculo, id_Cat_Tipo_Renta, dias, tarifa, costmantenimiento, totalneto, fecha_ingreso) values
-(1,1,1,30,6000,1500, tarifa - costmantenimiento, DATE_FORMAT(CURDATE(), '%Y-%m-%d'));
+insert into Ingresos (id_Vehiculo, id_Cat_Tipo_Renta, dias, tarifa, costmantenimiento, totalneto, fecha_ingreso) values
+(1,1,30,6000,1500, tarifa - costmantenimiento, DATE_FORMAT(CURDATE(), '%Y-%m-%d'));
 
 select * from Ingresos;
 
 --drop table Ingresos
 
---delete from Ingresos where id_Ingresos = 1;
+--delete from Ingresos where id_Ingresos = 2;

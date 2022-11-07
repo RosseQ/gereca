@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-2">
             <div class="col">
                 <div class="text-center d-flex flex-column align-items-center align-items-xl-center">
                     <h1>Vehiculos</h1>
@@ -47,36 +47,13 @@
                         
                     </div>
                     <div class="px-3">
-
-                        
-                       
                         <form action="../Vehiculos/agregarVehiculos/index.php">
                             <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Agregar vehiculo</button>
                         </form>
                         <form action="../Vehiculos/consultaVehiculos/index.php">
                             <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Ver Vehiculo</button>
                         </form>
-                        
                     </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="text-center d-flex flex-column align-items-center align-items-xl-center">
-                    <h1></h1>
-                    <div class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon lg" style="background: rgba(13,110,253,0);">
-                        
-                    </div><!-- 
-                    <div class="px-3">
-
-                        <form action="../Refacciones/agregarRefacciones/index.php">
-                            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Agregar Tarifa</button>
-                        </form>
-                        <form action="../Refacciones/verRefacciones/index.php">
-                            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Ver Ingresos</button>
-                        </form>
-
-                    </div>-->
                 </div>
             </div>
 
@@ -87,13 +64,12 @@
                         
                     </div>
                     <div class="px-3">
-                    <form action="../Refacciones/agregarRefacciones/index.php">
-                            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Agregar Tarifa</button>
+                        <form action="../Ingresos/nuevoIngreso/index.php">
+                            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Agregar Ingreso</button>
                         </form>
-                        <form action="../Usuarios/verUsuarios/index.php">
+                        <form action="../Ingresos/verIngresos/index.php">
                             <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Ver Ingresos</button>
                         </form>
-
                     </div>
                 </div>
             </div>

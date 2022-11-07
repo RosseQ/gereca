@@ -71,7 +71,7 @@ include("../../db.php");
                             $resultado = mysqli_query($conex,$consulta);
                             while($mostrar = mysqli_fetch_array($resultado)){
                         ?>
-                            <option id="clase_vehiculo" name="clase_vehiculo" value="<?php echo $mostrar['id_Cat_Clase_Vehiculo'] ?>" selected><?php echo $mostrar['descripcion'] ?></option>
+                            <option id="clase_vehiculo" name="clase_vehiculo" value="<?php echo $mostrar['id_Cat_Clase_Vehiculo'] ?>"><?php echo $mostrar['descripcion'] ?></option>
                         <?php }?>
                     </select>
                 </div>
@@ -88,7 +88,7 @@ include("../../db.php");
                             $resultado = mysqli_query($conex,$consulta);
                             while($mostrar = mysqli_fetch_array($resultado)){
                         ?>
-                            <option id="tipo_vehiculo" name="tipo_vehiculo" value="<?php echo $mostrar['id_Cat_Tipo'] ?>" selected><?php echo $mostrar['descripcion'] ?></option>
+                            <option id="tipo_vehiculo" name="tipo_vehiculo" value="<?php echo $mostrar['id_Cat_Tipo'] ?>"><?php echo $mostrar['descripcion'] ?></option>
                         <?php }?>
                     </select>
                 </div>
@@ -105,7 +105,7 @@ include("../../db.php");
                             $resultado = mysqli_query($conex,$consulta);
                             while($mostrar = mysqli_fetch_array($resultado)){
                         ?>
-                            <option id="adaptacion_v" name="adaptacion_v" value="<?php echo $mostrar['id_Cat_Adaptacion'] ?>" selected><?php echo $mostrar['descripcion'] ?></option>
+                            <option id="adaptacion_v" name="adaptacion_v" value="<?php echo $mostrar['id_Cat_Adaptacion'] ?>"><?php echo $mostrar['descripcion'] ?></option>
                         <?php }?>
                     </select>
                 </div>
