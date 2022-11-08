@@ -31,16 +31,16 @@ include("../../db.php");
     <section class="clean-block clean-form dark" style="background: url(&quot;assets/img/clipboard-image-1.png&quot;);">
         <div class="container">
             <div class="block-heading">
-                <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">Agregar Ingreso</h2>
+                <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(13,114,253);border-bottom-color: rgba(59,153,224,0);">Agregar Ingreso</h2>
             </div>
 
             <?php if(isset($_GET['error'])){ ?>
-            <div id="error" style="width: 100%; background: lightsalmon; text-align: center; border-radius: 2px; padding: 4px; ">
+            <div id="error" style="width: 100%; background: rgb(0,15,255); text-align: center; border-radius: 2px; padding: 4px; ">
                 <label style="color: whitesmoke;"><?php echo $_GET['error']; ?></label>
                 <span class="close" style="font-size: 24px; color: whitesmoke; margin: auto;" onclick="getElementById('error').style.display = 'none' ">&times;</span>
             </div>
             <?php } ?>
-            <form action="../../registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
+            <form action="/registro.php" method="POST" style="color: rgb(0,15,255);background: rgba(13,114,255,0.11);border-top-color: rgb(13,114,255);">
                 <!-- <div class="mb-3">
                     <label class="form-label" for="cod_barra">ID ingreso</label>
                     <input class="form-control" type="number" id="cod_barra" name="cod_barra"
@@ -77,17 +77,17 @@ include("../../db.php");
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="dias_i">Dias</label>
-                    <input class="form-control" type="number" id="dias_i" name="dias_i" min="1"
+                    <input class="form-control" type="text" id="dias_i" name="dias_i" min="1" value=0
                         maxlength="4" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="tarifa_i">Tarifa</label>
-                    <input class="form-control" type="number" id="tarifa_i" name="tarifa_i" value=0
+                    <input class="form-control" type="text" id="tarifa_i" name="tarifa_i" value=0
                         maxlength="255" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="costo_i">Costo del Mantenimiento</label>
-                    <input class="form-control" type="number" id="costo_i" name="costo_i" value=0
+                    <input class="form-control" type="text" id="costo_i" name="costo_i" value=0
                         maxlength="255" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <!-- <div class="mb-3">
@@ -99,7 +99,7 @@ include("../../db.php");
                     <input class="form-control" type="Date" id="fecha_i" name="fecha_i">
                 </div> -->
                 <div class="mb-3">
-                    <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="nuevoingreso" name="nuevoingreso" value="Enviar">
+                    <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="nuevoingreso" name="nuevoingreso" value="Enviar">
                 </div>
             </form>
             
@@ -109,14 +109,14 @@ include("../../db.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
-    <script type="application/javascript">
+    <!-- <script type="application/javascript">
         function calcularcosto() {
             var xtarifa = document.getElementById('tarifa_i').value;
             var xcosto = document.getElementById('costo_i').value;
             var xutilidad = xtarifa - xcosto;
             document.getElementById('utilidad_i').value = xutilidad;
         }
-    </script>
+    </script> -->
 </body>
 
 </html>

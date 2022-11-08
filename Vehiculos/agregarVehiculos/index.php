@@ -36,13 +36,13 @@ include("../../db.php");
             </div>
 
             <?php if(isset($_GET['error'])){ ?>
-            <div id="error" style="width: 100%; background: lightsalmon; text-align: center; border-radius: 2px; padding: 4px; ">
+            <div id="error" style="width: 100%; background: rgb(0,15,255); text-align: center; border-radius: 2px; padding: 4px; ">
                 <label style="color: whitesmoke;"><?php echo $_GET['error']; ?></label>
                 <span class="close" style="font-size: 24px; color: whitesmoke; margin: auto;" onclick="getElementById('error').style.display = 'none' ">&times;</span>
             </div>
             <?php } ?>
 
-            <form action="/registro.php" method="POST" style="color: rgb(255,15,0);background: rgba(253,114,13,0.11);border-top-color: rgb(253,114,13);">
+            <form action="/registro.php" method="POST" style="color: rgb(0,15,255);background: rgba(13,114,255,0.11);border-top-color: rgb(13,114,255);">
                 <div class="mb-3">
                     <label class="form-label" for="id_v">Economico</label>
                     <input class="form-control" type="text" id="id_v" name="id_v"
@@ -115,7 +115,7 @@ include("../../db.php");
                         maxlength="7" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
                 <div class="mb-3">
-                    <input class="btn btn-primary" type="submit" style="background: rgb(253,114,13);" id="agregar_v" name="agregar_v" value="Enviar">
+                    <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="agregar_v" name="agregar_v" value="Enviar">
                 </div>
             </form>
 

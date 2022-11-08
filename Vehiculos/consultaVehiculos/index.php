@@ -41,15 +41,15 @@ include("../../db.php");
                 <table class="table">
                     <thead>
                         <tr>
-                            <th style="background: rgb(253,114,13);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);">Economico</th>
-                            <!-- <th style="background: rgb(253,114,13);">Economico</th> -->
-                            <th style="background: rgb(253,114,13);">Tipo de Unidad</th>
-                            <th style="background: rgb(253,114,13);">Modelo</th>
-                            <th style="background: rgb(253,114,13);">Clase de Vehiculo</th>
-                            <th style="background: rgb(253,114,13);">Categoria</th>
-                            <th style="background: rgb(253,114,13);">Adaptación</th>
-                            <th style="background: rgb(253,114,13);">Placas</th>
-                            <!-- <th style="background: rgb(253,114,13);">Eliminar</th> -->
+                            <th style="background: rgb(0, 0, 255);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);color: whitesmoke; margin: auto;">Economico</th>
+                            <!-- <th style="background: rgb(0, 0, 255);">Economico</th> -->
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Tipo de Unidad</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Modelo</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Clase de Vehiculo</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Categoria</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Adaptación</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Placas</th>
+                            <!-- <th style="background: rgb(0, 0, 255);">Eliminar</th> -->
                         </tr>
                     </thead>
                     <?php 
@@ -69,14 +69,14 @@ include("../../db.php");
                     ?>
                         <tbody>
                             <tr>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['Economico'] ?></td>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['Tipo de Unidad'] ?></td>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['Modelo']?></td>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['Clase de Vehiculo']?></td>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['Tipo']?></td>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['Adaptación']?></td>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['Placas']?></td>
-                                <!-- <td style="background: rgba(253,114,13,0.36);" > -->
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Economico'] ?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Tipo de Unidad'] ?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Modelo']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Clase de Vehiculo']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Tipo']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Adaptación']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Placas']?></td>
+                                <!-- <td style="background: rgba(13,114,255,0.36);" > -->
                                     <!-- <form action="../../registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;"> -->
                                         <!-- <button type="submit" name="eliminar_h" id="eliminar_h" value="<?php echo $mostrar['Vehiculos.id_Vehiculo']; ?>"  -->
                                             <!-- style="background: none !important; border: none !important;" onclick="return ConfirmarDelete()"> -->

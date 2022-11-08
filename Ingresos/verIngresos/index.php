@@ -34,7 +34,7 @@ include("../../db.php");
         <section class="clean-block clean-form dark" style="background: rgba(246,246,246,0);">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Ver Tarifas</h2>
+                    <h2 class="text-info">Ver Ingresos</h2>
                     <p></p>
                 </div>
             </div>
@@ -43,32 +43,41 @@ include("../../db.php");
                 <table class="table">
                     <thead>
                         <tr>
-                            <th style="background: rgb(253,114,13);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);">Codigo de Barra</th>
-                            <th style="background: rgb(253,114,13);">Descripcion</th>
-                            <th style="background: rgb(253,114,13);">Costo</th>
-                            <th style="background: rgb(253,114,13);">Existencia</th>
-                            <th style="background: rgb(253,114,13);">Eliminar</th>
+                            <th style="background: rgb(0, 0, 255);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0); color: whitesmoke; margin: auto;">ID</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Tipo de Unidad</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Tipo de Renta</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Dias de Uso</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Tarifa</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Costos de Mantenimiento</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Total Neto</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha de Ingreso</th>
                         </tr>
                     </thead>
                     <?php 
-                        $consulta = "SELECT * FROM cat_refacciones WHERE estatus = 'visible';";
+                        $consulta = "select Ingresos.id_Ingresos as 'ID',
+                        Vehiculos.tipo_unidad as 'TipoUnidad',
+                        Cat_Tipo_Renta.descripcion as 'TipoRenta',
+                        Ingresos.dias as 'Dias',
+                        Ingresos.tarifa as 'Tarifa',
+                        Ingresos.costmantenimiento as 'Costo',
+                        Ingresos.totalneto as 'Total',
+                        Ingresos.fecha_ingreso as 'FechaIngreso'
+                        from Ingresos
+                        inner join Vehiculos ON Ingresos.id_Vehiculo = Vehiculos.id_Vehiculo
+                        inner join Cat_Tipo_Renta ON Ingresos.id_Cat_Tipo_Renta = Cat_Tipo_Renta.id_Cat_Tipo_Renta";
                         $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
                     ?>
                         <tbody>
                             <tr>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['cod_barra'] ?></td>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['desc_r'] ?></td>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['precio_r'] ?></td>
-                                <td style="background: rgba(253,114,13,0.36);"><?php echo $mostrar['existencias_r'] ?></td>
-                                <td style="background: rgba(253,114,13,0.36);">
-                                    <form action="../../registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
-                                        <button type="submit" name="eliminar_r" id="eliminar_r" value="<?php echo $mostrar['id']; ?>" 
-                                            style="background: none !important; border: none !important;" onclick="return ConfirmarDelete()" >
-                                            <img src="/assets/img/deletear.png" width="50" height="50" />
-                                        </button>
-                                    </form>
-                                </td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ID'] ?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['TipoUnidad'] ?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['TipoRenta'] ?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Dias'] ?></td>
+                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['Tarifa'] ?></td>
+                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['Costo'] ?></td>
+                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['Total'] ?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['FechaIngreso'] ?></td>
                             </tr>
                         </tbody>
                     <?php 
@@ -78,14 +87,14 @@ include("../../db.php");
             </div>
         </section>
     </section>
-    <div class="text-center row gy-3 row-cols-md-2">
+    <!-- <div class="text-center row gy-3 row-cols-md-2">
         <form action="../usarRefacciones/index.php">
-            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Usar Refaccion</button>
+            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Usar Refaccion</button>
         </form>
         <form action="../agregarRefacciones/index.php">
-            <button class="btn btn-primary" type="submit" style="background: rgb(253,114,13);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Agregar Refaccion</button>
+            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Agregar Refaccion</button>
         </form>
-    </div>
+    </div> -->
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>

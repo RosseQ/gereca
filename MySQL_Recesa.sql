@@ -109,10 +109,22 @@ values
 select * from Vehiculos
 
 insert into Ingresos (id_Vehiculo, id_Cat_Tipo_Renta, dias, tarifa, costmantenimiento, totalneto, fecha_ingreso) values
-(1,1,30,6000,1500, tarifa - costmantenimiento, DATE_FORMAT(CURDATE(), '%Y-%m-%d'));
+(1,1,30,6000,1500, tarifa - costmantenimiento, CURDATE());
 
 select * from Ingresos;
 
 --drop table Ingresos
 
 --delete from Ingresos where id_Ingresos = 2;
+
+select Ingresos.id_Ingresos as 'ID'
+Vehiculos.tipo_unidad as 'TipoUnidad'
+Cat_Tipo_Renta.descripcion as 'TipoRenta'
+Ingresos.dias as 'Dias'
+Ingresos.tarifa as 'Tarifa'
+Ingresos.costmantenimiento as 'Costo'
+Ingresos.totalneto as 'Total'
+Ingresos.fecha_ingreso as 'FechaIngreso'
+from Ingresos
+inner join Vehiculos ON Ingresos.id_Vehiculo = Vehiculos.id_Vehiculo
+inner join Cat_Tipo_Renta ON Ingresos.id_Cat_Tipo_Renta = Cat_Tipo_Renta.id_Cat_Tipo_Renta;
