@@ -117,6 +117,12 @@ select * from Ingresos;
 
 --delete from Ingresos where id_Ingresos = 2;
 
+use Proyecto_Recesa;
+delete from Vehiculos where id_Vehiculo = 10;
+
+use Proyecto_Recesa;
+select * from Vehiculos;
+
 select Ingresos.id_Ingresos as 'ID'
 Vehiculos.tipo_unidad as 'TipoUnidad'
 Cat_Tipo_Renta.descripcion as 'TipoRenta'

@@ -37,6 +37,28 @@ if (isset($_POST['agregar_v'])){
 };
 
 /*
+---------------------------------------------------------------------------------------------------------------
+    Eliminar  Vehiculo
+---------------------------------------------------------------------------------------------------------------
+*/
+
+if (isset($_POST['eliminar_v'])){
+
+    $Economicoo = $_POST['eliminar_v'];
+    $delete = "delete from vehiculos where id_Vehiculo = '$Economicoo';";
+    $resultado = mysqli_query($conex,$delete);
+        
+    if ($resultado){
+        header ("location:/Vehiculos/consultaVehiculos/index.php?error=Se borro " . $Economicoo . ".");
+    } else {
+        header ("location:/Vehiculos/consultaVehiculos/index.php?error=Hubo un error al eliminar el vehiculo.");
+    }
+
+    memory_free_result($resultado);
+    mysqli_close($conex);
+};
+
+/*
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             I N G R E S O S
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

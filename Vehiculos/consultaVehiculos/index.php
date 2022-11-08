@@ -37,6 +37,13 @@ include("../../db.php");
                     <p></p>
                 </div>
             </div>
+
+            <?php if(isset($_GET['error'])){ ?>
+            <div id="error" style="width: 100%; background: rgb(0,15,255); text-align: center; border-radius: 2px; padding: 4px; ">
+                <label style="color: whitesmoke;"><?php echo $_GET['error']; ?></label>
+                <span class="close" style="font-size: 24px; color: whitesmoke; margin: auto;" onclick="getElementById('error').style.display = 'none' ">&times;</span>
+            </div>
+            <?php } ?>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -49,7 +56,7 @@ include("../../db.php");
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Categoria</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Adaptación</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Placas</th>
-                            <!-- <th style="background: rgb(0, 0, 255);">Eliminar</th> -->
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Eliminar</th>
                         </tr>
                     </thead>
                     <?php 
@@ -76,14 +83,14 @@ include("../../db.php");
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Tipo']?></td>
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Adaptación']?></td>
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Placas']?></td>
-                                <!-- <td style="background: rgba(13,114,255,0.36);" > -->
-                                    <!-- <form action="../../registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;"> -->
-                                        <!-- <button type="submit" name="eliminar_h" id="eliminar_h" value="<?php echo $mostrar['Vehiculos.id_Vehiculo']; ?>"  -->
-                                            <!-- style="background: none !important; border: none !important;" onclick="return ConfirmarDelete()"> -->
-                                            <!-- <img src="/assets/img/deletear.png" width="50" height="50" />-->
-                                        <!-- </button> -->
-                                    <!-- </form> -->
-                                <!-- </td> -->
+                                <td style="background: rgba(13,114,255,0.36);" >
+                                    <form action="/registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
+                                        <button type="submit" name="eliminar_v" id="eliminar_v" value="<?php echo $mostrar['Economico'] ?>" 
+                                            style="background: none !important; border: none !important;" onclick="return ConfirmarDelete()">
+                                            <img src="/assets/img/deletear.png" width="50" height="50" />
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         </tbody>
                     <?php 
