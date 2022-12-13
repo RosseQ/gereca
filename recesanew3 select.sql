@@ -9,7 +9,7 @@ INNER JOIN Cat_Adaptacion on vehiculos.id_Cat_Adaptacion = Cat_Adaptacion.id_Cat
 
 --CONSULTA DE MANTENIMIENTOS
 select detalle_mantenimiento.id_detalleMantenimiento as 'ID',
-mantenimiento.nombre_mantenimiento as 'NAME', mantenimiento.descr as 'DESCR',
+mantenimiento.nombre_mantenimiento as 'NAME', mantenimiento.precio as 'COST',
 vehiculos.tipo_unidad as 'VEHICLE',
 detalle_mantenimiento.fecha as 'DATE'
 from detalle_mantenimiento
@@ -18,7 +18,7 @@ INNER JOIN vehiculos on detalle_mantenimiento.id_vehiculo = vehiculos.id_Vehicul
 
 -- CONSULTA DE RENTAS
 select clientes.nombre as 'NAME', clientes.appaterno as 'FSURNAME',
-clientes.apmaterno as 'MSURNAME', vehiculos.tipo_unidad as 'CAR',
+clientes.apmaterno as 'MSURNAME', vehiculos.tipo_unidad as 'CAR', vehiculos.economico as 'ECON',
 costos.tipo_prestamo as 'RENTAL', costos.precio as 'PRICE',
 detalle_renta.cantidad as 'QUANTITY', renta.total as 'TOTAL',
 renta.fecha as 'DATE'

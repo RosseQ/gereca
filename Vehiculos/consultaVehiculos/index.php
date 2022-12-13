@@ -56,36 +56,36 @@ include("../../db.php");
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Categoria</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Adaptación</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Placas</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">No de Serie</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Carga Util</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Eliminar</th>
                         </tr>
                     </thead>
                     <?php 
-                            $consulta = "select Vehiculos.id_Vehiculo as 'Economico',
-                            Vehiculos.tipo_unidad as 'Tipo de Unidad',
-                            Vehiculos.modelo as 'Modelo',
-                            Cat_Clase_Vehiculo.descripcion as 'Clase de Vehiculo',
-                            Cat_Tipo.descripcion as 'Tipo',
-                            Cat_Adaptacion.descripcion as 'Adaptación',
-                            Vehiculos.placas as 'Placas'
-                            from Vehiculos
-                            inner join Cat_Clase_Vehiculo on Vehiculos.id_Cat_Clase_Vehiculo = Cat_Clase_Vehiculo.id_Cat_Clase_Vehiculo
-                            inner join Cat_Tipo on Vehiculos.id_Cat_Tipo = Cat_Tipo.id_Cat_Tipo
-                            inner join Cat_Adaptacion on Vehiculos.id_Cat_Adaptacion = Cat_Adaptacion.id_Cat_Adaptacion;";
+                            $consulta = "select vehiculos.id_vehiculo as 'ROW0', vehiculos.tipo_unidad as 'ROW1', vehiculos.modelo as 'ROW2',
+                            Cat_Clase_Vehiculo.descripcion as 'ROW3', Cat_Tipo.descripcion as 'ROW4',
+                            Cat_Adaptacion.descripcion as 'ROW5', vehiculos.placas as 'ROW6',
+                            vehiculos.economico as 'ROW7', vehiculos.numero_serie as 'ROW8', vehiculos.carga_uti as 'ROW9' from vehiculos
+                            INNER JOIN Cat_Clase_Vehiculo on vehiculos.id_Cat_Clase_Vehiculo = Cat_Clase_Vehiculo.id_Cat_Clase_Vehiculo
+                            INNER JOIN Cat_Tipo on vehiculos.id_Cat_Tipo = Cat_Tipo.id_Cat_Tipo
+                            INNER JOIN Cat_Adaptacion on vehiculos.id_Cat_Adaptacion = Cat_Adaptacion.id_Cat_Adaptacion";
                             $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
                     ?>
                         <tbody>
                             <tr>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Economico'] ?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Tipo de Unidad'] ?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Modelo']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Clase de Vehiculo']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Tipo']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Adaptación']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Placas']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW7'] ?></td> <!--economico-->
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW1'] ?></td> <!--no serie-->
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW2'] ?></td> <!--modelo-->
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW3'] ?></td> <!--clase de vehiculo-->
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW4'] ?></td> <!--categoria-->
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW5'] ?></td> <!--adaptacion-->
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW6'] ?></td> <!--placas-->
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW8'] ?></td> <!--no serie-->
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW9'] ?> Ton.</td> <!--carga util-->
                                 <td style="background: rgba(13,114,255,0.36);" >
                                     <form action="/registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
-                                        <button type="submit" name="eliminar_v" id="eliminar_v" value="<?php echo $mostrar['Economico'] ?>" 
+                                        <button type="submit" name="eliminar_v" id="eliminar_v" value="<?php echo $mostrar['ROW0'] ?>" 
                                             style="background: none !important; border: none !important;" onclick="return ConfirmarDelete()">
                                             <img src="/assets/img/deletear.png" width="50" height="50" />
                                         </button>

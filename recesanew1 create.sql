@@ -36,7 +36,7 @@ CREATE TABLE Clientes  (
 CREATE TABLE costos  (
   id_costo int NOT NULL auto_increment,
   tipo_prestamo varchar(50),
-  precio int,
+  precio float(100,2),
   PRIMARY KEY (id_costo)
 );
 

@@ -34,7 +34,7 @@ include("../../db.php");
         <section class="clean-block clean-form dark" style="background: rgba(246,246,246,0);">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Ver Ingresos</h2>
+                    <h2 class="text-info">Ver Mantenimientos</h2>
                     <p></p>
                 </div>
             </div>
@@ -43,41 +43,33 @@ include("../../db.php");
                 <table class="table">
                     <thead>
                         <tr>
-                            <th style="background: rgb(0, 0, 255);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0); color: whitesmoke; margin: auto;">Cliente</th>
+                            <th style="background: rgb(0, 0, 255);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0); color: whitesmoke; margin: auto;">ID</th>
                             <!-- <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Cliente</th> -->
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Vehiculo</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Economico</th>
-                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Renta</th>
-                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Tarifa</th>
-                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Dias de Uso</th>
-                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Total Neto</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Tipo de Mantenimiento</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Costo de Mantenimiento</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha</th>
                         </tr>
                     </thead>
                     <?php 
-                        $consulta = "select clientes.nombre as 'NAME', clientes.appaterno as 'FSURNAME',
-                        clientes.apmaterno as 'MSURNAME', vehiculos.tipo_unidad as 'CAR', vehiculos.economico as 'ECON',
-                        costos.tipo_prestamo as 'RENTAL', costos.precio as 'PRICE',
-                        detalle_renta.cantidad as 'QUANTITY', renta.total as 'TOTAL',
-                        renta.fecha as 'DATE'
-                        from renta
-                        INNER JOIN clientes on renta.id_cliente = clientes.id_cliente
-                        INNER JOIN detalle_renta on renta.id_detalleRenta = detalle_renta.id_detalleRenta
-                        INNER JOIN vehiculos on detalle_renta.id_Vehiculo = vehiculos.id_Vehiculo
-                        INNER JOIN costos on detalle_renta.id_costo = costos.id_costo";
+                        $consulta = "select detalle_mantenimiento.id_detalleMantenimiento as 'ID',
+                        mantenimiento.nombre_mantenimiento as 'NAME', mantenimiento.precio as 'COST',
+                        vehiculos.tipo_unidad as 'VEHICLE', vehiculos.economico as 'ECON',
+                        detalle_mantenimiento.fecha as 'DATE'
+                        from detalle_mantenimiento
+                        INNER JOIN mantenimiento on detalle_mantenimiento.id_mantenimiento = mantenimiento.id_mantenimiento
+                        INNER JOIN vehiculos on detalle_mantenimiento.id_vehiculo = vehiculos.id_Vehiculo";
                         $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
                     ?>
                         <tbody>
                             <tr>
-                                <!-- <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['RID']?></td> -->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['NAME']?> <?php echo $mostrar['FSURNAME']?> <?php echo $mostrar['MSURNAME']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['CAR'] ?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ID']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['VEHICLE']?></td>
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ECON']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['RENTAL']?></td>
-                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['PRICE']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['QUANTITY']?></td>
-                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['TOTAL']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['NAME']?></td>
+                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['COST'] ?></td>
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE']?></td>
                             </tr>
                         </tbody>

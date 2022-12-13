@@ -59,6 +59,23 @@
 
             <div class="col">
                 <div class="text-center d-flex flex-column align-items-center align-items-xl-center">
+                    <h1>Ver Mantenimientos</h1>
+                    <div class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon lg" style="background: rgba(13,110,253,0);">
+                        
+                    </div>
+                    <div class="px-3">
+                        <form action="../Mantenimientos/nuevoMantenimiento/index.php">
+                            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Registrar Mantenimiento</button>
+                        </form>
+                        <form action="../Mantenimientos/verMantenimientos/index.php">
+                            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Ver Mantenimientos</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="text-center d-flex flex-column align-items-center align-items-xl-center">
                     <h1>Ver Ingresos</h1>
                     <div class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon lg" style="background: rgba(13,110,253,0);">
                         
