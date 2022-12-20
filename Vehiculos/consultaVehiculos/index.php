@@ -58,6 +58,9 @@ include("../../db.php");
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Placas</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">No de Serie</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Carga Util</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Dia</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Semana</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Mes</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Eliminar</th>
                         </tr>
                     </thead>
@@ -65,10 +68,13 @@ include("../../db.php");
                             $consulta = "select vehiculos.id_vehiculo as 'ROW0', vehiculos.tipo_unidad as 'ROW1', vehiculos.modelo as 'ROW2',
                             Cat_Clase_Vehiculo.descripcion as 'ROW3', Cat_Tipo.descripcion as 'ROW4',
                             Cat_Adaptacion.descripcion as 'ROW5', vehiculos.placas as 'ROW6',
-                            vehiculos.economico as 'ROW7', vehiculos.numero_serie as 'ROW8', vehiculos.carga_uti as 'ROW9' from vehiculos
+                            vehiculos.economico as 'ROW7', vehiculos.numero_serie as 'ROW8', vehiculos.carga_uti as 'ROW9',
+                            costos.precio_dia as 'ROW10', costos.precio_sem as 'ROW11', costos.precio_mes as 'ROW12'
+                            from vehiculos
                             INNER JOIN Cat_Clase_Vehiculo on vehiculos.id_Cat_Clase_Vehiculo = Cat_Clase_Vehiculo.id_Cat_Clase_Vehiculo
                             INNER JOIN Cat_Tipo on vehiculos.id_Cat_Tipo = Cat_Tipo.id_Cat_Tipo
-                            INNER JOIN Cat_Adaptacion on vehiculos.id_Cat_Adaptacion = Cat_Adaptacion.id_Cat_Adaptacion";
+                            INNER JOIN Cat_Adaptacion on vehiculos.id_Cat_Adaptacion = Cat_Adaptacion.id_Cat_Adaptacion
+                            INNER JOIN Costos on vehiculos.id_Costo = Costos.id_Costo";
                             $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
                     ?>
@@ -83,6 +89,9 @@ include("../../db.php");
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW6'] ?></td> <!--placas-->
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW8'] ?></td> <!--no serie-->
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW9'] ?> Ton.</td> <!--carga util-->
+                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['ROW10'] ?></td> <!--no serie-->
+                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['ROW11'] ?></td> <!--no serie-->
+                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['ROW12'] ?></td> <!--no serie-->
                                 <td style="background: rgba(13,114,255,0.36);" >
                                     <form action="/registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
                                         <button type="submit" name="eliminar_v" id="eliminar_v" value="<?php echo $mostrar['ROW0'] ?>" 

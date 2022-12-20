@@ -1,11 +1,14 @@
 --CONSULTA DE VEHICULOS
-select vehiculos.tipo_unidad as 'ROW1', vehiculos.modelo as 'ROW2',
+select vehiculos.id_vehiculo as 'ROW0', vehiculos.tipo_unidad as 'ROW1', vehiculos.modelo as 'ROW2',
 Cat_Clase_Vehiculo.descripcion as 'ROW3', Cat_Tipo.descripcion as 'ROW4',
 Cat_Adaptacion.descripcion as 'ROW5', vehiculos.placas as 'ROW6',
-vehiculos.economico as 'ROW7', vehiculos.numero_serie as 'ROW8', vehiculos.carga_uti as 'ROW9' from vehiculos
+vehiculos.economico as 'ROW7', vehiculos.numero_serie as 'ROW8', vehiculos.carga_uti as 'ROW9',
+costos.precio_dia as 'ROW10', costos.precio_sem as 'ROW11', costos.precio_mes as 'ROW12'
+from vehiculos
 INNER JOIN Cat_Clase_Vehiculo on vehiculos.id_Cat_Clase_Vehiculo = Cat_Clase_Vehiculo.id_Cat_Clase_Vehiculo
 INNER JOIN Cat_Tipo on vehiculos.id_Cat_Tipo = Cat_Tipo.id_Cat_Tipo
 INNER JOIN Cat_Adaptacion on vehiculos.id_Cat_Adaptacion = Cat_Adaptacion.id_Cat_Adaptacion
+INNER JOIN Costos on vehiculos.id_Costo = Costos.id_Costo
 
 --CONSULTA DE MANTENIMIENTOS
 select detalle_mantenimiento.id_detalleMantenimiento as 'ID',

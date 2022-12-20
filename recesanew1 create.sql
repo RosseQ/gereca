@@ -39,6 +39,19 @@ CREATE TABLE mantenimiento  (
   PRIMARY KEY (id_mantenimiento)
 );
 
+CREATE TABLE costos  (
+  id_Costo int NOT NULL auto_increment,
+  precio_dia float(100,2),
+  precio_sem float(100,2),
+  precio_mes float(100,2),
+  PRIMARY KEY (id_Costo)
+);
+
+SET FOREIGN_KEY_CHECKS=0;
+drop TABLE costos;
+SET FOREIGN_KEY_CHECKS=1;
+
+
 CREATE TABLE vehiculos  (
   id_Vehiculo int NOT NULL auto_increment,
   tipo_unidad varchar(255) NULL,
@@ -50,12 +63,11 @@ CREATE TABLE vehiculos  (
   economico int NULL,
   numero_serie varchar(255) NULL,
   carga_uti float,
-  dia int null,
-  semana int null,
-  mes int null,
+  id_Costo int NOT NULL,
   PRIMARY KEY (id_Vehiculo),
   FOREIGN KEY (id_Cat_Tipo) REFERENCES Cat_Tipo(id_Cat_Tipo),
   FOREIGN KEY (id_Cat_Clase_Vehiculo) REFERENCES Cat_Clase_Vehiculo(id_Cat_Clase_Vehiculo),
+  FOREIGN KEY (id_Costo) REFERENCES costos(id_Costo),
   FOREIGN KEY (id_Cat_Adaptacion) REFERENCES Cat_Adaptacion(id_Cat_Adaptacion)
 );
 
