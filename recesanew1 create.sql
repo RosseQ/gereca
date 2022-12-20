@@ -33,12 +33,7 @@ CREATE TABLE Clientes  (
   PRIMARY KEY (id_cliente)
 );
 
-CREATE TABLE costos  (
-  id_costo int NOT NULL auto_increment,
-  tipo_prestamo varchar(50),
-  precio float(100,2),
-  PRIMARY KEY (id_costo)
-);
+
 
 CREATE TABLE mantenimiento  (
   id_mantenimiento int NOT NULL auto_increment,
@@ -60,10 +55,13 @@ CREATE TABLE vehiculos  (
   economico int NULL,
   numero_serie varchar(255) NULL,
   carga_uti float,
+  dia int null,
+  semana int null,
+  mes int null,
   PRIMARY KEY (id_Vehiculo),
   FOREIGN KEY (id_Cat_Tipo) REFERENCES Cat_Tipo(id_Cat_Tipo),
   FOREIGN KEY (id_Cat_Clase_Vehiculo) REFERENCES Cat_Clase_Vehiculo(id_Cat_Clase_Vehiculo),
-  -- FOREIGN KEY (id_detallemantenimiento) REFERENCES detalle_mantenimiento(id_detalleMantenimiento),
+  --FOREIGN KEY (id_detallemantenimiento) REFERENCES detalle_mantenimiento(id_detalleMantenimiento),
   FOREIGN KEY (id_Cat_Adaptacion) REFERENCES Cat_Adaptacion(id_Cat_Adaptacion)
 );
 
@@ -80,11 +78,9 @@ CREATE TABLE detalle_mantenimiento( -- tal vez se borro esta tabla, no me acuerd
 CREATE TABLE detalle_renta  (
   id_detalleRenta int NOT NULL auto_increment,
   id_vehiculo int NULL,
-  id_costo int NULL,
   cantidad int NULL,
   PRIMARY KEY (id_detalleRenta),
-  FOREIGN KEY (id_vehiculo) REFERENCES vehiculos (id_vehiculo),
-  FOREIGN KEY (id_costo) REFERENCES COSTOS (id_costo)
+  FOREIGN KEY (id_vehiculo) REFERENCES vehiculos (id_vehiculo)
 );
 
 CREATE TABLE renta  (

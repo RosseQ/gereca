@@ -1,6 +1,6 @@
 create database Proyecto_Recesa
 
-use Proyecto_Recesa
+
 
 create table Cat_Clase_Vehiculo
 (

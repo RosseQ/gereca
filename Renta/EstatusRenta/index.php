@@ -16,7 +16,6 @@ include("../../db.php");
     <link rel="stylesheet" href="assets/css/Features-Centered-Icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/otros.css" />
     <link rel="icon" href="/assets/img/logo-icono.png">
 </head>
 
@@ -25,7 +24,7 @@ include("../../db.php");
         <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">RECESA</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="../../Menu/index.php">INICIO</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../../Menu/index.php">soy un estatus</a></li>
                 </ul>
             </div>
         </div>
@@ -34,19 +33,27 @@ include("../../db.php");
         <section class="clean-block clean-form dark" style="background: rgba(246,246,246,0);">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Ver Ingresos</h2>
+                    <h2 class="text-info">soy un estatus</h2>
                     <p></p>
                 </div>
             </div>
 
+            <?php if(isset($_GET['error'])){ ?>
+            <div id="error" style="width: 100%; background: rgb(0,15,255); text-align: center; border-radius: 2px; padding: 4px; ">
+                <label style="color: whitesmoke;"><?php echo $_GET['error']; ?></label>
+                <span class="close" style="font-size: 24px; color: whitesmoke; margin: auto;" onclick="getElementById('error').style.display = 'none' ">&times;</span>
+            </div>
+            <?php } ?>
             <div class="table-responsive">
-                <table class="table">
+            <table class="table">
                     <thead>
                         <tr>
                             <th style="background: rgb(0, 0, 255);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0); color: whitesmoke; margin: auto;">Cliente</th>
                             <!-- <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Cliente</th> -->
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Vehiculo</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Economico</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Renta</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Tarifa</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Dias de Uso</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Total Neto</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha</th>
@@ -55,13 +62,15 @@ include("../../db.php");
                     <?php 
                         $consulta = "select clientes.nombre as 'NAME', clientes.appaterno as 'FSURNAME',
                         clientes.apmaterno as 'MSURNAME', vehiculos.tipo_unidad as 'CAR', vehiculos.economico as 'ECON',
+                        costos.tipo_prestamo as 'RENTAL', costos.precio as 'PRICE',
                         detalle_renta.cantidad as 'QUANTITY', renta.total as 'TOTAL',
                         renta.fecha as 'DATE'
                         from renta
                         INNER JOIN clientes on renta.id_cliente = clientes.id_cliente
                         INNER JOIN detalle_renta on renta.id_detalleRenta = detalle_renta.id_detalleRenta
-                        INNER JOIN vehiculos on detalle_renta.id_Vehiculo = vehiculos.id_Vehiculo";
-                            $resultado = mysqli_query($conex,$consulta);
+                        INNER JOIN vehiculos on detalle_renta.id_Vehiculo = vehiculos.id_Vehiculo
+                        INNER JOIN costos on detalle_renta.id_costo = costos.id_costo";
+                        $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
                     ?>
                         <tbody>
@@ -70,6 +79,8 @@ include("../../db.php");
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['NAME']?> <?php echo $mostrar['FSURNAME']?> <?php echo $mostrar['MSURNAME']?></td>
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['CAR'] ?></td>
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ECON']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['RENTAL']?></td>
+                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['PRICE']?></td>
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['QUANTITY']?></td>
                                 <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['TOTAL']?></td>
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE']?></td>
@@ -82,18 +93,12 @@ include("../../db.php");
             </div>
         </section>
     </section>
-    <!-- <div class="text-center row gy-3 row-cols-md-2">
-        <form action="../usarRefacciones/index.php">
-            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Usar Refaccion</button>
-        </form>
-        <form action="../agregarRefacciones/index.php">
-            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Agregar Refaccion</button>
-        </form>
-    </div> -->
+    
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
 
     <script type="text/javascript">
         function ConfirmarDelete()
@@ -105,6 +110,7 @@ include("../../db.php");
             } else {
                 return false;
             }
+
         }
     </script>
 
