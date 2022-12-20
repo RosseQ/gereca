@@ -13,27 +13,35 @@ include("db.php");
 ---------------------------------------------------------------------------------------------------------------
 */
 if (isset($_POST['agregar_v'])){
-    if (strlen($_POST['id_v']) >= 1 && strlen($_POST['tipounidad_v']) >= 1 && strlen($_POST['modelo_v']) >= 1 && strlen($_POST['placas_v']) >= 1){
-        $id_v = trim($_POST['id_v']);
+
+    // if (strlen($_POST['economico_v']) >= 1 && strlen($_POST['tipounidad_v']) >= 1 && strlen($_POST['placas_v']) >= 1){
+        // $id_v = trim($_POST['id_v']);
         $tipounidad_v = trim($_POST['tipounidad_v']);
         $modelo_v = trim($_POST['modelo_v']);
         $clase_vehiculo = trim($_POST['clase_vehiculo']);
         $tipo_vehiculo = trim($_POST['tipo_vehiculo']);
         $adaptacion_v = trim($_POST['adaptacion_v']);
         $placas_v = trim($_POST['placas_v']);
-        $consulta = "INSERT INTO Vehiculos (id_Vehiculo, tipo_unidad, modelo, id_Cat_Clase_Vehiculo, id_Cat_Tipo, id_Cat_Adaptacion, placas) 
-            VALUES ('$id_v','$tipounidad_v','$modelo_v', '$clase_vehiculo', '$tipo_vehiculo', '$adaptacion_v', '$placas_v')";
+        
+        $consulta = "INSERT INTO Vehiculos (tipo_unidad, modelo, id_Cat_Clase_Vehiculo, id_Cat_Tipo, id_Cat_Adaptacion, placas) 
+            VALUES ('$tipounidad_v','$modelo_v', '$clase_vehiculo', '$tipo_vehiculo', '$adaptacion_v', '$placas_v')";
         $resultado = mysqli_query($conex,$consulta);
         if ($resultado){
-            header ("location:/Vehiculos/consultaVehiculos/index.php");
+            // http://localhost/Vehiculos/agregarVehiculos/index.php?
+            // header ("Location: C:\Users\ernes\Documents\GitHub\gereca\Vehiculos\agregarVehiculos\index.php");
+            header ("Location: http://localhost/Vehiculos/agregarVehiculos/index.php");
+            exit;
         } else {
-            header ("location:/Vehiculos/agregarVehiculos/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
+            header ("Location: http://localhost/Vehiculos/agregarVehiculos/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
+            exit;
         }
-    } else {
-        header ("location:/Vehiculos/agregarVehiculos/index.php?error=Llene todos los campos por favor.");
-    }
+    // } else {
+    //     header ("Location: C:\Users\ernes\Documents\GitHub\gereca\Vehiculos\agregarVehiculos\index.php?error=Llene todos los campos por favor.");
+    //     exit;
+    // }
     memory_free_result($resultado);
     mysqli_close($conex);
+    
 };
 
 /*

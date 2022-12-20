@@ -20,7 +20,7 @@ include("../../db.php");
 
 <body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">RECESA</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">RECESA|IDEALEASE</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="../../Menu/index.php">INICIO</a></li>
@@ -42,12 +42,8 @@ include("../../db.php");
             </div>
             <?php } ?>
 
-            <form action="/registro.php" method="POST" style="color: rgb(0,15,255);background: rgba(13,114,255,0.11);border-top-color: rgb(13,114,255);">
-                <div class="mb-3">
-                    <label class="form-label" for="id_v">Economico</label>
-                    <input class="form-control" type="text" id="id_v" name="id_v"
-                        maxlength="11" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                </div>
+            <form action="../../registro.php" method="POST" style="color: rgb(0,15,255);background: rgba(13,114,255,0.11);border-top-color: rgb(13,114,255);">
+               
                 <div class="mb-3">
                     <label class="form-label" for="tipounidad_v">Tipo de unidad</label>
                     <input class="form-control" type="text" id="tipounidad_v" name="tipounidad_v"
@@ -58,11 +54,7 @@ include("../../db.php");
                     <input class="form-control" type="text" id="modelo_v" name="modelo_v"
                         maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
-                <!-- <div class="mb-3">
-                    <label class="form-label" for="desc_h">Clase de vehiculo</label>
-                    <input class="form-control" type="text" id="desc_h" name="desc_h"
-                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
-                </div> -->
+               
                 <div class="mb-3"><label class="form-label" for="clase_vehiculo">Clase de vehiculo</label>
                     <select class="form-select" id="clase_vehiculo" name="clase_vehiculo">
                         <?php 
@@ -75,11 +67,7 @@ include("../../db.php");
                         <?php }?>
                     </select>
                 </div>
-                <!-- <div class="mb-3">
-                    <label class="form-label" for="desc_h">Categoria</label>
-                    <input class="form-control" type="text" id="desc_h" name="desc_h"
-                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
-                </div> -->
+               
                 <div class="mb-3"><label class="form-label" for="tipo_vehiculo">Tipo</label>
                     <select class="form-select" id="tipo_vehiculo" name="tipo_vehiculo">
                         <?php 
@@ -92,11 +80,7 @@ include("../../db.php");
                         <?php }?>
                     </select>
                 </div>
-                <!-- <div class="mb-3">
-                    <label class="form-label" for="desc_h">Adaptacion</label>
-                    <input class="form-control" type="text" id="desc_h" name="desc_h"
-                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
-                </div> -->
+               
                 <div class="mb-3"><label class="form-label" for="adaptacion_v">Adaptacion</label>
                     <select class="form-select" id="adaptacion_v" name="adaptacion_v">
                         <?php 

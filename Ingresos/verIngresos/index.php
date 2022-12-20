@@ -44,7 +44,6 @@ include("../../db.php");
                     <thead>
                         <tr>
                             <th style="background: rgb(0, 0, 255);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0); color: whitesmoke; margin: auto;">Cliente</th>
-                            <!-- <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Cliente</th> -->
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Vehiculo</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Economico</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Dias de Uso</th>
@@ -53,6 +52,7 @@ include("../../db.php");
                         </tr>
                     </thead>
                     <?php 
+
                         $consulta = "select clientes.nombre as 'NAME', clientes.appaterno as 'FSURNAME',
                         clientes.apmaterno as 'MSURNAME', vehiculos.tipo_unidad as 'CAR', vehiculos.economico as 'ECON',
                         detalle_renta.cantidad as 'QUANTITY', renta.total as 'TOTAL',
@@ -66,7 +66,7 @@ include("../../db.php");
                     ?>
                         <tbody>
                             <tr>
-                                <!-- <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['RID']?></td> -->
+                                <!-- <td style="background: rgba(13,114,255,0.36);">$</td> -->
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['NAME']?> <?php echo $mostrar['FSURNAME']?> <?php echo $mostrar['MSURNAME']?></td>
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['CAR'] ?></td>
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ECON']?></td>
