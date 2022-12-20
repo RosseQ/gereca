@@ -14,6 +14,7 @@ include("db.php");
 */
 if (isset($_POST['agregar_v'])){
     if (strlen($_POST['economico_v']) >= 1 && strlen($_POST['tipounidad_v']) >= 1 && strlen($_POST['modelo_v']) >= 1 && strlen($_POST['placas_v']) >= 1 && strlen($_POST['carga_util_v']) >= 1
+    // && strlen($_POST['id_costo_v']) >= 1){
     && strlen($_POST['precio_dia_v']) >= 1 && strlen($_POST['precio_semana_v']) >= 1 && strlen($_POST['precio_mes_v']) >= 1){
         $economico_v = trim($_POST['economico_v']);
         $tipounidad_v = trim($_POST['tipounidad_v']);
@@ -27,23 +28,27 @@ if (isset($_POST['agregar_v'])){
         $precio_dia_v = trim($_POST['precio_dia_v']);
         $precio_semana_v = trim($_POST['precio_semana_v']);
         $precio_mes_v = trim($_POST['precio_mes_v']);
+        // $id_costo_v = mysql_query($conex,"SELECT id_Costo from Costos order by id_Costo DESC limit 1;");
+        // $id_costo_v = mysql_fetch_row($id_costo_q);
 
-        $consulta = "INSERT INTO Vehiculos (tipo_unidad, modelo, id_Cat_Clase_Vehiculo, id_Cat_Tipo, id_Cat_Adaptacion, placas, economico, numero_serie, carga_uti, id_costo)
-        VALUES ('$tipounidad_v','$modelo_v', '$clase_vehiculo', '$tipo_vehiculo', '$adaptacion_v', '$placas_v', '$economico_v', '$noserie_v', '$carga_util_v', 11);
+        $consulta = "INSERT INTO Costos (precio_dia, precio_sem, precio_mes) VALUES ('$precio_dia_v', '$precio_semana_v', '$precio_mes_v');
+        SELECT id_Costo INTO @costov from Costos order by id_Costo DESC limit 1;
+        INSERT INTO Vehiculos (tipo_unidad, modelo, id_Cat_Clase_Vehiculo, id_Cat_Tipo, id_Cat_Adaptacion, placas, economico, numero_serie, carga_uti, id_Costo)
+        VALUES ('$tipounidad_v','$modelo_v', '$clase_vehiculo', '$tipo_vehiculo', '$adaptacion_v', '$placas_v', '$economico_v', '$noserie_v', '$carga_util_v', @costov);
         ";
 
-        $resultado = mysqli_query($conex,$consulta);
+        $resultado = mysqli_multi_query($conex,$consulta);
         if ($resultado){
             // http://localhost/Vehiculos/agregarVehiculos/index.php?
             // header ("Location: C:\Users\ernes\Documents\GitHub\gereca\Vehiculos\agregarVehiculos\index.php");
-            header ("Location: http://localhost/Vehiculos/verVehiculos/index.php");
+            header ("Location:/Vehiculos/consultaVehiculos/index.php");
             exit;
         } else {
-            header ("Location: http://localhost/Vehiculos/agregarVehiculos/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
+            header ("Location:/Vehiculos/agregarVehiculos/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
             exit;
         }
     } else {
-        header ("Location: http://localhost/Vehiculos/agregarVehiculos/index.php?error=Llene todos los campos por favor.");
+        header ("Location:/Vehiculos/agregarVehiculos/index.php?error=Llene todos los campos por favor.");
         exit;
     }
     memory_free_result($resultado);
@@ -75,46 +80,108 @@ if (isset($_POST['eliminar_v'])){
 
 /*
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            I N G R E S O S
+            M A N T E N I M I E N T O
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 */
 
 /*
 ---------------------------------------------------------------------------------------------------------------
-    Agregar Ingreso
+    Agregar Mantenimiento
 ---------------------------------------------------------------------------------------------------------------
 */
-if (isset($_POST['nuevoingreso'])){
-    if (strlen($_POST['dias_i']) >= 1 && strlen($_POST['tarifa_i']) >= 1 && strlen($_POST['costo_i']) >= 1){
-        
-        $idVehiculo_in = trim($_POST['idVehiculo_i']);
-        $tipoRenta_in = trim($_POST['tipoRenta_i']);
+if (isset($_POST['detmant_insert'])){
+    if (strlen($_POST['costo_det']) >= 1){
+        $idVehiculo_det = trim($_POST['idVehiculo_det']);
+        $mantenimiento_det = trim($_POST['mantenimiento_det']);
+        $costo_det = trim($_POST['costo_det']);
 
-        $dias_in = trim($_POST['dias_i']);
-        $dias_in = (int)$dias_in;
-
-        $tarifa_in = trim($_POST['tarifa_i']);
-        $tarifa_in = (int)$tarifa_in;
-
-        $costo_in = trim($_POST['costo_i']);
-        $costo_in = (int)$costo_in;
-
-        $utilidad_in = ($tarifa_in - $costo_in);
-
-        $consulta = "INSERT INTO Ingresos (id_Vehiculo, id_Cat_Tipo_Renta, dias, tarifa, costmantenimiento, totalneto, fecha_ingreso)
-        VALUES ('$idVehiculo_in','$tipoRenta_in','$dias_in','$tarifa_in','$costo_in', '$utilidad_in', CURDATE())";
+        $consulta = "INSERT INTO detalle_mantenimiento (id_Mantenimiento, id_Vehiculo, costo, fecha) VALUES ('$mantenimiento_det', '$idVehiculo_det', '$costo_det', CURDATE())";
 
         $resultado = mysqli_query($conex,$consulta);
         if ($resultado){
-            header ("location:/Ingresos/verIngresos/index.php");
+            // http://localhost/Vehiculos/agregarVehiculos/index.php?
+            // header ("Location: C:\Users\ernes\Documents\GitHub\gereca\Vehiculos\agregarVehiculos\index.php");
+            header ("Location:/Mantenimientos/verMantenimientos/index.php");
+            exit;
         } else {
-            header ("location:/Ingresos/nuevoIngreso/index.php?error=Hubo un error al registrar el ingreso.");
+            header ("Location:/Mantenimientos/nuevoMantenimiento/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
+            exit;
         }
     } else {
-        header ("location:/Ingresos/nuevoIngreso/index.php?error=Llene todos los campos por favor.");
+        header ("Location:/Mantenimientos/nuevoMantenimiento/index.php?error=Llene todos los campos por favor.");
+        exit;
     }
     memory_free_result($resultado);
     mysqli_close($conex);
+    
+};
+
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            R E N T A S
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/*
+---------------------------------------------------------------------------------------------------------------
+    Agregar Renta
+---------------------------------------------------------------------------------------------------------------
+*/
+if (isset($_POST['nuevarenta'])){
+    if (strlen($_POST['dias_i']) >= 1){
+        $idCliente_i = trim($_POST['idCliente_i']);
+        $idVehiculo_i = trim($_POST['idVehiculo_i']);
+        $tipoRenta_i = trim($_POST['tipoRenta_i']);
+        $dias_i = trim($_POST['dias_i']);
+
+        $consulta = "INSERT INTO detalle_renta (id_Vehiculo,cantidad) VALUES ('$idVehiculo_i', '$dias_i');
+
+        SELECT id_detalleRenta INTO @rent_det from detalle_renta order by id_detalleRenta DESC limit 1;
+
+        @tiporent := '$tipoRenta_i';
+        @idveh_price_choose := '$idVehiculo_i';
+
+        IF @tiporent = 1 THEN
+            SELECT costos.precio_dia INTO @cost_prec from costos
+            INNER JOIN vehiculos on costos.id_costo = vehiculos.economico
+            WHERE costos.id_costo = vehiculos.economico
+            AND Vehiculos.id_Vehiculo = @idveh_price_choose
+            limit 1;
+        ELSEIF @tiporent = 2 THEN
+            SELECT costos.precio_sem INTO @cost_prec from costos
+            INNER JOIN vehiculos on costos.id_costo = vehiculos.economico
+            WHERE costos.id_costo = vehiculos.economico
+            AND Vehiculos.id_Vehiculo = @idveh_price_choose
+            limit 1;
+        ELSEIF @tiporent = 3 THEN
+            SELECT costos.precio_mes INTO @cost_prec from costos
+            INNER JOIN vehiculos on costos.id_costo = vehiculos.economico
+            WHERE costos.id_costo = vehiculos.economico
+            AND Vehiculos.id_Vehiculo = @idveh_price_choose
+            limit 1;
+        END IF;
+
+        INSERT INTO renta (id_cliente,id_detalleRenta,total,fecha)
+        VALUES ('$idCliente_i', @rent_det, @cost_prec * '$dias_i', CURDATE());
+        ";
+
+        $resultado = mysqli_multi_query($conex,$consulta);
+        if ($resultado){
+            // http://localhost/Vehiculos/agregarVehiculos/index.php?
+            // header ("Location: C:\Users\ernes\Documents\GitHub\gereca\Vehiculos\agregarVehiculos\index.php");
+            header ("Location:/Ingresos/verIngresos/index.php");
+            exit;
+        } else {
+            header ("Location:/Ingresos/nuevoIngreso/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
+            exit;
+        }
+    } else {
+        header ("Location:/Ingresos/nuevoIngreso/index.php?error=Llene todos los campos por favor.");
+        exit;
+    }
+    memory_free_result($resultado);
+    mysqli_close($conex);
+    
 };
 
 ?>

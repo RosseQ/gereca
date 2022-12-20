@@ -54,7 +54,7 @@ include("../../db.php");
                     </thead>
                     <?php 
                         $consulta = "select detalle_mantenimiento.id_detalleMantenimiento as 'ID',
-                        mantenimiento.nombre_mantenimiento as 'NAME', mantenimiento.precio as 'COST',
+                        mantenimiento.nombre_mantenimiento as 'NAME', detalle_mantenimiento.costo as 'COST',
                         vehiculos.tipo_unidad as 'VEHICLE', vehiculos.economico as 'ECON',
                         detalle_mantenimiento.fecha as 'DATE'
                         from detalle_mantenimiento

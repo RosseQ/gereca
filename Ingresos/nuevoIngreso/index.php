@@ -41,76 +41,48 @@ include("../../db.php");
             </div>
             <?php } ?>
             <form action="/registro.php" method="POST" style="color: rgb(0,15,255);background: rgba(13,114,255,0.11);border-top-color: rgb(13,114,255);">
+                <div class="mb-3"><label class="form-label" for="idCliente_i">Cliente</label>
+                    <select class="form-select" id="idCliente_i" name="idCliente_i">
+                        <?php 
+                            $consulta = "SELECT id_Cliente, nombre, appaterno, apmaterno
+                            FROM Clientes";
+                            $resultado = mysqli_query($conex,$consulta);
+                            while($mostrar = mysqli_fetch_array($resultado)){
+                        ?>
+                            <option id="idCliente_i" name="idCliente_i" value="<?php echo $mostrar['id_Cliente'] ?>">
+                                <?php echo $mostrar['nombre'] ?> <?php echo $mostrar['appaterno'] ?> <?php echo $mostrar['apmaterno'] ?>
+                            </option>
+                        <?php }?>
+                    </select>
+                </div>
                 <div class="mb-3"><label class="form-label" for="idVehiculo_i">Vehiculo</label>
                     <select class="form-select" id="idVehiculo_i" name="idVehiculo_i">
                         <?php 
-                            $consulta = "SELECT id_Vehiculo, tipo_unidad
+                            $consulta = "SELECT id_Vehiculo, tipo_unidad, economico
                             FROM vehiculos";
                             $resultado = mysqli_query($conex,$consulta);
                             while($mostrar = mysqli_fetch_array($resultado)){
                         ?>
-                            <option id="idVehiculo_i" name="idVehiculo_i" value="<?php echo $mostrar['id_Vehiculo'] ?>"><?php echo $mostrar['tipo_unidad'] ?></option>
+                            <option id="idVehiculo_i" name="idVehiculo_i" value="<?php echo $mostrar['id_Vehiculo'] ?>">
+                                <?php echo $mostrar['economico'] ?> - <?php echo $mostrar['tipo_unidad'] ?>
+                            </option>
                         <?php }?>
                     </select>
                 </div>
                 <div class="mb-3"><label class="form-label" for="tipoRenta_i">Tipo de Renta</label>
                     <select class="form-select" id="tipoRenta_i" name="tipoRenta_i">
-                        <?php 
-                            $consulta = "SELECT dia, semana, mes
-                            FROM vehiculos";
-                            $resultado = mysqli_query($conex,$consulta);
-                            while($mostrar = mysqli_fetch_array($resultado)){
-                        ?>
-                            <option id="tipoRenta_i" name="tipoRenta_i" value=1>Dia - <?php echo $mostrar['dia'] ?></option>
-                            <option id="tipoRenta_i" name="tipoRenta_i" value=2>Semana - <?php echo $mostrar['semana'] ?></option>
-                            <option id="tipoRenta_i" name="tipoRenta_i" value=3>Mes - <?php echo $mostrar['mes'] ?></option>
-                        <?php }?>
+                        <option id="tipoRenta_i" name="tipoRenta_i" value=1>Dia</option>
+                        <option id="tipoRenta_i" name="tipoRenta_i" value=2>Semana</option>
+                        <option id="tipoRenta_i" name="tipoRenta_i" value=3>Mes</option>
                     </select>
                 </div>
-                <!-- <?php 
-                    $consulta = "SELECT id_Vehiculo, tipo_unidad, dia, semana, mes
-                    FROM vehiculos";
-                    $resultado = mysqli_query($conex,$consulta);
-                    while($mostrar = mysqli_fetch_array($resultado)){
-                ?>
-                    <div class="mb-3"><label class="form-label" for="idVehiculo_i">Vehiculo</label>
-                        <select class="form-select" id="idVehiculo_i" name="idVehiculo_i">
-                                <option id="idVehiculo_i" name="idVehiculo_i" value="<?php echo $mostrar['id_Vehiculo'] ?>"><?php echo $mostrar['tipo_unidad'] ?></option>
-                        </select>
-                    </div>
-                    <div class="mb-3"><label class="form-label" for="tipoRenta_i">Tipo de Renta</label>
-                        <select class="form-select" id="tipoRenta_i" name="tipoRenta_i">
-                                <option id="tipoRenta_i" name="tipoRenta_i" value=1>Dia - <?php echo $mostrar['dia'] ?></option>
-                                <option id="tipoRenta_i" name="tipoRenta_i" value=2>Semana - <?php echo $mostrar['semana'] ?></option>
-                                <option id="tipoRenta_i" name="tipoRenta_i" value=3>Mes - <?php echo $mostrar['mes'] ?></option>
-                        </select>
-                    </div>
-                <?php }?> -->
                 <div class="mb-3">
-                    <label class="form-label" for="dias_i">Dias</label>
+                    <label class="form-label" for="dias_i">Cantidad (en días, semanas o meses)</label>
                     <input class="form-control" type="text" id="dias_i" name="dias_i" min="1" value=0
                         maxlength="4" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="tarifa_i">Tarifa</label>
-                    <input class="form-control" type="text" id="tarifa_i" name="tarifa_i" value=0
-                        maxlength="255" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="costo_i">Costo del Mantenimiento</label>
-                    <input class="form-control" type="text" id="costo_i" name="costo_i" value=0
-                        maxlength="255" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                </div>
-                <!-- <div class="mb-3">
-                    <label class="form-label" for="utilidad_i">Total Neto</label>
-                    <h2 id="utilidad_i"></h2>
-                </div> -->
-                <!-- <div class="mb-3">
-                    <label class="form-label" for="fecha_i">Fecha de Ingreso</label>
-                    <input class="form-control" type="Date" id="fecha_i" name="fecha_i">
-                </div> -->
-                <div class="mb-3">
-                    <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="nuevoingreso" name="nuevoingreso" value="Enviar">
+                    <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="nuevarenta" name="nuevarenta" value="Enviar">
                 </div>
             </form>
             

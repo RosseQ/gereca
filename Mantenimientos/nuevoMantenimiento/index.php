@@ -41,53 +41,33 @@ include("../../db.php");
             </div>
             <?php } ?>
             <form action="/registro.php" method="POST" style="color: rgb(0,15,255);background: rgba(13,114,255,0.11);border-top-color: rgb(13,114,255);">
-                <!-- <div class="mb-3">
-                    <label class="form-label" for="cod_barra">ID ingreso</label>
-                    <input class="form-control" type="number" id="cod_barra" name="cod_barra"
-                        maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                </div> -->
-                <!-- <div class="mb-3">
-                    <label class="form-label" for="idVehiculo_i">Economico</label>
-                    <input class="form-control" type="text" id="idVehiculo_i" name="idVehiculo_i"
-                        maxlength="150" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
-                </div> -->
-                <div class="mb-3"><label class="form-label" for="idVehiculo_i">Vehiculo</label>
-                    <select class="form-select" id="idVehiculo_i" name="idVehiculo_i">
+                <div class="mb-3"><label class="form-label" for="idVehiculo_det">Vehiculo</label>
+                    <select class="form-select" id="idVehiculo_det" name="idVehiculo_det">
                         <?php 
                             $consulta = "SELECT id_Vehiculo, tipo_unidad
                             FROM vehiculos";
                             $resultado = mysqli_query($conex,$consulta);
                             while($mostrar = mysqli_fetch_array($resultado)){
                         ?>
-                            <option id="idVehiculo_i" name="idVehiculo_i" value="<?php echo $mostrar['id_Vehiculo'] ?>"><?php echo $mostrar['tipo_unidad'] ?></option>
+                            <option id="idVehiculo_det" name="idVehiculo_det" value="<?php echo $mostrar['id_Vehiculo'] ?>"><?php echo $mostrar['tipo_unidad'] ?></option>
                         <?php }?>
                     </select>
                 </div>
-                <div class="mb-3"><label class="form-label" for="tipoRenta_i">Tipo de Renta</label>
-                    <select class="form-select" id="tipoRenta_i" name="tipoRenta_i">
+                <div class="mb-3"><label class="form-label" for="mantenimiento_det">Tipo de Mantenimiento</label>
+                    <select class="form-select" id="mantenimiento_det" name="mantenimiento_det">
                         <?php 
-                            $consulta = "SELECT id_Cat_Tipo_Renta, descripcion
-                            FROM cat_tipo_renta";
+                            $consulta = "SELECT id_Mantenimiento, nombre_mantenimiento
+                            FROM mantenimiento";
                             $resultado = mysqli_query($conex,$consulta);
                             while($mostrar = mysqli_fetch_array($resultado)){
                         ?>
-                            <option id="tipoRenta_i" name="tipoRenta_i" value="<?php echo $mostrar['id_Cat_Tipo_Renta'] ?>"><?php echo $mostrar['descripcion'] ?></option>
+                            <option id="mantenimiento_det" name="mantenimiento_det" value="<?php echo $mostrar['id_Mantenimiento'] ?>"><?php echo $mostrar['nombre_mantenimiento'] ?></option>
                         <?php }?>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="dias_i">Dias</label>
-                    <input class="form-control" type="text" id="dias_i" name="dias_i" min="1" value=0
-                        maxlength="4" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="tarifa_i">Tarifa</label>
-                    <input class="form-control" type="text" id="tarifa_i" name="tarifa_i" value=0
-                        maxlength="255" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="costo_i">Costo del Mantenimiento</label>
-                    <input class="form-control" type="text" id="costo_i" name="costo_i" value=0
+                    <label class="form-label" for="costo_det">Costo del Mantenimiento</label>
+                    <input class="form-control" type="text" id="costo_det" name="costo_det" value=0
                         maxlength="255" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <!-- <div class="mb-3">
@@ -99,7 +79,7 @@ include("../../db.php");
                     <input class="form-control" type="Date" id="fecha_i" name="fecha_i">
                 </div> -->
                 <div class="mb-3">
-                    <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="nuevoingreso" name="nuevoingreso" value="Enviar">
+                    <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="detmant_insert" name="detmant_insert" value="Enviar">
                 </div>
             </form>
             

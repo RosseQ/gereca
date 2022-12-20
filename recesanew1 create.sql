@@ -34,8 +34,6 @@ CREATE TABLE Clientes  (
 CREATE TABLE mantenimiento  (
   id_mantenimiento int NOT NULL auto_increment,
   nombre_mantenimiento varchar(100) NULL,
-  descr varchar(200) NULL,
-  precio float(100,2) NULL,
   PRIMARY KEY (id_mantenimiento)
 );
 
@@ -75,6 +73,7 @@ CREATE TABLE detalle_mantenimiento(
   id_detalleMantenimiento int NOT NULL auto_increment,
   id_mantenimiento int NULL,
   id_vehiculo int NULL,
+  costo float(100,2) NULL,
   fecha date,
   PRIMARY KEY (id_detalleMantenimiento),
   FOREIGN KEY (id_vehiculo) REFERENCES vehiculos (id_vehiculo),
@@ -90,7 +89,7 @@ CREATE TABLE detalle_renta  (
 );
 
 CREATE TABLE renta  (
-  id_cliente int NOT NULL auto_increment,
+  id_cliente int NOT NULL,
   id_detalleRenta int NOT NULL,
   total float(100,2) NULL, -- hacer que se multplique solo aqui o en el programa ya hecho
   fecha date,

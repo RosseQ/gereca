@@ -109,6 +109,11 @@ include("../../db.php");
                     <input class="form-control" type="text" id="carga_util_v" name="carga_util_v"
                     onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="id_costo_v">id costo</label>
+                    <input class="form-control" type="text" id="id_costo_v" name="id_costo_v"
+                    onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                </div> -->
                 <div class="mb-3">
                     <label class="form-label" for="precio_dia_v">Precio por dia</label>
                     <input class="form-control" type="text" id="precio_dia_v" name="precio_dia_v"

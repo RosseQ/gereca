@@ -44,9 +44,8 @@ insert into costos values
 (10, 5546, 5152, 4758);
 
 INSERT INTO mantenimiento values
-(1,'Cambio de aceite', 'cambio de aciete al motor', 5),
-(2,'Cambio de llantas', 'cambio de llantas, 16 llantas por camion',150),
-(3,'cambio de cableado', 'cambio de cable para evitar corto',30000);
+(1,'Preventivo'),
+(2,'Correctivo');
 
 INSERT INTO vehiculos values
 (1, 'Cargo Van 1.5 Ton.', 'Peugeot Manager', 1, 1, 1, 'test01', 1, "V-01", 1.5, 1),
@@ -61,9 +60,9 @@ INSERT INTO vehiculos values
 (10, 'Camión Refrigerado 10.0 Ton.', '4300 Rabon', 3, 4, 5, 'test10', 10, "V-10", 7, 10);
 
 INSERT INTO detalle_mantenimiento values
-(1,2,1, '2022-11-21'),
-(2,3,7, '2022-11-23'),
-(3,1,5, '2022-11-29');
+(1,2,1, 2500,'2022-11-21'),
+(2,2,7, 1600,'2022-11-23'),
+(3,1,5, 350,'2022-11-29');
 
 INSERT INTO detalle_renta values
 (1,1,532),

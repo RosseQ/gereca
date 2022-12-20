@@ -74,7 +74,8 @@ include("../../db.php");
                             INNER JOIN Cat_Clase_Vehiculo on vehiculos.id_Cat_Clase_Vehiculo = Cat_Clase_Vehiculo.id_Cat_Clase_Vehiculo
                             INNER JOIN Cat_Tipo on vehiculos.id_Cat_Tipo = Cat_Tipo.id_Cat_Tipo
                             INNER JOIN Cat_Adaptacion on vehiculos.id_Cat_Adaptacion = Cat_Adaptacion.id_Cat_Adaptacion
-                            INNER JOIN Costos on vehiculos.id_Costo = Costos.id_Costo";
+                            INNER JOIN Costos on vehiculos.id_Costo = Costos.id_Costo
+                            ORDER BY vehiculos.economico ASC";
                             $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
                             
@@ -89,10 +90,10 @@ include("../../db.php");
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW5'] ?></td> <!--adaptacion-->
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW6'] ?></td> <!--placas-->
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW8'] ?></td> <!--no serie-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW9'] ?></td> <!--carga util-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW10'] ?></td> <!--no serie-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW11'] ?></td> <!--no serie-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW12'] ?></td> <!--no serie-->
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW9'] ?> Ton.</td> <!--carga util-->
+                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['ROW10'] ?></td> <!--no serie-->
+                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['ROW11'] ?></td> <!--no serie-->
+                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['ROW12'] ?></td> <!--no serie-->
                                 <td style="background: rgba(13,114,255,0.36);" >
                                     <form action="/registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
                                         <button type="submit" name="eliminar_v" id="eliminar_v" value="<?php echo $mostrar['ROW0'] ?>" 
