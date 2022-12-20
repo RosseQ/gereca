@@ -19,11 +19,9 @@ INNER JOIN vehiculos on detalle_mantenimiento.id_vehiculo = vehiculos.id_Vehicul
 -- CONSULTA DE RENTAS
 select clientes.nombre as 'NAME', clientes.appaterno as 'FSURNAME',
 clientes.apmaterno as 'MSURNAME', vehiculos.tipo_unidad as 'CAR', vehiculos.economico as 'ECON',
-costos.tipo_prestamo as 'RENTAL', costos.precio as 'PRICE',
 detalle_renta.cantidad as 'QUANTITY', renta.total as 'TOTAL',
 renta.fecha as 'DATE'
 from renta
 INNER JOIN clientes on renta.id_cliente = clientes.id_cliente
 INNER JOIN detalle_renta on renta.id_detalleRenta = detalle_renta.id_detalleRenta
 INNER JOIN vehiculos on detalle_renta.id_Vehiculo = vehiculos.id_Vehiculo
-INNER JOIN costos on detalle_renta.id_costo = costos.id_costo

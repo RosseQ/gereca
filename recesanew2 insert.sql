@@ -42,16 +42,16 @@ INSERT INTO mantenimiento values
 (3,'cambio de cableado', 'cambio de cable para evitar corto',30000);
 
 INSERT INTO vehiculos values
-(1, 'Cargo Van 1.5 Ton.', 'Peugeot Manager', 1, 1, 1, 'test01', 1, "V-01", 1.5,2000,3000,4000),
-(2, 'Cargo Van 3.0 Ton.', 'Peugeot Manager', 1, 1, 1, 'test02',2, "V-02", 3,2000,3000,4000),
-(3, 'F 450 Ford 4.0 Ton.', 'F 450', 2, 2, 2, 'test03', 3, "V-03", 4,2000,3000,4000),
-(4, 'Camión Seco 7.0 Ton.', 'Rabón LP', 2, 3, 2, 'test04', 4, "V-04", 7,2000,3000,4000),
-(5, 'Camión Seco 10.0 Ton.', 'Rabón', 3, 4, 2, 'test05', 5, "V-05", 10,2000,3000,4000),
-(6, 'Tracto Quinta Rueda 52.0 Ton.', 'Tracto Prostar', 4, 5, 2, 'test06', 6, "V-06", 52.0,2000,3000,4000),
-(7, 'Panel Refrigerado 3.0 Ton.', 'Peugeot Manager', 2, 1, 4, 'test07', 7, "V-07", 3,2000,3000,4000),
-(8, 'Camión Refrigerado 5.0 Ton.', 'City Star 5 (JAC)', 2, 1, 5, 'test08', 8, "V-08", 5,2000,3000,4000),
-(9, 'Camión Refrigerado 7.0 Ton.', 'Rabón LP', 2, 3, 5, 'test09', 9, "V-09", 7,2000,3000,4000),
-(10, 'Camión Refrigerado 7.0 Ton.', 'Rabón LP', 3, 4, 5, 'test10', 10, "V-10", 7,2000,3000,4000);
+(1, 'Cargo Van 1.5 Ton.', 'Peugeot Manager', 1, 1, 1, 'test01', 1, "V-01", 1.5, 2125, 1973, 1823),
+(2, 'Cargo Van 3.0 Ton.', 'Peugeot Manager', 1, 1, 1, 'test02',2, "V-02", 3, 2614, 2423, 2232),
+(3, 'F 450 Ford 4.0 Ton.', 'F 450', 2, 2, 2, 'test03', 3, "V-03", 4, 3175, 2938, 2700),
+(4, 'Camión Seco 7.0 Ton.', 'Rabón LP', 2, 3, 2, 'test04', 4, "V-04", 7, 4128, 3840, 3553),
+(5, 'Camión Seco 10.0 Ton.', 'Rabón', 3, 4, 2, 'test05', 5, "V-05", 10, 4235, 3950, 3665),
+(6, 'Tracto Quinta Rueda 52.0 Ton.', 'Tracto Prostar', 4, 5, 2, 'test06', 6, "V-06", 52.0, 6325, 5866, 5407),
+(7, 'Panel Refrigerado 3.0 Ton.', 'Peugeot Manager', 2, 1, 4, 'test07', 7, "V-07", 3, 3175, 2936, 2697),
+(8, 'Camión Refrigerado 5.0 Ton.', 'City Star 5 (JAC)', 2, 1, 5, 'test08', 8, "V-08", 5, 4472, 4126, 3781),
+(9, 'Camión Refrigerado 7.0 Ton.', 'Rabón LP', 2, 3, 5, 'test09', 9, "V-09", 7, 5440, 5043, 4647),
+(10, 'Camión Refrigerado 10.0 Ton.', '4300 Rabon', 3, 4, 5, 'test10', 10, "V-10", 7, 5546, 5152, 4758);
 
 INSERT INTO detalle_mantenimiento values
 (1,2,1, '2022-11-21'),

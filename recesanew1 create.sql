@@ -8,13 +8,11 @@ CREATE TABLE Cat_Adaptacion  (
   PRIMARY KEY (id_Cat_Adaptacion)
 );
 
-
 CREATE TABLE Cat_Clase_Vehiculo  (
   id_Cat_Clase_Vehiculo int NOT NULL auto_increment,
   descripcion varchar(100) NULL,
   PRIMARY KEY (id_Cat_Clase_Vehiculo)
 );
-
 
 CREATE TABLE Cat_Tipo  (
   id_Cat_Tipo int NOT NULL auto_increment,
@@ -33,8 +31,6 @@ CREATE TABLE Clientes  (
   PRIMARY KEY (id_cliente)
 );
 
-
-
 CREATE TABLE mantenimiento  (
   id_mantenimiento int NOT NULL auto_increment,
   nombre_mantenimiento varchar(100) NULL,
@@ -50,7 +46,6 @@ CREATE TABLE vehiculos  (
   id_Cat_Clase_Vehiculo int NOT NULL,
   id_Cat_Tipo int NULL,
   id_Cat_Adaptacion int NOT NULL,
-  -- id_detalleMantenimiento int NOT NULL,
   placas varchar(7),
   economico int NULL,
   numero_serie varchar(255) NULL,
@@ -61,11 +56,10 @@ CREATE TABLE vehiculos  (
   PRIMARY KEY (id_Vehiculo),
   FOREIGN KEY (id_Cat_Tipo) REFERENCES Cat_Tipo(id_Cat_Tipo),
   FOREIGN KEY (id_Cat_Clase_Vehiculo) REFERENCES Cat_Clase_Vehiculo(id_Cat_Clase_Vehiculo),
-  --FOREIGN KEY (id_detallemantenimiento) REFERENCES detalle_mantenimiento(id_detalleMantenimiento),
   FOREIGN KEY (id_Cat_Adaptacion) REFERENCES Cat_Adaptacion(id_Cat_Adaptacion)
 );
 
-CREATE TABLE detalle_mantenimiento( -- tal vez se borro esta tabla, no me acuerdo que hace o no le encuentro congruencia
+CREATE TABLE detalle_mantenimiento(
   id_detalleMantenimiento int NOT NULL auto_increment,
   id_mantenimiento int NULL,
   id_vehiculo int NULL,
