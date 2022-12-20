@@ -24,7 +24,7 @@ include("../../db.php");
         <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">RECESA</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="../../Menu/index.php">INICIO</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../../Menu/index.php">soy un estatus</a></li>
                 </ul>
             </div>
         </div>
@@ -33,7 +33,7 @@ include("../../db.php");
         <section class="clean-block clean-form dark" style="background: rgba(246,246,246,0);">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Ver Vehiculos</h2>
+                    <h2 class="text-info">soy un estatus</h2>
                     <p></p>
                 </div>
             </div>
@@ -48,48 +48,43 @@ include("../../db.php");
                 <table class="table">
                     <thead>
                         <tr>
-                            <th style="background: rgb(0, 0, 255);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);color: whitesmoke; margin: auto;">Id</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Tipo de Unidad </th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Modelo</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Clase de Vehiculo</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Tipo de Categoria</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Tipo de Adaptación</th>
+                        <th style="background: rgb(0, 0, 255);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);color: whitesmoke; margin: auto;">Id</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Economico</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Tipo de unidad</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Placas</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">No de Serie</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Carga Util</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Eliminar</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Economico</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Numero de Serie</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Cliente</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Fecha de ultima renta</th>
                         </tr>
-                        <!--
----------------------------------------------------------------------------------------------------------------
-preguntar si se puede acomodar como sea si no para mover el orden de los atribu8tos en la tabla
----------------------------------------------------------------------------------------------------------------
--->
                     </thead>
                     <?php 
-                            $consulta = "select vehiculos.id_vehiculo as 'ROW0', vehiculos.tipo_unidad as 'ROW1', vehiculos.modelo as 'ROW2',
-                            Cat_Clase_Vehiculo.descripcion as 'ROW3', Cat_Tipo.descripcion as 'ROW4',
-                            Cat_Adaptacion.descripcion as 'ROW5', vehiculos.placas as 'ROW6',
-                            vehiculos.economico as 'ROW7', vehiculos.numero_serie as 'ROW8', vehiculos.carga_uti as 'ROW9' from vehiculos
-                            INNER JOIN Cat_Clase_Vehiculo on vehiculos.id_Cat_Clase_Vehiculo = Cat_Clase_Vehiculo.id_Cat_Clase_Vehiculo
-                            INNER JOIN Cat_Tipo on vehiculos.id_Cat_Tipo = Cat_Tipo.id_Cat_Tipo
-                            INNER JOIN Cat_Adaptacion on vehiculos.id_Cat_Adaptacion = Cat_Adaptacion.id_Cat_Adaptacion";
+                            $consulta = "select Vehiculos.id_Vehiculo as 'Economico',
+                            Vehiculos.tipo_unidad as 'Tipo de Unidad',
+                            Vehiculos.modelo as 'Modelo',
+                            Cat_Clase_Vehiculo.descripcion as 'Clase de Vehiculo',
+                            Cat_Tipo.descripcion as 'Tipo',
+                            Cat_Adaptacion.descripcion as 'Adaptación',
+                            Vehiculos.placas as 'Placas'
+                            from Vehiculos
+                            inner join Cat_Clase_Vehiculo on Vehiculos.id_Cat_Clase_Vehiculo = Cat_Clase_Vehiculo.id_Cat_Clase_Vehiculo
+                            inner join Cat_Tipo on Vehiculos.id_Cat_Tipo = Cat_Tipo.id_Cat_Tipo
+                            inner join Cat_Adaptacion on Vehiculos.id_Cat_Adaptacion = Cat_Adaptacion.id_Cat_Adaptacion;";
                             $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
                     ?>
                         <tbody>
                             <tr>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW7'] ?></td> <!--economico-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW1'] ?></td> <!--no serie-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW2'] ?></td> <!--modelo-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW3'] ?></td> <!--clase de vehiculo-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW4'] ?></td> <!--categoria-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW5'] ?></td> <!--adaptacion-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW6'] ?></td> <!--placas-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW8'] ?></td> <!--no serie-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW9'] ?> Ton.</td> <!--carga util-->
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Economico'] ?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Tipo de Unidad'] ?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Modelo']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Clase de Vehiculo']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Tipo']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Adaptación']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['Placas']?></td>
                                 <td style="background: rgba(13,114,255,0.36);" >
                                     <form action="/registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
-                                        <button type="submit" name="eliminar_v" id="eliminar_v" value="<?php echo $mostrar['ROW0'] ?>" 
+                                        <button type="submit" name="eliminar_v" id="eliminar_v" value="<?php echo $mostrar['Economico'] ?>" 
                                             style="background: none !important; border: none !important;" onclick="return ConfirmarDelete()">
                                             <img src="/assets/img/deletear.png" width="50" height="50" />
                                         </button>

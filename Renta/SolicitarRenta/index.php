@@ -31,7 +31,7 @@ include("../../db.php");
     <section class="clean-block clean-form dark" style="background: url(&quot;assets/img/clipboard-image-1.png&quot;);">
         <div class="container">
             <div class="block-heading">
-                <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">Agregar Vehiculo</h2>
+                <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">soy una renta</h2>
                 <p></p>
             </div>
 
@@ -44,64 +44,47 @@ include("../../db.php");
 
             <form action="/registro.php" method="POST" style="color: rgb(0,15,255);background: rgba(13,114,255,0.11);border-top-color: rgb(13,114,255);">
                 <div class="mb-3">
-                    <label class="form-label" for="id_v">Tipo de unidad</label>
+                    <label class="form-label" for="id_v">Cliente</label>
                     <input class="form-control" type="text" id="id_v" name="id_v"
                         maxlength="11" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="tipounidad_v">Modelo</label>
+                    <label class="form-label" for="tipounidad_v">Economico</label>
                     <input class="form-control" type="text" id="tipounidad_v" name="tipounidad_v"
                         maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="modelo_v">Clase de Vehiculo</label>
-                    <input class="form-control" type="text" id="modelo_v" name="modelo_v"
-                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
-                </div>
-                <div class="mb-3"><label class="form-label" for="clase_vehiculo">Tipo de Categoria</label>
-                    <input class="form-control" type="text" id="modelo_v" name="modelo_v"
+                    <label class="form-label" for="tipounidad_v">Tipo Unidad</label>
+                    <input class="form-control" type="text" id="tipounidad_v" name="tipounidad_v"
                         maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="tipo_vehiculo">Tipo de Adaptacion</label>
-                    <input class="form-control" type="text" id="placas_v" name="placas_v"
-                        maxlength="7" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
+                    <label class="form-label" for="modelo_v">Modelo</label>
+                    <input class="form-control" type="text" id="modelo_v" name="modelo_v"
+                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="adaptacion_v"></label>    
+               
+                
+                
+                <div class="mb-3"><label class="form-label" for="tipo_vehiculo">Tipo de Renta</label>
+                   <input class="form-control" type="text" id="modelo_v" name="modelo_v"
+                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">         
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="placas_v">Placas</label>
-                    <input class="form-control" type="text" id="placas_v" name="placas_v"
-                        maxlength="7" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="placas_v">Economico</label>
-                    <input class="form-control" type="text" id="placas_v" name="placas_v"
-                        maxlength="7" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="placas_v">Numero Serie</label>
-                    <input class="form-control" type="text" id="placas_v" name="placas_v"
-                        maxlength="7" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="placas_v">Carga Util</label>
-                    <input class="form-control" type="text" id="placas_v" name="placas_v"
-                        maxlength="7" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
-                </div>
+             
+                <div class="mb-3"><label class="form-label" for="adaptacion_v">Cantidad de renta</label>
+                <input class="form-control" type="text" id="modelo_v" name="modelo_v"
+                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)"> 
+ <!--
+---------------------------------------------------------------------------------------------------------------
+cantidad de renta es el numero que lo rentara ya sea dias, meses o semanas
+---------------------------------------------------------------------------------------------------------------
+-->             <div>
                 <center>
                 <div class="mb-3">
                     <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="agregar_v" name="agregar_v" value="Enviar">
                 </div>
-                </center>
-<!--
----------------------------------------------------------------------------------------------------------------
-pedir confirmacion de si quiere ingresar de verdad, posiblemente enviando a otra pagina que salga un form diciendo aceptar o cancelar, cancelar vuelve a la pagina de agregar
-                y aceptar mandar a la de ver vehiculos
----------------------------------------------------------------------------------------------------------------
--->
-                
+                <center>
+                </div>
             </form>
 
         </div>
@@ -110,6 +93,12 @@ pedir confirmacion de si quiere ingresar de verdad, posiblemente enviando a otra
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
-</body>
+<body>
 
 </html>
+<!--
+---------------------------------------------------------------------------------------------------------------
+ver problema de la tabla de costos porque aun no veo la forma de enlazar las tablas porque si o si 
+ocupa llevar el calculo de esto
+---------------------------------------------------------------------------------------------------------------
+-->
