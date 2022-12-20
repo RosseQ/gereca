@@ -44,31 +44,70 @@ include("../../db.php");
 
             <form action="/registro.php" method="POST" style="color: rgb(0,15,255);background: rgba(13,114,255,0.11);border-top-color: rgb(13,114,255);">
                 <div class="mb-3">
-                    <label class="form-label" for="id_v">Tipo de unidad</label>
+                    <label class="form-label" for="id_v">Economico</label>
                     <input class="form-control" type="text" id="id_v" name="id_v"
                         maxlength="11" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="tipounidad_v">Modelo</label>
+                    <label class="form-label" for="tipounidad_v">Tipo de unidad</label>
                     <input class="form-control" type="text" id="tipounidad_v" name="tipounidad_v"
                         maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="modelo_v">Clase de Vehiculo</label>
+                    <label class="form-label" for="modelo_v">Modelo</label>
                     <input class="form-control" type="text" id="modelo_v" name="modelo_v"
                         maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
-                <div class="mb-3"><label class="form-label" for="clase_vehiculo">Tipo de Categoria</label>
-                    <input class="form-control" type="text" id="modelo_v" name="modelo_v"
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="desc_h">Clase de vehiculo</label>
+                    <input class="form-control" type="text" id="desc_h" name="desc_h"
                         maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
+                </div> -->
+                <div class="mb-3"><label class="form-label" for="clase_vehiculo">Clase de vehiculo</label>
+                    <select class="form-select" id="clase_vehiculo" name="clase_vehiculo">
+                        <?php 
+                            $consulta = "SELECT id_Cat_Clase_Vehiculo, descripcion
+                            FROM cat_clase_Vehiculo";
+                            $resultado = mysqli_query($conex,$consulta);
+                            while($mostrar = mysqli_fetch_array($resultado)){
+                        ?>
+                            <option id="clase_vehiculo" name="clase_vehiculo" value="<?php echo $mostrar['id_Cat_Clase_Vehiculo'] ?>"><?php echo $mostrar['descripcion'] ?></option>
+                        <?php }?>
+                    </select>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="tipo_vehiculo">Tipo de Adaptacion</label>
-                    <input class="form-control" type="text" id="placas_v" name="placas_v"
-                        maxlength="7" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="desc_h">Categoria</label>
+                    <input class="form-control" type="text" id="desc_h" name="desc_h"
+                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
+                </div> -->
+                <div class="mb-3"><label class="form-label" for="tipo_vehiculo">Tipo</label>
+                    <select class="form-select" id="tipo_vehiculo" name="tipo_vehiculo">
+                        <?php 
+                            $consulta = "SELECT id_Cat_Tipo, descripcion
+                            FROM cat_tipo";
+                            $resultado = mysqli_query($conex,$consulta);
+                            while($mostrar = mysqli_fetch_array($resultado)){
+                        ?>
+                            <option id="tipo_vehiculo" name="tipo_vehiculo" value="<?php echo $mostrar['id_Cat_Tipo'] ?>"><?php echo $mostrar['descripcion'] ?></option>
+                        <?php }?>
+                    </select>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="adaptacion_v"></label>    
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="desc_h">Adaptacion</label>
+                    <input class="form-control" type="text" id="desc_h" name="desc_h"
+                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
+                </div> -->
+                <div class="mb-3"><label class="form-label" for="adaptacion_v">Adaptacion</label>
+                    <select class="form-select" id="adaptacion_v" name="adaptacion_v">
+                        <?php 
+                            $consulta = "SELECT id_Cat_Adaptacion, descripcion
+                            FROM cat_adaptacion";
+                            $resultado = mysqli_query($conex,$consulta);
+                            while($mostrar = mysqli_fetch_array($resultado)){
+                        ?>
+                            <option id="adaptacion_v" name="adaptacion_v" value="<?php echo $mostrar['id_Cat_Adaptacion'] ?>"><?php echo $mostrar['descripcion'] ?></option>
+                        <?php }?>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="placas_v">Placas</label>
@@ -76,32 +115,8 @@ include("../../db.php");
                         maxlength="7" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="placas_v">Economico</label>
-                    <input class="form-control" type="text" id="placas_v" name="placas_v"
-                        maxlength="7" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="placas_v">Numero Serie</label>
-                    <input class="form-control" type="text" id="placas_v" name="placas_v"
-                        maxlength="7" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="placas_v">Carga Util</label>
-                    <input class="form-control" type="text" id="placas_v" name="placas_v"
-                        maxlength="7" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
-                </div>
-                <center>
-                <div class="mb-3">
                     <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="agregar_v" name="agregar_v" value="Enviar">
                 </div>
-                </center>
-<!--
----------------------------------------------------------------------------------------------------------------
-pedir confirmacion de si quiere ingresar de verdad, posiblemente enviando a otra pagina que salga un form diciendo aceptar o cancelar, cancelar vuelve a la pagina de agregar
-                y aceptar mandar a la de ver vehiculos
----------------------------------------------------------------------------------------------------------------
--->
-                
             </form>
 
         </div>

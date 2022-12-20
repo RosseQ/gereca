@@ -48,22 +48,18 @@ include("../../db.php");
                 <table class="table">
                     <thead>
                         <tr>
-                            <th style="background: rgb(0, 0, 255);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);color: whitesmoke; margin: auto;">Id</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Tipo de Unidad </th>
+                            <th style="background: rgb(0, 0, 255);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);color: whitesmoke; margin: auto;">Economico</th>
+                            <!-- <th style="background: rgb(0, 0, 255);">Economico</th> -->
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Tipo de Unidad</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Modelo</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Clase de Vehiculo</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Tipo de Categoria</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Tipo de Adaptación</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Categoria</th>
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Adaptación</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Placas</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">No de Serie</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Carga Util</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Eliminar</th>
                         </tr>
-                        <!--
----------------------------------------------------------------------------------------------------------------
-preguntar si se puede acomodar como sea si no para mover el orden de los atribu8tos en la tabla
----------------------------------------------------------------------------------------------------------------
--->
                     </thead>
                     <?php 
                             $consulta = "select vehiculos.id_vehiculo as 'ROW0', vehiculos.tipo_unidad as 'ROW1', vehiculos.modelo as 'ROW2',
