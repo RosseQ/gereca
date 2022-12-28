@@ -22,6 +22,15 @@ INSERT INTO Cat_Tipo values
 (4,'Rabon'),
 (5,'Tractocamión');
 
+INSERT INTO Cat_DEstatus values
+(1,'Existe'),
+(2,'No Existe'),
+
+INSERT INTO Cat_VEstatus values
+(1,'Disponible'),
+(2,'Rentado'),
+(3,'En Mantenimiento'),
+
 INSERT INTO clientes values
 (1,'Ramon Antonio', 'Sanchez', 'Madrid', '621724753', 'fogavip792@diratu.com', 'BECP931215634'),
 (2,'Orlando', 'Cota', 'Limon', '8197809142', 'sabogi5944@diratu.com', 'OACL960312UJ0'),
@@ -48,21 +57,21 @@ INSERT INTO mantenimiento values
 (2,'Correctivo');
 
 INSERT INTO vehiculos values
-(1, 'Cargo Van 1.5 Ton.', 'Peugeot Manager', 1, 1, 1, 'test01', 1, "V-01", 1.5, 1),
-(2, 'Cargo Van 3.0 Ton.', 'Peugeot Manager', 1, 1, 1, 'test02',2, "V-02", 3, 2),
-(3, 'F 450 Ford 4.0 Ton.', 'F 450', 2, 2, 2, 'test03', 3, "V-03", 4, 3),
-(4, 'Camión Seco 7.0 Ton.', 'Rabón LP', 2, 3, 2, 'test04', 4, "V-04", 7, 4),
-(5, 'Camión Seco 10.0 Ton.', 'Rabón', 3, 4, 2, 'test05', 5, "V-05", 10, 5),
-(6, 'Tracto Quinta Rueda 52.0 Ton.', 'Tracto Prostar', 4, 5, 2, 'test06', 6, "V-06", 52.0, 6),
-(7, 'Panel Refrigerado 3.0 Ton.', 'Peugeot Manager', 2, 1, 4, 'test07', 7, "V-07", 3, 7),
-(8, 'Camión Refrigerado 5.0 Ton.', 'City Star 5 (JAC)', 2, 1, 5, 'test08', 8, "V-08", 5, 8),
-(9, 'Camión Refrigerado 7.0 Ton.', 'Rabón LP', 2, 3, 5, 'test09', 9, "V-09", 7, 9),
-(10, 'Camión Refrigerado 10.0 Ton.', '4300 Rabon', 3, 4, 5, 'test10', 10, "V-10", 7, 10);
+(1, 'Cargo Van 1.5 Ton.', 'Peugeot Manager', 1, 1, 1, 'test01', 1, "V-01", 1.5, 1, 1, 1),
+(2, 'Cargo Van 3.0 Ton.', 'Peugeot Manager', 1, 1, 1, 'test02',2, "V-02", 3, 2, 1, 1),
+(3, 'F 450 Ford 4.0 Ton.', 'F 450', 2, 2, 2, 'test03', 3, "V-03", 4, 3, 1, 1),
+(4, 'Camión Seco 7.0 Ton.', 'Rabón LP', 2, 3, 2, 'test04', 4, "V-04", 7, 4, 1, 1),
+(5, 'Camión Seco 10.0 Ton.', 'Rabón', 3, 4, 2, 'test05', 5, "V-05", 10, 5, 1, 1),
+(6, 'Tracto Quinta Rueda 52.0 Ton.', 'Tracto Prostar', 4, 5, 2, 'test06', 6, "V-06", 52.0, 6, 1, 1),
+(7, 'Panel Refrigerado 3.0 Ton.', 'Peugeot Manager', 2, 1, 4, 'test07', 7, "V-07", 3, 7, 1, 1),
+(8, 'Camión Refrigerado 5.0 Ton.', 'City Star 5 (JAC)', 2, 1, 5, 'test08', 8, "V-08", 5, 8, 1, 1),
+(9, 'Camión Refrigerado 7.0 Ton.', 'Rabón LP', 2, 3, 5, 'test09', 9, "V-09", 7, 9, 1, 1),
+(10, 'Camión Refrigerado 10.0 Ton.', '4300 Rabon', 3, 4, 5, 'test10', 10, "V-10", 7, 10, 1, 1);
 
 INSERT INTO detalle_mantenimiento values
-(1,2,1, 2500,'2022-11-21'),
-(2,2,7, 1600,'2022-11-23'),
-(3,1,5, 350,'2022-11-29');
+(1,2,1, 2500,'2022-11-21','2022-11-21', '2022-11-30'),
+(2,2,7, 1600,'2022-11-23','2022-11-23', '2022-11-29'),
+(3,1,5, 350,'2022-11-29','2022-11-29', '2022-12-7');
 
 INSERT INTO detalle_renta values
 (1,1,532),
@@ -72,8 +81,8 @@ INSERT INTO detalle_renta values
 (5,4,6);
 
 INSERT INTO renta values
-(1,1,31232, '2022-11-20'),
-(2,3,332423, '2022-11-22'),
-(3,2,1234, '2022-11-27'),
-(4,5,4345, '2022-11-30'),
-(5,4,4566, '2022-12-5');
+(1,1,31232, '2022-11-20'. '2022-11-20', '2022-11-25'),
+(2,3,332423, '2022-11-22', '2022-11-22', '2022-11-29'),
+(3,2,1234, '2022-11-27', '2022-11-27', '2022-12-27'),
+(4,5,4345, '2022-11-30', '2022-11-30', '2022-12-7'),
+(5,4,4566, '2022-12-5', '2022-12-5', '2022-12-25');
