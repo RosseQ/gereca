@@ -40,7 +40,11 @@ CREATE TABLE Clientes  (
   apmaterno varchar(50) NULL,
   telefono varchar(20) NULL,
   email varchar(255) NULL,
+  direccion varchar(250) NULL,
   rfc varchar(30) NULL,
+  curp varchar(30) NULL,
+  num_doc varchar(30) NULL,
+  ocr varchar(30) NULL,
   PRIMARY KEY (id_cliente)
 );
 
