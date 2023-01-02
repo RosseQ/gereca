@@ -65,7 +65,7 @@ include("../../db.php");
                         </tr>
                     </thead>
                     <?php 
-                    cambiar vista por cliente 
+                     
                             $consulta = "SELECT vehiculos.id_vehiculo as 'ROW0', vehiculos.tipo_unidad as 'ROW1', vehiculos.modelo as 'ROW2',
                             Cat_Clase_Vehiculo.descripcion as 'ROW3', Cat_Tipo.descripcion as 'ROW4',
                             Cat_Adaptacion.descripcion as 'ROW5', vehiculos.placas as 'ROW6',

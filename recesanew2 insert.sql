@@ -29,16 +29,16 @@ INSERT INTO Cat_DEstatus values
 INSERT INTO Cat_VEstatus values
 (1,'Disponible'),
 (2,'Rentado'),
-(3,'En Mantenimiento'),
+(3,'En Mantenimiento');
 
 INSERT INTO clientes values
-(1,'Ramon Antonio', 'Sanchez', 'Madrid', '621724753', 'fogavip792@diratu.com', 'BECP931215634'),
-(2,'Orlando', 'Cota', 'Limon', '8197809142', 'sabogi5944@diratu.com', 'OACL960312UJ0'),
-(3,'Jazmin', 'Murillo', 'Peralta', '16625102', 'lexefih882@dmonies.com', 'JAMP200913U48'),
-(4,'Pablo Ernesto', 'Salazar', 'Carrillo', '6624620854', 'sabogi5944@diratu.com', 'PASC981201QC7'),
-(5,'Fernanda', 'Alondra', 'Salazar', '4979581', 'homan75804@diratu.com', 'FESC040418155'),
-(6,'Eliot Sebastian', 'Salazar', 'Murillo', '041495544', 'sabogi5944@diratu.com', 'EISM220712KU7'),
-(7,'Michelle', 'Sanchez', 'Limon', '5408741671', 'homan75804@diratu.com', 'MISL960712D78');
+(1,'Ramon Antonio', 'Sanchez', 'Madrid', '621724753', 'fogavip792@diratu.com', 'colonia arandanos calle saucos 13', 'BECP931215634', 'CAVJ770826HQRHGS69','484060542', '367280047'),
+(2,'Orlando', 'Cota', 'Limon', '8197809142', 'sabogi5944@diratu.com', 'colonia arandanos calle saucos 13', 'OACL960312UJ0', 'SOPM770826MSPTNR82', '639899737', '617512389'),
+(3,'Jazmin', 'Murillo', 'Peralta', '16625102', 'lexefih882@dmonies.com', 'colonia arandanos calle saucos 13', 'JAMP200913U48', 'RARJ770826MQTMDS74', '177987121', '752085713'),
+(4,'Pablo Ernesto', 'Salazar', 'Carrillo', '6624620854', 'sabogi5944@diratu.com', 'colonia arandanos calle saucos 13', 'PASC981201QC7','RUSJ770826MVZZLS79', '849428595', '474880339'),
+(5,'Fernanda', 'Alondra', 'Salazar', '4979581', 'homan75804@diratu.com', 'colonia arandanos calle saucos 13','FESC040418155', 'OIFD770826MBCRLG39', '602847200', '602782355'),
+(6,'Eliot Sebastian', 'Salazar', 'Murillo', '041495544', 'sabogi5944@diratu.com', 'colonia arandanos calle saucos 13', 'EISM220712KU7', 'GOCF770826HSLMRR16', '391538237', '341214872'),
+(7,'Michelle', 'Sanchez', 'Limon', '5408741671', 'homan75804@diratu.com', 'colonia arandanos calle saucos 13', 'MISL960712D78', 'MERS770826MNLNSN92', '277123875', '174455742');
 
 insert into costos values
 (1, 2125, 1973, 1823),
@@ -81,7 +81,7 @@ INSERT INTO detalle_renta values
 (5,4,6);
 
 INSERT INTO renta values
-(1,1,31232, '2022-11-20'. '2022-11-20', '2022-11-25'),
+(1,1,31232, '2022-11-20', '2022-11-20', '2022-11-25'),
 (2,3,332423, '2022-11-22', '2022-11-22', '2022-11-29'),
 (3,2,1234, '2022-11-27', '2022-11-27', '2022-12-27'),
 (4,5,4345, '2022-11-30', '2022-11-30', '2022-12-7'),

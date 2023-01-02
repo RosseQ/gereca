@@ -104,10 +104,14 @@ include("../../db.php");
                                 </td>
                             </tr>
                         </tbody>
+                        
                     <?php 
                         }
                     ?>
                 </table>
+                
+                            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,0);border-radius: 27px;width: 225px;margin: 5px;">Agregar vehiculo</button>
+                
             </div>
         </section>
     </section>
