@@ -29,7 +29,7 @@ INSERT INTO Cat_DEstatus values
 INSERT INTO Cat_VEstatus values
 (1,'Disponible'),
 (2,'Rentado'),
-(3,'En Mantenimiento'),
+(3,'En Mantenimiento');
 
 INSERT INTO clientes values
 (1,'Ramon Antonio', 'Sanchez', 'Madrid', '621724753', 'fogavip792@diratu.com', 'BECP931215634'),
@@ -81,8 +81,10 @@ INSERT INTO detalle_renta values
 (5,4,6);
 
 INSERT INTO renta values
-(1,1,31232, '2022-11-20'. '2022-11-20', '2022-11-25'),
+(1,1,31232, '2022-11-20', '2022-11-20', '2022-11-25'),
 (2,3,332423, '2022-11-22', '2022-11-22', '2022-11-29'),
 (3,2,1234, '2022-11-27', '2022-11-27', '2022-12-27'),
 (4,5,4345, '2022-11-30', '2022-11-30', '2022-12-7'),
 (5,4,4566, '2022-12-5', '2022-12-5', '2022-12-25');
+
+select * from renta
