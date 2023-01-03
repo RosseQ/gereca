@@ -15,7 +15,7 @@ if ($_POST){
         $mostrar = mysqli_fetch_array($resultado);
 
         $id_u = $mostrar['id'];
-
+        
         if ($num>0){
             $row = $resultado->fetch_assoc();
 			$pword_bd = $row['pword'];
@@ -25,9 +25,9 @@ if ($_POST){
 				$_SESSION['id'] = $mostrar['id'];
                 $_SESSION['uname'] = $mostrar['uname'];
 				
-                /*$consulta = "INSERT INTO bitacora_acceso(id_usuario, fecha_ingreso) 
+                $consulta = "INSERT INTO bitacora_acceso(id_usuario, fecha_ingreso) 
                     VALUES ('$uname','$pword','$nombres','$id_nivel_accesso')";
-                $resultado = mysqli_query($conex,$consulta);*/
+                $resultado = mysqli_query($conex,$consulta);
             
 				header ("location:Menu/");
 				
