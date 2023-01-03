@@ -140,13 +140,13 @@ if (isset($_POST['nuevarenta'])){
         $pricecheck = "select * from costos
         INNER JOIN vehiculos on costos.id_costo = vehiculos.economico
         WHERE costos.id_costo = vehiculos.economico
-        AND Vehiculos.id_Vehiculo = @idveh_price_choose
+        AND Vehiculos.id_Vehiculo = '$idVehiculo_i'
         limit 1;";
         $resultado = mysqli_query($conex,$pricecheck);
         $pricegrab = mysqli_fetch_array($resultado);
         
         $calcdias = 0;
-        $cost_prec = 0;
+        $truprice = 0;
         if ($tipoRenta_i == 1){
             $caldias = $dias_i * 1;
             $truprice = $pricegrab['precio_dia'];
@@ -157,7 +157,7 @@ if (isset($_POST['nuevarenta'])){
             $caldias = $dias_i * 30;
             $truprice = $pricegrab['precio_mes'];
         }
-        // $truprice = $pricegrab['costos.precio_dia'];
+        // $truprice = floatval($truprice);
 
         if ($dias_i > 0)
         {
@@ -166,13 +166,15 @@ if (isset($_POST['nuevarenta'])){
             SELECT id_detalleRenta INTO @rent_det from detalle_renta order by id_detalleRenta DESC limit 1;
     
             INSERT INTO renta (id_cliente,id_detalleRenta,total,fecha_registro,fecha_hecho,fecha_regreso)
-            VALUES ('$idCliente_i', (SELECT @rent_det), (SELECT '$truprice' * '$dias_i'),
+            VALUES ('$idCliente_i', (SELECT @rent_det), ('$truprice' * '$dias_i'),
             CURDATE(), '$fecha_hecho', date_add('$fecha_hecho', INTERVAL '$caldias' DAY));
+
+            UPDATE Vehiculos SET id_VEstatus = 2 WHERE Vehiculos.id_Vehiculo = '$idVehiculo_i';
             ";
     
             $resultado = mysqli_multi_query($conex,$consulta);
             if ($resultado){
-                header ("Location:/Ingresos/verIngresos/index.php?error=Needs" . $truprice);
+                header ("Location:/Ingresos/verIngresos/index.php?error=Needs " . $truprice);
                 exit;
             } else {
                 header ("Location:/Ingresos/nuevoIngreso/index.php?error=Hubo un error al registrar la renta.");
@@ -190,68 +192,5 @@ if (isset($_POST['nuevarenta'])){
     mysqli_close($conex);
     
 };
-
-//ESTA VERSION INSERTA PERO NO ALMACENA VALOR EN @cost_prec
-// if (isset($_POST['nuevarenta'])){
-//     if (strlen($_POST['dias_i']) >= 1){
-//         $idCliente_i = trim($_POST['idCliente_i']);
-//         $idVehiculo_i = trim($_POST['idVehiculo_i']);
-//         $tipoRenta_i = trim($_POST['tipoRenta_i']);
-//         $dias_i = trim($_POST['dias_i']);
-//         $fecha_hecho = trim($_POST['fecha_hecho']);
-//         $calcdias = 0;
-//         if ($tipoRenta_i == 1){
-//             $caldias = $dias_i * 1;
-//         } elseif ($tipoRenta_i == 2) {
-//             $caldias = $dias_i * 7;
-//         } elseif ($tipoRenta_i == 3) {
-//             $caldias = $dias_i * 30;
-//         }
-//         if ($dias_i > 0)
-//         {
-//             $consulta = "INSERT INTO detalle_renta (id_Vehiculo,cantidad) VALUES ('$idVehiculo_i', '$caldias');
-    
-//             SELECT id_detalleRenta INTO @rent_det from detalle_renta order by id_detalleRenta DESC limit 1;
-
-//             SELECT
-//             CASE
-//                 WHEN '$idVehiculo_i' = 1 THEN
-//                     costos.precio_dia 
-//                 WHEN '$idVehiculo_i' = 2 THEN
-//                     costos.precio_sem
-//                 WHEN '$idVehiculo_i' = 3 THEN
-//                     costos.precio_mes
-//                 ELSE 0
-//             END
-//             INTO @cost_prec from costos
-//             INNER JOIN vehiculos on costos.id_costo = vehiculos.economico
-//             WHERE costos.id_costo = vehiculos.economico
-//             AND Vehiculos.id_Vehiculo = '$idVehiculo_i'
-//             limit 1;
-    
-//             INSERT INTO renta (id_cliente,id_detalleRenta,total,fecha_registro,fecha_hecho,fecha_regreso)
-//             VALUES ('$idCliente_i', (SELECT @rent_det), (SELECT @cost_prec * '$dias_i'),
-//             CURDATE(), '$fecha_hecho', date_add('$fecha_hecho', INTERVAL '$caldias' DAY));
-//             ";
-    
-//             $resultado = mysqli_multi_query($conex,$consulta);
-//             if ($resultado){
-//                 header ("Location:/Ingresos/verIngresos/index.php");
-//                 exit;
-//             } else {
-//                 header ("Location:/Ingresos/nuevoIngreso/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
-//                 exit;
-//             }
-//         } else {
-//             header ("Location:/Ingresos/nuevoIngreso/index.php?error=No puede rentar por 0 dias.");
-//             exit;
-//         }
-//     } else {
-//         header ("Location:/Ingresos/nuevoIngreso/index.php?error=Llene todos los campos por favor.");
-//         exit;
-//     }
-//     memory_free_result($resultado);
-//     mysqli_close($conex);  
-// };
 
 ?>

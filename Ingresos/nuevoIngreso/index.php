@@ -126,7 +126,7 @@ include("../../db.php");
                     <select class="form-select" id="idVehiculo_i" name="idVehiculo_i">
                         <?php 
                             $consulta = "SELECT id_Vehiculo, tipo_unidad, economico
-                            FROM vehiculos";
+                            FROM vehiculos WHERE Vehiculos.id_VEstatus = 1;";
                             $resultado = mysqli_query($conex,$consulta);
                             while($mostrar = mysqli_fetch_array($resultado)){
                         ?>
