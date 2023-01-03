@@ -48,9 +48,9 @@ include("../../db.php");
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Economico</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Dias de Uso</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Total Neto</th>
-                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha1</th>
-                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha2</th>
-                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha3</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha de Salida</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha de Regreso</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha de Registro</th>
                         </tr>
                     </thead>
                     <?php 
@@ -62,7 +62,9 @@ include("../../db.php");
                         from renta
                         INNER JOIN clientes on renta.id_cliente = clientes.id_cliente
                         INNER JOIN detalle_renta on renta.id_detalleRenta = detalle_renta.id_detalleRenta
-                        INNER JOIN vehiculos on detalle_renta.id_Vehiculo = vehiculos.id_Vehiculo";
+                        INNER JOIN vehiculos on detalle_renta.id_Vehiculo = vehiculos.id_Vehiculo
+                        ORDER BY renta.fecha_registro ASC
+                        ";
                             $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
                     ?>

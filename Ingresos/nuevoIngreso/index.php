@@ -78,12 +78,12 @@ include("../../db.php");
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="dias_i">Cantidad (en días, semanas o meses)</label>
-                    <input class="form-control" type="text" id="dias_i" name="dias_i" min="1" value=0
+                    <input class="form-control" type="text" id="dias_i" name="dias_i" min="1" value=1
                         maxlength="4" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="dias_i">Fecha de Renta</label>
-                    <input class="form-control" type="date" id="fecha_hecho" name="fecha_hecho">
+                    <label class="form-label" for="fecha_hecho">Fecha de Renta</label>
+                    <input class="form-control" type="date" id="fecha_hecho" name="fecha_hecho" value="fecha_hecho">
                 </div>
                 <div class="mb-3">
                     <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="nuevarenta" name="nuevarenta" value="Enviar">
