@@ -15,14 +15,20 @@ order by vehiculos.economico asc
 
 --CONSULTA DE MANTENIMIENTOS
 select detalle_mantenimiento.id_detalleMantenimiento as 'ID',
-mantenimiento.nombre_mantenimiento as 'NAME',
 vehiculos.tipo_unidad as 'VEHICLE',
+mantenimiento.nombre_mantenimiento as 'TYPE',
+vehiculos.economico as 'ECON',
+detalle_mantenimiento.costo as 'COST',
 detalle_mantenimiento.fecha_hecho as 'DATE_1',
 detalle_mantenimiento.fecha_regreso as 'DATE_2',
 detalle_mantenimiento.fecha_registro as 'DATE_3'
 from detalle_mantenimiento
 INNER JOIN mantenimiento on detalle_mantenimiento.id_mantenimiento = mantenimiento.id_mantenimiento
 INNER JOIN vehiculos on detalle_mantenimiento.id_vehiculo = vehiculos.id_Vehiculo
+order by detalle_mantenimiento.fecha_registro ASC
+
+select * from mantenimiento
+select * from detalle_mantenimiento
 
 -- CONSULTA DE RENTAS
 select clientes.nombre as 'NAME', clientes.appaterno as 'FSURNAME',

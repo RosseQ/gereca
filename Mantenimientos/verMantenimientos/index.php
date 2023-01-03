@@ -18,17 +18,85 @@ include("../../db.php");
     <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/otros.css" />
     <link rel="icon" href="/assets/img/logo-icono.png">
+    <style type="text/css">
+        * {
+            margin:0px;
+            padding:0px;
+        }
+        #header {
+            margin:auto;
+            width:500px;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+        ul, ol {
+            list-style:none;
+        }
+        .nav {
+            width:500px; /*Le establecemos un ancho*/
+            margin:0 auto; /*Centramos automaticamente*/
+        }
+        .nav > li {
+            float:left;
+        }
+        .nav li a {
+            background-color: #ffffff  ;
+            color: #000000 ;  /*color de letras*/
+            text-decoration:none;
+            padding:20px 12px;
+            display:block;p
+            
+        }
+        .nav li a:hover {
+            background-color:  #8c8cff  ;
+        }
+        .nav li ul {
+            display:none;
+            position:absolute;
+            min-width:140px;
+        }
+        .nav li:hover > ul {
+            display:block;
+        }
+        .nav li ul li {
+            position:relative;
+        }
+        .nav li ul li ul {
+            right:-140px;
+            top:0px;
+        }
+    </style>
 </head>
 
 <body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">RECESA</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">RECESA</a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            
             <div class="collapse navbar-collapse" id="navcol-1">
+                <div id="header">
+                    <nav> <!-- Aqui estamos iniciando la nueva etiqueta nav -->
+                        <ul class="nav">
+                            <li><a href="">Inicio</a></li>
+                            <li><a href="">Status</a>
+                                
+                            </li>
+                            <li><a href="">Clientes</a>
+                                <ul>
+                                    <li><a href="../Clientes/AgregarClientes/index.php">Resgistrar Cliente</a></li>
+                                    <li><a href="../Clientes/ConsultaClientes/index.php">Ver Clientes</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="../Unidades/index.php">Unidades</a></li>
+                            <li><a href="../Unidades/index.php">Ususarios</a></li>
+                        </ul>
+                    </nav><!-- Aqui estamos cerrando la nueva etiqueta nav -->
+                </div>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="../../Menu/index.php">INICIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../logout.php">CERRAR SESION</a></li>
+                    
                 </ul>
             </div>
-        </div>
     </nav>
     <section class="clean-block clean-form dark" style="background: url(&quot;assets/img/clipboard-image-1.png&quot;);">
         <section class="clean-block clean-form dark" style="background: rgba(246,246,246,0);">
@@ -49,17 +117,24 @@ include("../../db.php");
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Economico</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Tipo de Mantenimiento</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Costo de Mantenimiento</th>
-                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha de Salida</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha de Regreso</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha de Registro</th>
                         </tr>
                     </thead>
                     <?php 
                         $consulta = "select detalle_mantenimiento.id_detalleMantenimiento as 'ID',
-                        mantenimiento.nombre_mantenimiento as 'NAME', detalle_mantenimiento.costo as 'COST',
-                        vehiculos.tipo_unidad as 'VEHICLE', vehiculos.economico as 'ECON',
-                        detalle_mantenimiento.fecha as 'DATE'
+                        vehiculos.tipo_unidad as 'VEHICLE',
+                        mantenimiento.nombre_mantenimiento as 'TYPE',
+                        vehiculos.economico as 'ECON',
+                        detalle_mantenimiento.costo as 'COST',
+                        detalle_mantenimiento.fecha_hecho as 'DATE_1',
+                        detalle_mantenimiento.fecha_regreso as 'DATE_2',
+                        detalle_mantenimiento.fecha_registro as 'DATE_3'
                         from detalle_mantenimiento
                         INNER JOIN mantenimiento on detalle_mantenimiento.id_mantenimiento = mantenimiento.id_mantenimiento
-                        INNER JOIN vehiculos on detalle_mantenimiento.id_vehiculo = vehiculos.id_Vehiculo";
+                        INNER JOIN vehiculos on detalle_mantenimiento.id_vehiculo = vehiculos.id_Vehiculo
+                        order by detalle_mantenimiento.fecha_registro ASC";
                         $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
                     ?>
@@ -68,9 +143,11 @@ include("../../db.php");
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ID']?></td>
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['VEHICLE']?></td>
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ECON']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['NAME']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['TYPE']?></td>
                                 <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['COST'] ?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE_1']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE_2']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE_3']?></td>
                             </tr>
                         </tbody>
                     <?php 

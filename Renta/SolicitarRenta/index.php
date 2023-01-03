@@ -1,6 +1,7 @@
 <?php
 include("../../db.php");
 ?>
+
 <!DOCTYPE html>
 <html style="background: rgba(255,255,255,0);">
 
@@ -15,90 +16,178 @@ include("../../db.php");
     <link rel="stylesheet" href="assets/css/Features-Centered-Icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/otros.css" />
     <link rel="icon" href="/assets/img/logo-icono.png">
+    <style type="text/css">
+        * {
+            margin:0px;
+            padding:0px;
+        }
+        #header {
+            margin:auto;
+            width:500px;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+        ul, ol {
+            list-style:none;
+        }
+        .nav {
+            width:500px; /*Le establecemos un ancho*/
+            margin:0 auto; /*Centramos automaticamente*/
+        }
+        .nav > li {
+            float:left;
+        }
+        .nav li a {
+            background-color: #ffffff  ;
+            color: #000000 ;  /*color de letras*/
+            text-decoration:none;
+            padding:20px 12px;
+            display:block;p
+            
+        }
+        .nav li a:hover {
+            background-color:  #8c8cff  ;
+        }
+        .nav li ul {
+            display:none;
+            position:absolute;
+            min-width:140px;
+        }
+        .nav li:hover > ul {
+            display:block;
+        }
+        .nav li ul li {
+            position:relative;
+        }
+        .nav li ul li ul {
+            right:-140px;
+            top:0px;
+        }
+    </style>
 </head>
 
 <body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
         <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">RECESA</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            
             <div class="collapse navbar-collapse" id="navcol-1">
+                <div id="header">
+                    <nav> <!-- Aqui estamos iniciando la nueva etiqueta nav -->
+                        <ul class="nav">
+                            <li><a href="">Inicio</a></li>
+                            <li><a href="">Status</a>
+                                
+                            </li>
+                            <li><a href="">Clientes</a>
+                                <ul>
+                                    <li><a href="../Clientes/AgregarClientes/index.php">Resgistrar Cliente</a></li>
+                                    <li><a href="../Clientes/ConsultaClientes/index.php">Ver Clientes</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="../Unidades/index.php">Unidades</a></li>
+                            <li><a href="../Unidades/index.php">Ususarios</a></li>
+                        </ul>
+                    </nav><!-- Aqui estamos cerrando la nueva etiqueta nav -->
+                </div>
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="../../Menu/index.php">INICIO</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.php">INICIO </a></li>
+                    <li class="nav-item"><a class="nav-link" href="../logout.php">CERRAR SESION</a></li>  
                 </ul>
             </div>
         </div>
     </nav>
     <section class="clean-block clean-form dark" style="background: url(&quot;assets/img/clipboard-image-1.png&quot;);">
-        <div class="container">
-            <div class="block-heading">
-                <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">soy una renta</h2>
-                <p></p>
+        <section class="clean-block clean-form dark" style="background: rgba(246,246,246,0);">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info">RENTAS REGISTRADAS</h2>
+                    <p></p>
+                </div>
             </div>
 
-            <?php if(isset($_GET['error'])){ ?>
-            <div id="error" style="width: 100%; background: rgb(0,15,255); text-align: center; border-radius: 2px; padding: 4px; ">
-                <label style="color: whitesmoke;"><?php echo $_GET['error']; ?></label>
-                <span class="close" style="font-size: 24px; color: whitesmoke; margin: auto;" onclick="getElementById('error').style.display = 'none' ">&times;</span>
+            <div class="table-responsive">
+
+                <?php if(isset($_GET['error'])){ ?>
+                <div id="error" style="width: 100%; background: rgb(0,15,255); text-align: center; border-radius: 2px; padding: 4px; ">
+                    <label style="color: whitesmoke;"><?php echo $_GET['error']; ?></label>
+                    <span class="close" style="font-size: 24px; color: whitesmoke; margin: auto;" onclick="getElementById('error').style.display = 'none' ">&times;</span>
+                </div>
+                <?php } ?>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="background: rgb(0, 0, 255);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0); color: whitesmoke; margin: auto;">Cliente</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Vehiculo</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Economico</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Dias de Uso</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Total Neto</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha de Salida</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha de Regreso</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha de Registro</th>
+                        </tr>
+                    </thead>
+                    <?php 
+
+                        $consulta = "select clientes.nombre as 'NAME', clientes.appaterno as 'FSURNAME',
+                        clientes.apmaterno as 'MSURNAME', vehiculos.tipo_unidad as 'CAR', vehiculos.economico as 'ECON',
+                        detalle_renta.cantidad as 'QUANTITY', renta.total as 'TOTAL',
+                        renta.fecha_hecho as 'DATE1', renta.fecha_regreso as 'DATE2', renta.fecha_registro as 'DATE3'
+                        from renta
+                        INNER JOIN clientes on renta.id_cliente = clientes.id_cliente
+                        INNER JOIN detalle_renta on renta.id_detalleRenta = detalle_renta.id_detalleRenta
+                        INNER JOIN vehiculos on detalle_renta.id_Vehiculo = vehiculos.id_Vehiculo
+                        ORDER BY renta.fecha_registro ASC
+                        ";
+                            $resultado = mysqli_query($conex,$consulta);
+                        while($mostrar = mysqli_fetch_array($resultado)){
+                    ?>
+                        <tbody>
+                            <tr>
+                                <!-- <td style="background: rgba(13,114,255,0.36);">$</td> -->
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['NAME']?> <?php echo $mostrar['FSURNAME']?> <?php echo $mostrar['MSURNAME']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['CAR'] ?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ECON']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['QUANTITY']?></td>
+                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['TOTAL']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE1']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE2']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE3']?></td>
+                            </tr>
+                        </tbody>
+                    <?php 
+                        }
+                    ?>
+                </table>
             </div>
-            <?php } ?>
-
-            <form action="/registro.php" method="POST" style="color: rgb(0,15,255);background: rgba(13,114,255,0.11);border-top-color: rgb(13,114,255);">
-                <div class="mb-3">
-                    <label class="form-label" for="id_v">Cliente</label>
-                    <input class="form-control" type="text" id="id_v" name="id_v"
-                        maxlength="11" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="tipounidad_v">Economico</label>
-                    <input class="form-control" type="text" id="tipounidad_v" name="tipounidad_v"
-                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="tipounidad_v">Tipo Unidad</label>
-                    <input class="form-control" type="text" id="tipounidad_v" name="tipounidad_v"
-                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="modelo_v">Modelo</label>
-                    <input class="form-control" type="text" id="modelo_v" name="modelo_v"
-                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
-                </div>
-               
-                
-                
-                <div class="mb-3"><label class="form-label" for="tipo_vehiculo">Tipo de Renta</label>
-                   <input class="form-control" type="text" id="modelo_v" name="modelo_v"
-                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">         
-                </div>
-             
-                <div class="mb-3"><label class="form-label" for="adaptacion_v">Cantidad de renta</label>
-                <input class="form-control" type="text" id="modelo_v" name="modelo_v"
-                        maxlength="50" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)"> 
- <!--
----------------------------------------------------------------------------------------------------------------
-cantidad de renta es el numero que lo rentara ya sea dias, meses o semanas
----------------------------------------------------------------------------------------------------------------
--->             <div>
-                <center>
-                <div class="mb-3">
-                    <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="agregar_v" name="agregar_v" value="Enviar">
-                </div>
-                <center>
-                </div>
-            </form>
-
-        </div>
+        </section>
     </section>
+    <!-- <div class="text-center row gy-3 row-cols-md-2">
+        <form action="../usarRefacciones/index.php">
+            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Usar Refaccion</button>
+        </form>
+        <form action="../agregarRefacciones/index.php">
+            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Agregar Refaccion</button>
+        </form>
+    </div> -->
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
-<body>
+
+    <script type="text/javascript">
+        function ConfirmarDelete()
+        {
+            var respuesta = confirm("¿Estas seguro que Deceas Eliminarlo?");
+
+            if (respuesta == true){
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+
+</body>
 
 </html>
-<!--
----------------------------------------------------------------------------------------------------------------
-ver problema de la tabla de costos porque aun no veo la forma de enlazar las tablas porque si o si 
-ocupa llevar el calculo de esto
----------------------------------------------------------------------------------------------------------------
--->

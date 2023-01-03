@@ -31,6 +31,10 @@ INSERT INTO Cat_VEstatus values
 (2,'Rentado'),
 (3,'En Mantenimiento');
 
+INSERT INTO usuario values
+(1,'pablo', '1234'),
+(2,'orlando', '1234');
+
 INSERT INTO clientes values
 (1,'Ramon Antonio', 'Sanchez', 'Madrid', '621724753', 'fogavip792@diratu.com', 'colonia arandanos calle saucos 13', 'BECP931215634', 'CAVJ770826HQRHGS69','484060542', '367280047'),
 (2,'Orlando', 'Cota', 'Limon', '8197809142', 'sabogi5944@diratu.com', 'colonia arandanos calle saucos 13', 'OACL960312UJ0', 'SOPM770826MSPTNR82', '639899737', '617512389'),

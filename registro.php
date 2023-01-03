@@ -128,7 +128,7 @@ if (isset($_POST['detmant_insert'])){
 ---------------------------------------------------------------------------------------------------------------
 */
 
-//ESTA VERSION NO INSERTA PERO A LO MEJOR SI LOGRAMOS QUE SE HAGAN LAS DOS CONSULTAS SE PUEDE HACER ESTO
+//ESTA VERSION ISNERTA PERO SIGUE SIN ALMACENAR EL VALOR DEL PRECIO
 if (isset($_POST['nuevarenta'])){
     if (strlen($_POST['dias_i']) >= 1){
         $idCliente_i = trim($_POST['idCliente_i']);
@@ -136,26 +136,29 @@ if (isset($_POST['nuevarenta'])){
         $tipoRenta_i = trim($_POST['tipoRenta_i']);
         $dias_i = trim($_POST['dias_i']);
         $fecha_hecho = trim($_POST['fecha_hecho']);
-        $calcdias = 0;
-        $cost_prec = 0;
-        if ($tipoRenta_i == 1){
-            $caldias = $dias_i * 1;
-            $cost_prec = "costos.precio_dia";
-        } elseif ($tipoRenta_i == 2) {
-            $caldias = $dias_i * 7;
-            $cost_prec = "costos.precio_sem";
-        } elseif ($tipoRenta_i == 3) {
-            $caldias = $dias_i * 30;
-            $cost_prec = "costso.precio_mes";
-        }
-        $pricecheck = "select '$cost_prec' from costos
+
+        $pricecheck = "select * from costos
         INNER JOIN vehiculos on costos.id_costo = vehiculos.economico
         WHERE costos.id_costo = vehiculos.economico
         AND Vehiculos.id_Vehiculo = @idveh_price_choose
         limit 1;";
         $resultado = mysqli_query($conex,$pricecheck);
-        $truprice = mysqli_fetch_array($resultado);
-        echo ($truprice);
+        $pricegrab = mysqli_fetch_array($resultado);
+        
+        $calcdias = 0;
+        $cost_prec = 0;
+        if ($tipoRenta_i == 1){
+            $caldias = $dias_i * 1;
+            $truprice = $pricegrab['precio_dia'];
+        } elseif ($tipoRenta_i == 2) {
+            $caldias = $dias_i * 7;
+            $truprice = $pricegrab['precio_sem'];
+        } elseif ($tipoRenta_i == 3) {
+            $caldias = $dias_i * 30;
+            $truprice = $pricegrab['precio_mes'];
+        }
+        // $truprice = $pricegrab['costos.precio_dia'];
+
         if ($dias_i > 0)
         {
             $consulta = "INSERT INTO detalle_renta (id_Vehiculo,cantidad) VALUES ('$idVehiculo_i', '$caldias');
@@ -169,7 +172,7 @@ if (isset($_POST['nuevarenta'])){
     
             $resultado = mysqli_multi_query($conex,$consulta);
             if ($resultado){
-                header ("Location:/Ingresos/verIngresos/index.php");
+                header ("Location:/Ingresos/verIngresos/index.php?error=Needs" . $truprice);
                 exit;
             } else {
                 header ("Location:/Ingresos/nuevoIngreso/index.php?error=Hubo un error al registrar la renta.");
