@@ -1,3 +1,48 @@
+<?php
+
+require "db.php";
+
+session_start();
+
+if ($_POST){
+
+    if (strlen($_POST['uname']) >= 1 && strlen($_POST['pword']) >= 1 ){
+        $uname = trim($_POST['uname']);
+        $pword = trim($_POST['pword']);
+        $consulta = "SELECT * FROM usuario WHERE uname ='$uname' AND pword = '$pword'";
+        $resultado = $conex->query($consulta);
+		$num = $resultado->num_rows;
+        $mostrar = mysqli_fetch_array($resultado);
+
+        $id_u = $mostrar['id'];
+
+        if ($num>0){
+            $row = $resultado->fetch_assoc();
+			$pword_bd = $row['pword'];
+
+            if($pword_bd == $pass_c){
+				
+				$_SESSION['id'] = $mostrar['id'];
+                $_SESSION['uname'] = $mostrar['uname'];
+				
+                /*$consulta = "INSERT INTO bitacora_acceso(id_usuario, fecha_ingreso) 
+                    VALUES ('$uname','$pword','$nombres','$id_nivel_accesso')";
+                $resultado = mysqli_query($conex,$consulta);*/
+            
+				header ("location:Menu/");
+				
+			} else {
+                header ("location:index.php?error=El usuario o contraseña no validos.");
+            }
+        } else {
+            header ("location:index.php?error=El usuario o contraseña no validos.");
+        }
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -16,7 +61,7 @@
 
 <body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" >RECESA</a>
+        <div class="container"><a class="navbar-brand logo" >RECESA | IDEALEASE</a>
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
                 <span class="visually-hidden">Toggle navigation</span>
                 <span class="navbar-toggler-icon"></span>
@@ -29,7 +74,7 @@
     <div class="container py-4 py-xl-5">
         <div class="row mb-5">
             <div class="col-md-8 col-xl-6 text-center mx-auto">
-                <h2>Heading</h2>
+                <h2></h2>
                 <p class="w-lg-50"></p>
             </div>
         </div>
@@ -40,10 +85,26 @@
                 <div class="col-md-6 col-xl-4">
                     <div class="card mb-5">
                         <div class="card-body d-flex flex-column align-items-center">
-                            <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4" style="background: rgba(13,110,253,0);"><img src="assets/img/logoHeader.png"></div>
-                            <form method="POST" action="./Menu/index.php" class="text-center">
+                            <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4" style="background: rgba(13,110,253,0);"><img src="assets/img/logo-header.png"></div>
+                            <?php if(isset($_GET['error'])){ ?>
+                            <div id="error" style="width: 100%; background: lightsalmon; text-align: center; border-radius: 2px; padding: 4px; ">
+                                <label style="color: whitesmoke;"><?php echo $_GET['error']; ?></label>
+                                <span class="close" style="font-size: 24px; color: whitesmoke; margin: auto;" onclick="getElementById('error').style.display = 'none' ">&times;</span>
+                            </div>
+                            <?php } ?>
+                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="text-center">
                                 <div class="mb-3">
-                                    <input class="btn btn-primary d-block w-100" type="submit" value="Entrar">
+                                    <label class="form-label" for="uname" required>Usuario:</label>
+                                    <input class="form-control" type="text" id="uname" name="uname"
+                                        maxlength="10" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="pword" required>Contraseña:<br></label>
+                                    <input class="form-control" type="password" id="pword" name="pword" 
+                                        maxlength="8" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                                </div>
+                                <div class="mb-3">
+                                    <input class="btn btn-primary d-block w-100" type="submit" id="entrar" name="entrar" value="Entrar" onsubmit="return ValidarVacio()">
                                 </div>
                                 <p class="text-muted"></p>
                             </form>

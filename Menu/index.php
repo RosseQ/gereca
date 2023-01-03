@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 
@@ -25,7 +27,8 @@
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="index.php">INICIO </a></li>
-                    <li class="nav-item"><a class="nav-link active" href="index.php">CERRAR SECION</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../logout.php">CERRAR SESION</a></li>
+                    
                 </ul>
             </div>
         </div>
@@ -111,6 +114,7 @@
                                 </ul>
                             </li>
                             <li><a href="../Unidades/index.php">Unidades</a></li>
+                            <li><a href="../Unidades/index.php">Ususarios</a></li>
                         </ul>
                     </nav><!-- Aqui estamos cerrando la nueva etiqueta nav -->
                 </div>
