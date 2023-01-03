@@ -54,22 +54,22 @@ include("../../db.php");
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Economico</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Renta</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Tarifa</th>
-                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Dias de Uso</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Cantidad</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Total Neto</th>
-                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha1</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha2</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha3</th>
                         </tr>
                     </thead>
                     <?php 
                         $consulta = "select clientes.nombre as 'NAME', clientes.appaterno as 'FSURNAME',
                         clientes.apmaterno as 'MSURNAME', vehiculos.tipo_unidad as 'CAR', vehiculos.economico as 'ECON',
-                        costos.tipo_prestamo as 'RENTAL', costos.precio as 'PRICE',
                         detalle_renta.cantidad as 'QUANTITY', renta.total as 'TOTAL',
-                        renta.fecha as 'DATE'
+                        renta.fecha_hecho as 'DATE_1', renta.fecha_regreso as 'DATE_2', renta.fecha_registro as 'DATE_3'
                         from renta
                         INNER JOIN clientes on renta.id_cliente = clientes.id_cliente
                         INNER JOIN detalle_renta on renta.id_detalleRenta = detalle_renta.id_detalleRenta
-                        INNER JOIN vehiculos on detalle_renta.id_Vehiculo = vehiculos.id_Vehiculo
-                        INNER JOIN costos on detalle_renta.id_costo = costos.id_costo";
+                        INNER JOIN vehiculos on detalle_renta.id_Vehiculo = vehiculos.id_Vehiculo";
                         $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
                     ?>
@@ -83,7 +83,9 @@ include("../../db.php");
                                 <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['PRICE']?></td>
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['QUANTITY']?></td>
                                 <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['TOTAL']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE1']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE2']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE3']?></td>
                             </tr>
                         </tbody>
                     <?php 

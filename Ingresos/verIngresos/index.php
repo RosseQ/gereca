@@ -48,7 +48,9 @@ include("../../db.php");
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Economico</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Dias de Uso</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Total Neto</th>
-                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha1</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha2</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha3</th>
                         </tr>
                     </thead>
                     <?php 
@@ -56,7 +58,7 @@ include("../../db.php");
                         $consulta = "select clientes.nombre as 'NAME', clientes.appaterno as 'FSURNAME',
                         clientes.apmaterno as 'MSURNAME', vehiculos.tipo_unidad as 'CAR', vehiculos.economico as 'ECON',
                         detalle_renta.cantidad as 'QUANTITY', renta.total as 'TOTAL',
-                        renta.fecha as 'DATE'
+                        renta.fecha_hecho as 'DATE1', renta.fecha_regreso as 'DATE2', renta.fecha_registro as 'DATE3'
                         from renta
                         INNER JOIN clientes on renta.id_cliente = clientes.id_cliente
                         INNER JOIN detalle_renta on renta.id_detalleRenta = detalle_renta.id_detalleRenta
@@ -72,7 +74,9 @@ include("../../db.php");
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ECON']?></td>
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['QUANTITY']?></td>
                                 <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['TOTAL']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE1']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE2']?></td>
+                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE3']?></td>
                             </tr>
                         </tbody>
                     <?php 

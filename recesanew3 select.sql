@@ -3,15 +3,14 @@ select vehiculos.id_vehiculo as 'ROW0', vehiculos.tipo_unidad as 'ROW1', vehicul
 Cat_Clase_Vehiculo.descripcion as 'ROW3', Cat_Tipo.descripcion as 'ROW4',
 Cat_Adaptacion.descripcion as 'ROW5', vehiculos.placas as 'ROW6',
 vehiculos.economico as 'ROW7', vehiculos.numero_serie as 'ROW8', vehiculos.carga_uti as 'ROW9',
-costos.precio_dia as 'ROW10', costos.precio_sem as 'ROW11', costos.precio_mes as 'ROW12'
-Cat_VEstatus.descripcion as 'ROW13', Cat_DEstatus.descripcion as 'ROW14'
+costos.precio_dia as 'ROW10', costos.precio_sem as 'ROW11', costos.precio_mes as 'ROW12',
+Cat_VEstatus.descripcion as 'ROW13'
 from vehiculos
 INNER JOIN Cat_Clase_Vehiculo on vehiculos.id_Cat_Clase_Vehiculo = Cat_Clase_Vehiculo.id_Cat_Clase_Vehiculo
 INNER JOIN Cat_Tipo on vehiculos.id_Cat_Tipo = Cat_Tipo.id_Cat_Tipo
 INNER JOIN Cat_Adaptacion on vehiculos.id_Cat_Adaptacion = Cat_Adaptacion.id_Cat_Adaptacion
 INNER JOIN Costos on vehiculos.id_Costo = Costos.id_Costo
 INNER JOIN Cat_VEstatus on vehiculos.id_VEstatus = Cat_VEstatus.id_VEstatus
-INNER JOIN Cat_DEstatus on vehiculos.id_DEstatus = Cat_DEstatus.id_DEstatus
 order by vehiculos.economico asc
 
 --CONSULTA DE MANTENIMIENTOS
@@ -62,6 +61,12 @@ select @cost_prec
 SET @tiporent :=0
 
 SET @idveh_price_choose :=0
+SELECT costos.precio_dia INTO @cost_prec from costos
+INNER JOIN vehiculos on costos.id_costo = vehiculos.economico
+WHERE costos.id_costo = vehiculos.economico
+AND Vehiculos.id_Vehiculo = vehiculos.economico
+limit 1;
+SELECT @cost_prec
 
 CREATE FUNCTION PRICECHOOSE (pricechosen float)
 RETURN float(100,2)
