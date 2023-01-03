@@ -137,6 +137,7 @@ if (isset($_POST['nuevarenta'])){
         $dias_i = trim($_POST['dias_i']);
         $fecha_hecho = trim($_POST['fecha_hecho']);
         $calcdias = 0;
+        $cost_prec = 0;
         if ($tipoRenta_i == 1){
             $caldias = $dias_i * 1;
             $cost_prec = "costos.precio_dia";
@@ -147,11 +148,14 @@ if (isset($_POST['nuevarenta'])){
             $caldias = $dias_i * 30;
             $cost_prec = "costso.precio_mes";
         }
-        $konsulta = "select '$cost_prec' from costos
+        $pricecheck = "select '$cost_prec' from costos
         INNER JOIN vehiculos on costos.id_costo = vehiculos.economico
         WHERE costos.id_costo = vehiculos.economico
         AND Vehiculos.id_Vehiculo = @idveh_price_choose
         limit 1;";
+        $resultado = mysqli_query($conex,$pricecheck);
+        $truprice = mysqli_fetch_array($resultado);
+        echo ($truprice);
         if ($dias_i > 0)
         {
             $consulta = "INSERT INTO detalle_renta (id_Vehiculo,cantidad) VALUES ('$idVehiculo_i', '$caldias');
@@ -159,18 +163,18 @@ if (isset($_POST['nuevarenta'])){
             SELECT id_detalleRenta INTO @rent_det from detalle_renta order by id_detalleRenta DESC limit 1;
     
             INSERT INTO renta (id_cliente,id_detalleRenta,total,fecha_registro,fecha_hecho,fecha_regreso)
-            VALUES ('$idCliente_i', (SELECT @rent_det), (SELECT '$resultad' * '$dias_i'),
+            VALUES ('$idCliente_i', (SELECT @rent_det), (SELECT '$truprice' * '$dias_i'),
             CURDATE(), '$fecha_hecho', date_add('$fecha_hecho', INTERVAL '$caldias' DAY));
             ";
     
             $resultado = mysqli_multi_query($conex,$consulta);
-            // if ($resultado){
-            //     header ("Location:/Ingresos/verIngresos/index.php");
-            //     exit;
-            // } else {
-            //     header ("Location:/Ingresos/nuevoIngreso/index.php?error=Hubo un error al registrar la renta.");
-            //     exit;
-            // }
+            if ($resultado){
+                header ("Location:/Ingresos/verIngresos/index.php");
+                exit;
+            } else {
+                header ("Location:/Ingresos/nuevoIngreso/index.php?error=Hubo un error al registrar la renta.");
+                exit;
+            }
         } else {
             header ("Location:/Ingresos/nuevoIngreso/index.php?error=No puede rentar por 0 dias.");
             exit;
