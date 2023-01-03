@@ -34,7 +34,7 @@ include("../../db.php");
         <section class="clean-block clean-form dark" style="background: rgba(246,246,246,0);">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Ver Ingresos</h2>
+                    <h2 class="text-info">RENTAS REGISTRADAS</h2>
                     <p></p>
                 </div>
             </div>

@@ -133,37 +133,45 @@ if (isset($_POST['nuevarenta'])){
         $idVehiculo_i = trim($_POST['idVehiculo_i']);
         $tipoRenta_i = trim($_POST['tipoRenta_i']);
         $dias_i = trim($_POST['dias_i']);
+        $fecha_hecho = trim($_POST['fecha_hecho']);
 
-        $consulta = "INSERT INTO detalle_renta (id_Vehiculo,cantidad) VALUES ('$idVehiculo_i', '$dias_i');
+        $consulta = "SELECT '$tipoRenta_i' INTO @tiporent;
+        SET @daycalc := 0
+        SELECT 
+        CASE
+            WHEN @tiporent = 1 THEN
+                '$dias_i' * 1
+            WHEN @tiporent = 2 THEN
+                '$dias_i' * 7
+            WHEN @tiporent = 3 THEN
+                '$dias_i' * 30
+            ELSE 0
+        END
+        INTO @daycalc;
+        INSERT INTO detalle_renta (id_Vehiculo,cantidad) VALUES ('$idVehiculo_i', (SELECT @daycalc));
 
         SELECT id_detalleRenta INTO @rent_det from detalle_renta order by id_detalleRenta DESC limit 1;
 
-        SELECT '$tipoRenta_i' INTO @tiporent;
         SELECT '$idVehiculo_i' INTO @idveh_price_choose;
-
+        SELECT
         CASE
             WHEN @tiporent = 1 THEN
-            SELECT costos.precio_dia INTO @cost_prec from costos
-            INNER JOIN vehiculos on costos.id_costo = vehiculos.economico
-            WHERE costos.id_costo = vehiculos.economico
-            AND Vehiculos.id_Vehiculo = @idveh_price_choose
-            limit 1;
+                costos.precio_dia 
             WHEN @tiporent = 2 THEN
-            SELECT costos.precio_sem INTO @cost_prec from costos
-            INNER JOIN vehiculos on costos.id_costo = vehiculos.economico
-            WHERE costos.id_costo = vehiculos.economico
-            AND Vehiculos.id_Vehiculo = @idveh_price_choose
-            limit 1;
+                costos.precio_sem
             WHEN @tiporent = 3 THEN
-            SELECT costos.precio_mes INTO @cost_prec from costos
-            INNER JOIN vehiculos on costos.id_costo = vehiculos.economico
-            WHERE costos.id_costo = vehiculos.economico
-            AND Vehiculos.id_Vehiculo = @idveh_price_choose
-            limit 1;
-        END;
+                costos.precio_mes
+            ELSE 0
+        END
+        INTO @cost_prec from costos
+        INNER JOIN vehiculos on costos.id_costo = vehiculos.economico
+        WHERE costos.id_costo = vehiculos.economico
+        AND Vehiculos.id_Vehiculo = @idveh_price_choose
+        limit 1;
 
-        INSERT INTO renta (id_cliente,id_detalleRenta,total,fecha)
-        VALUES ('$idCliente_i', (select @rent_det), (SELECT @cost_prec * '$dias_i'), CURDATE());
+        INSERT INTO renta (id_cliente,id_detalleRenta,total,fecha_registro,fecha_hecho,fecha_regreso)
+        VALUES ('$idCliente_i', (SELECT @rent_det), (SELECT @cost_prec * '$dias_i'),
+        CURDATE(), '$fecha_hecho', date_add('$fecha_hecho', INTERVAL @daycalc DAY));
         ";
         // IF @tiporent = 1 THEN
         //     SELECT costos.precio_dia INTO @cost_prec from costos

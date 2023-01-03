@@ -82,6 +82,10 @@ include("../../db.php");
                         maxlength="4" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
+                    <label class="form-label" for="dias_i">Fecha de Renta</label>
+                    <input class="form-control" type="date" id="fecha_hecho" name="fecha_hecho">
+                </div>
+                <div class="mb-3">
                     <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="nuevarenta" name="nuevarenta" value="Enviar">
                 </div>
             </form>
@@ -92,6 +96,10 @@ include("../../db.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script>
+    document.getElementById("current_date").innerHTML = Date();
+    </script>
+
     <!-- <script type="application/javascript">
         function calcularcosto() {
             var xtarifa = document.getElementById('tarifa_i').value;

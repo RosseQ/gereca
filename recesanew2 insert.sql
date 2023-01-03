@@ -87,4 +87,10 @@ INSERT INTO renta values
 (4,5,4345, '2022-11-30', '2022-11-30', '2022-12-7'),
 (5,4,4566, '2022-12-5', '2022-12-5', '2022-12-25');
 
-select * from renta
+SET FOREIGN_KEY_CHECKS=0;
+TRUNCATE TABLE detalle_renta;
+TRUNCATE TABLE renta;
+SET FOREIGN_KEY_CHECKS=1;
+
+select * from detalle_renta;
+select * from renta;
