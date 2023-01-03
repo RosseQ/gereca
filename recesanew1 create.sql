@@ -2,6 +2,10 @@
 -- create database recesanew1;
 -- use recesanew1;
 
+-- SET FOREIGN_KEY_CHECKS=0;
+-- drop TABLE costos;
+-- SET FOREIGN_KEY_CHECKS=1;
+
 CREATE TABLE Cat_Adaptacion  (
   id_Cat_Adaptacion int NOT NULL auto_increment,
   descripcion varchar(255) NULL,
@@ -61,11 +65,6 @@ CREATE TABLE costos  (
   precio_mes float(100,2),
   PRIMARY KEY (id_Costo)
 );
-
-SET FOREIGN_KEY_CHECKS=0;
-drop TABLE costos;
-SET FOREIGN_KEY_CHECKS=1;
-
 
 CREATE TABLE vehiculos  (
   id_Vehiculo int NOT NULL auto_increment,

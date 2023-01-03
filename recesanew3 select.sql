@@ -35,6 +35,13 @@ INNER JOIN clientes on renta.id_cliente = clientes.id_cliente
 INNER JOIN detalle_renta on renta.id_detalleRenta = detalle_renta.id_detalleRenta
 INNER JOIN vehiculos on detalle_renta.id_Vehiculo = vehiculos.id_Vehiculo
 
+-- CONSULTA DE CLIENTES
+SELECT clientes.id_cliente as 'id',
+clientes.nombre as 'NAME1', clientes.appaterno as 'NAME2', clientes.appaterno as 'NAME3',
+clientes.telefono as 'TEL', clientes.email as 'MAIL', clientes.direccion as 'ADDR',
+clientes.rfc as 'RFC', clientes.curp as 'CURP', clientes.num_doc as 'NDOC', clientes.ocr as 'OCR'
+FROM clientes ORDER BY clientes.id_cliente ASC
+
 SELECT id_Costo from Costos order by id_Costo DESC limit 1;
 
 SET @costov := 0
