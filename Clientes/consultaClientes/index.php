@@ -74,14 +74,14 @@ include("../../db.php");
                 <div id="header">
                     <nav> <!-- Aqui estamos iniciando la nueva etiqueta nav -->
                         <ul class="nav">
-                            <li><a href="">Inicio</a></li>
+                            <li><a href="../../Menu/index.php">Inicio</a></li>
                             <li><a href="">Status</a>
                                 
                             </li>
                             <li><a href="">Clientes</a>
                                 <ul>
-                                    <li><a href="../Clientes/AgregarClientes/index.php">Resgistrar Cliente</a></li>
-                                    <li><a href="../Clientes/ConsultaClientes/index.php">Ver Clientes</a></li>
+                                    <li><a href="../../Clientes/AgregarClientes/index.php">Resgistrar Cliente</a></li>
+                                    <li><a href="../../Clientes/ConsultaClientes/index.php">Ver Clientes</a></li>
                                 </ul>
                             </li>
                             <li><a href="../Unidades/index.php">Unidades</a></li>
@@ -100,6 +100,7 @@ include("../../db.php");
     <section class="clean-block clean-form dark" style="background: url(&quot;assets/img/clipboard-image-1.png&quot;);">
         <section class="clean-block clean-form dark" style="background: rgba(246,246,246,0);">
             <div class="container">
+            &nbsp
                 <div class="block-heading">
                     <h2 class="text-info">Ver Clientes</h2>
                     <p></p>
