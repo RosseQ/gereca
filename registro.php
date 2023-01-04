@@ -60,6 +60,35 @@ if (isset($_POST['agregar_v'])){
     mysqli_close($conex);
     
 };
+/*
+---------------------------------------------------------------------------------------------------------------
+    Disponibilidad de Vehiculo
+---------------------------------------------------------------------------------------------------------------
+*/
+
+if (isset($_POST['disponible_v'])){
+
+    $iid = $_POST['disponible_v'];
+    $disp_check = "SELECT * from Vehiculos WHERE Vehiculos.id_Vehiculo = '$iid';";
+    $resultado = mysqli_query($conex,$disp_check);
+    $disp_grab = mysqli_fetch_array($resultado);
+    $econ_value = $disp_grab['economico'];
+    $tipo_value = $disp_grab['tipo_unidad'];
+    $disp_value = $disp_grab['id_VEstatus'];
+    if ($dispvalue > 1){
+        $disp_update = "UPDATE Vehiculos SET id_VEstatus = 1 WHERE Vehiculos.id_Vehiculo = '$iid';";
+        $resultado = mysqli_query($conex,$disp_update);
+        if ($resultado){
+            header ("location:/Vehiculos/consultaVehiculos/index.php?error=" . $econ_value . " esta disponible otra vez.");
+        } else {
+            header ("location:/Vehiculos/consultaVehiculos/index.php?error=Hubo un error al restaurar el vehiculo.");
+        }
+    } else {
+        header ("location:/Vehiculos/consultaVehiculos/index.php?error=El vehiculo " . $tipo_value . " (".$econ_value.") " . "sigue disponible.");
+    }
+    memory_free_result($resultado);
+    mysqli_close($conex);
+};
 
 /*
 ---------------------------------------------------------------------------------------------------------------
@@ -69,12 +98,12 @@ if (isset($_POST['agregar_v'])){
 
 if (isset($_POST['eliminar_v'])){
 
-    $Economicoo = $_POST['eliminar_v'];
-    $delete = "delete from vehiculos where id_Vehiculo = '$Economicoo';";
+    $iid = $_POST['eliminar_v'];
+    $delete = "UPDATE Vehiculos SET id_DEstatus = 2 WHERE Vehiculos.id_Vehiculo = '$iid';";
     $resultado = mysqli_query($conex,$delete);
         
     if ($resultado){
-        header ("location:/Vehiculos/consultaVehiculos/index.php?error=Se borro " . $Economicoo . ".");
+        header ("location:/Vehiculos/consultaVehiculos/index.php?error=Se borro " . $iid . ".");
     } else {
         header ("location:/Vehiculos/consultaVehiculos/index.php?error=Hubo un error al eliminar el vehiculo.");
     }
@@ -95,21 +124,29 @@ if (isset($_POST['eliminar_v'])){
 ---------------------------------------------------------------------------------------------------------------
 */
 if (isset($_POST['detmant_insert'])){
-    if (strlen($_POST['costo_det']) >= 1){
+    if (strlen($_POST['costo_det']) >= 1 && strlen($_POST['dias_mant']) >= 1){
         $idVehiculo_det = trim($_POST['idVehiculo_det']);
         $mantenimiento_det = trim($_POST['mantenimiento_det']);
         $costo_det = trim($_POST['costo_det']);
-
-        $consulta = "INSERT INTO detalle_mantenimiento (id_Mantenimiento, id_Vehiculo, costo, fecha) VALUES ('$mantenimiento_det', '$idVehiculo_det', '$costo_det', CURDATE())";
-
-        $resultado = mysqli_query($conex,$consulta);
-        if ($resultado){
-            // http://localhost/Vehiculos/agregarVehiculos/index.php?
-            // header ("Location: C:\Users\ernes\Documents\GitHub\gereca\Vehiculos\agregarVehiculos\index.php");
-            header ("Location:/Mantenimientos/verMantenimientos/index.php");
-            exit;
+        $dias_mant = trim($_POST['dias_mant']);
+        $fecha_hecho = trim($_POST['fecha_hecho']);
+        if ($dias_mant > 0){
+            $consulta = "INSERT INTO detalle_mantenimiento (id_Mantenimiento, id_Vehiculo, costo, fecha_registro, fecha_hecho, fecha_regreso)
+            VALUES ('$mantenimiento_det', '$idVehiculo_det', '$costo_det', CURDATE(), '$fecha_hecho', date_add('$fecha_hecho', INTERVAL '$dias_mant' DAY));
+            UPDATE Vehiculos SET id_VEstatus = 3 WHERE id_Vehiculo = '$idVehiculo_det';
+            ";
+            $resultado = mysqli_multi_query($conex,$consulta);
+            if ($resultado){
+                // http://localhost/Vehiculos/agregarVehiculos/index.php?
+                // header ("Location: C:\Users\ernes\Documents\GitHub\gereca\Vehiculos\agregarVehiculos\index.php");
+                header ("Location:/Mantenimientos/verMantenimientos/index.php");
+                exit;
+            } else {
+                header ("Location:/Mantenimientos/nuevoMantenimiento/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
+                exit;
+            }
         } else {
-            header ("Location:/Mantenimientos/nuevoMantenimiento/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
+            header ("Location:/Ingresos/nuevoIngreso/index.php?error=El minimo de dias en mantenimiento es 1 dia.");
             exit;
         }
     } else {
@@ -223,16 +260,28 @@ if (isset($_POST['agregar_cli'])){
         $nodoc_cli = trim($_POST['nodoc_cli']);
         $ocr_cli = trim($_POST['ocr_cli']);
 
-        $consulta = "INSERT INTO Clientes (nombre,appaterno,apmaterno,telefono,email,direccion,rfc,curp,num_doc,ocr) VALUES
-        ('$nombre_cli','$appat_cli','$apmat_cli','$tel_cli','$email_cli','$dir_cli','$rfc_cli','$curp_cli','$nodoc_cli','$ocr_cli')
-        ";
+        $checkdata_q = "SELECT * from Clientes
+        WHERE rfc = '$rfc_cli'
+        OR curp = '$curp_cli'
+        OR num_doc = '$nodoc_cli'
+        OR ocr = '$ocr_cli';";
+        $resultado = mysqli_query($conex,$checkdata_q);
+        if (!$resultado){
 
-        $resultado = mysqli_multi_query($conex,$consulta);
-        if ($resultado){
-            header ("Location:/Clientes/consultaClientes/index.php");
-            exit;
+            $consulta = "INSERT INTO Clientes (nombre,appaterno,apmaterno,telefono,email,direccion,rfc,curp,num_doc,ocr) VALUES
+            ('$nombre_cli','$appat_cli','$apmat_cli','$tel_cli','$email_cli','$dir_cli','$rfc_cli','$curp_cli','$nodoc_cli','$ocr_cli')
+            ";
+    
+            $resultado = mysqli_multi_query($conex,$consulta);
+            if ($resultado){
+                header ("Location:/Clientes/consultaClientes/index.php");
+                exit;
+            } else {
+                header ("Location:/Clientes/agregarClientes/index.php?error=Hubo un error al registrar el cliente nuevo.");
+                exit;
+            }
         } else {
-            header ("Location:/Clientes/agregarClientes/index.php?error=Hubo un error al registrar el cliente nuevo.");
+            header ("Location:/Clientes/agregarClientes/index.php?error=Estos datos pertenecen a un cliente que ya existe.");
             exit;
         }
     } else {
@@ -242,6 +291,27 @@ if (isset($_POST['agregar_cli'])){
     memory_free_result($resultado);
     mysqli_close($conex);
     
+};
+
+/*
+---------------------------------------------------------------------------------------------------------------
+    Eliminar  Cliente
+---------------------------------------------------------------------------------------------------------------
+*/
+
+if (isset($_POST['eliminar_cli'])){
+
+    $iid = $_POST['eliminar_cli'];
+    $delete = "delete from Clientes where id_Cliente = '$iid';";
+    $resultado = mysqli_query($conex,$delete);
+    if ($resultado){
+        header ("location:/Clientes/consultaClientes/index.php?error=Se borro " . $iid . ".");
+    } else {
+        header ("location:/Clientes/consultaClientes/index.php?error=Hubo un error al eliminar el vehiculo.");
+    }
+
+    memory_free_result($resultado);
+    mysqli_close($conex);
 };
 
 ?>

@@ -138,14 +138,15 @@ include("../../db.php");
                     <input class="form-control" type="text" id="costo_det" name="costo_det" value=0
                         maxlength="255" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
-                <!-- <div class="mb-3">
-                    <label class="form-label" for="utilidad_i">Total Neto</label>
-                    <h2 id="utilidad_i"></h2>
-                </div> -->
-                <!-- <div class="mb-3">
-                    <label class="form-label" for="fecha_i">Fecha de Ingreso</label>
-                    <input class="form-control" type="Date" id="fecha_i" name="fecha_i">
-                </div> -->
+                <div class="mb-3">
+                    <label class="form-label" for="dias_mant">Dias en mantenimiento</label>
+                    <input class="form-control" type="text" id="dias_mant" name="dias_mant" min="1" value=1
+                        maxlength="4" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="fecha_hecho">Fecha de Mantenimiento</label>
+                    <input class="form-control" type="date" id="fecha_hecho" name="fecha_hecho">
+                </div>
                 <div class="mb-3">
                     <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="detmant_insert" name="detmant_insert" value="Enviar">
                 </div>

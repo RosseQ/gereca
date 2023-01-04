@@ -150,7 +150,7 @@ include("../../db.php");
                                 <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['OCR'] ?></td>
                                 <td style="background: rgba(13,114,255,0.36);" >
                                     <form action="/registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
-                                        <button type="submit" name="eliminar_Cli" id="eliminar_Cli" value="<?php echo $mostrar['IID'] ?>" 
+                                        <button type="submit" name="eliminar_cli" id="eliminar_cli" value="<?php echo $mostrar['IID'] ?>" 
                                             style="background: none !important; border: none !important;" onclick="return ConfirmarDelete()">
                                             <img src="/assets/img/deletear.png" width="50" height="50" />
                                         </button>

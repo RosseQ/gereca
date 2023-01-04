@@ -167,7 +167,13 @@ include("../../db.php");
                                 <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['ROW10'] ?></td> <!--no serie-->
                                 <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['ROW11'] ?></td> <!--no serie-->
                                 <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['ROW12'] ?></td> <!--no serie-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW13'] ?></td> <!--no serie-->
+                                <td style="background: rgba(13,114,255,0.36);">
+                                    <form action="/registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
+                                        <button type="submit" name="disponible_v" id="disponible_v" value="<?php echo $mostrar['ROW0'] ?>" 
+                                            style="background: none !important; border: none !important;" onclick="return ConfirmarRestaurar()"><?php echo $mostrar['ROW13'] ?>
+                                        </button>
+                                    </form>
+                                </td> <!--no serie-->
                                 <td style="background: rgba(13,114,255,0.36);" >
                                     <form action="/registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
                                         <button type="submit" name="eliminar_v" id="eliminar_v" value="<?php echo $mostrar['ROW0'] ?>" 
@@ -200,6 +206,17 @@ include("../../db.php");
         function ConfirmarDelete()
         {
             var respuesta = confirm("¿Estas seguro que Deceas Eliminarlo?");
+
+            if (respuesta == true){
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+        function ConfirmarRestaurar()
+        {
+            var respuesta = confirm("¿Cambiar disponibilidad de vehiculo?");
 
             if (respuesta == true){
                 return true;
