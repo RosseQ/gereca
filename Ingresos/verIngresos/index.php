@@ -92,7 +92,7 @@ include("../../db.php");
                 </div>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="index.php">INICIO </a></li>
-                    <li class="nav-item"><a class="nav-link" href="../logout.php">CERRAR SESION</a></li>  
+                    <li class="nav-item"><a class="nav-link" href="../../logout.php">CERRAR SESION</a></li>  
                 </ul>
             </div>
         </div>

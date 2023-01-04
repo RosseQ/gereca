@@ -83,7 +83,7 @@ include("../../db.php");
                             <li><a href="">Clientes</a>
                                 <ul>
                                     <li><a href="../Clientes/AgregarClientes/index.php">Resgistrar Cliente</a></li>
-                                    <li><a href="../Clientes/ConsultaClientes/index.php">Ver Clientes</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="../../logout.php">CERRAR SESION</a></li>
                                 </ul>
                             </li>
                             <li><a href="../Unidades/index.php">Unidades</a></li>
@@ -93,7 +93,7 @@ include("../../db.php");
                 </div>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="../../Menu/index.php">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../logout.php">CERRAR SESION</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../logout.php">CERRAR SESION</a></li>
                     
                 </ul>
             </div>

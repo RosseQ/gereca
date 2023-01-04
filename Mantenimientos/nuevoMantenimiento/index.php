@@ -90,13 +90,14 @@ include("../../db.php");
                 </div>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="../../Menu/index.php">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../logout.php">CERRAR SESION</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../logout.php">CERRAR SESION</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <section class="clean-block clean-form dark" style="background: url(&quot;assets/img/clipboard-image-1.png&quot;);">
         <div class="container">
+        &nbsp
             <div class="block-heading">
                 <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(13,114,253);border-bottom-color: rgba(59,153,224,0);">Registrar Mantenimiento</h2>
             </div>

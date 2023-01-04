@@ -1,5 +1,19 @@
 <?php
 include("../../db.php");
+
+    session_start();
+        
+    if(!isset($_SESSION['id'])){
+        header("Location: ../../index.php");
+    }
+
+    $id_u = $_SESSION['id'];
+    $username = $_SESSION['username'];
+
+?>
+
+<?php
+include("../../db.php");
 ?>
 <!DOCTYPE html>
 <html style="background: rgba(255,255,255,0);">
@@ -90,15 +104,18 @@ include("../../db.php");
                 </div>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="../../Menu/index.php">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../logout.php">CERRAR SESION</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../logout.php">CERRAR SESION</a></li>
                     
                 </ul>
             </div>
         </div>
     </nav>
+    &nbsp
     <section class="clean-block clean-form dark" style="background: url(&quot;assets/img/clipboard-image-1.png&quot;);">
         <div class="container">
+            
             <div class="block-heading">
+                
                 <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(253,114,13);border-bottom-color: rgba(59,153,224,0);">Agregar Vehiculo</h2>
                 <p></p>
             </div>
@@ -198,8 +215,9 @@ include("../../db.php");
                     onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
+                <center>
                     <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="agregar_v" name="agregar_v" value="Enviar">
-                </div>
+                </center>
             </form>
 
         </div>
