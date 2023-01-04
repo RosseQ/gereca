@@ -31,9 +31,9 @@ CREATE TABLE Cat_Tipo  (
 );
 
 CREATE TABLE usuario  (
-  id_usuario int NOT NULL auto_increment,
-  uname varchar(255) NULL,
-  pword varchar(30) NULL,
+  id int NOT NULL auto_increment,
+  username varchar(255) NULL,
+  password varchar(30) NULL,
   PRIMARY KEY (id_usuario)
 );
 
