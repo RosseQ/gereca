@@ -77,11 +77,11 @@ if (isset($_POST['disponible_v'])){
     $econ_value = $disp_grab['economico'];
     $tipo_value = $disp_grab['tipo_unidad'];
     $disp_value = $disp_grab['id_VEstatus'];
-    if ($dispvalue > 1){
+    if ($disp_value > 1){
         $disp_update = "UPDATE Vehiculos SET id_VEstatus = 1 WHERE Vehiculos.id_Vehiculo = '$iid';";
         $resultado = mysqli_query($conex,$disp_update);
         if ($resultado){
-            header ("location:/Vehiculos/consultaVehiculos/index.php?error=" . $econ_value . " esta disponible otra vez.");
+            header ("location:/Vehiculos/consultaVehiculos/index.php?error=El vehiculo " . $tipo_value . " (".$econ_value.") " . " esta disponible otra vez.");
         } else {
             header ("location:/Vehiculos/consultaVehiculos/index.php?error=Hubo un error al restaurar el vehiculo.");
         }
