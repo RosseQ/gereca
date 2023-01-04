@@ -312,7 +312,7 @@ if (isset($_POST['eliminar_cli'])){
     if ($resultado){
         header ("location:/Clientes/consultaClientes/index.php?error=Se borro " . $iid . ".");
     } else {
-        header ("location:/Clientes/consultaClientes/index.php?error=Hubo un error al eliminar el vehiculo.");
+        header ("location:/Clientes/consultaClientes/index.php?error=Hubo un error al eliminar este cliente.");
     }
 
     memory_free_result($resultado);
