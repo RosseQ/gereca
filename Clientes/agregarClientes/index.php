@@ -112,59 +112,54 @@ include("../../db.php");
 
             <form action="/registro.php" method="POST" style="color: rgb(0,15,255);background: rgba(13,114,255,0.11);border-top-color: rgb(13,114,255);">
                 <div class="mb-3">
-                    <label class="form-label" for="economico_v">Nombres</label>
-                    <input class="form-control" type="text" id="economico_v" name="economico_v"
-                        maxlength="11" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="tipounidad_v">Apellido Paterno</label>
-                    <input class="form-control" type="text" id="tipounidad_v" name="tipounidad_v"
+                    <label class="form-label" for="nombre_cli">Nombres</label>
+                    <input class="form-control" type="text" id="nombre_cli" name="nombre_cli"
                         maxlength="255" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="modelo_v">Apellido Materno</label>
-                    <input class="form-control" type="text" id="modelo_v" name="modelo_v"
+                    <label class="form-label" for="appat_cli">Apellido Paterno</label>
+                    <input class="form-control" type="text" id="appat_cli" name="appat_cli"
                         maxlength="255" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
-                <div class="mb-3"><label class="form-label" for="clase_vehiculo">Telefono</label>
-                <input class="form-control" type="text" id="economico_v" name="economico_v"
-                        maxlength="11" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">    
+                <div class="mb-3">
+                    <label class="form-label" for="apmat_cli">Apellido Materno</label>
+                    <input class="form-control" type="text" id="apmat_cli" name="apmat_cli"
+                        maxlength="255" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
-                <div class="mb-3"><label class="form-label" for="tipo_vehiculo">Correo electronico</label>
-                <input class="form-control" type="text" id="economico_v" name="economico_v"
-                        maxlength="11" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">   
+                <div class="mb-3"><label class="form-label" for="tel_cli">Telefono</label>
+                <input class="form-control" type="text" id="tel_cli" name="tel_cli"
+                        maxlength="10" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
-                <div class="mb-3"><label class="form-label" for="adaptacion_v">direccion</label>
-                <input class="form-control" type="text" id="economico_v" name="economico_v"
-                        maxlength="11" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">    
+                <div class="mb-3"><label class="form-label" for="email_cli">Correo electronico</label>
+                <input class="form-control" type="text" id="email_cli" name="email_cli"
+                        maxlength="255" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">  
+                </div>
+                <div class="mb-3"><label class="form-label" for="dir_cli">Direccion</label>
+                <input class="form-control" type="text" id="dir_cli" name="dir_cli"
+                        maxlength="255" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">    
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="placas_v">RFC</label>
-                    <input class="form-control" type="text" id="placas_v" name="placas_v"
-                        maxlength="7" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
+                    <label class="form-label" for="rfc_cli">RFC</label>
+                    <input class="form-control" type="text" id="rfc_cli" name="rfc_cli"
+                        maxlength="13" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="noserie_v">CURP</label>
-                    <input class="form-control" type="text" id="noserie_v" name="noserie_v"
-                        maxlength="20" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
+                    <label class="form-label" for="curp_cli">CURP</label>
+                    <input class="form-control" type="text" id="curp_cli" name="curp_cli"
+                        maxlength="18" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="carga_util_v">Numero de documento</label>
-                    <input class="form-control" type="text" id="carga_util_v" name="carga_util_v"
-                    onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                </div>
-                <!-- <div class="mb-3">
-                    <label class="form-label" for="id_costo_v">id costo</label>
-                    <input class="form-control" type="text" id="id_costo_v" name="id_costo_v"
-                    onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                </div> -->
-                <div class="mb-3">
-                    <label class="form-label" for="precio_dia_v">OCR</label>
-                    <input class="form-control" type="text" id="precio_dia_v" name="precio_dia_v"
-                    onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                    <label class="form-label" for="nodoc_cli">Numero de documento</label>
+                    <input class="form-control" type="text" id="nodoc_cli" name="nodoc_cli"
+                        maxlength="9" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <div class="mb-3">
-                <center> <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="agregar_v" name="agregar_v" value="Enviar"></center>
+                    <label class="form-label" for="ocr_cli">OCR</label>
+                    <input class="form-control" type="text" id="ocr_cli" name="ocr_cli"
+                        maxlength="13" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                </div>
+                <div class="mb-3">
+                <center> <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="agregar_cli" name="agregar_cli" value="Enviar"></center>
                 </div>
             </form>
 

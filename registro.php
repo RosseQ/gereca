@@ -193,4 +193,50 @@ if (isset($_POST['nuevarenta'])){
     
 };
 
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            C L I E N T E S
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/*
+---------------------------------------------------------------------------------------------------------------
+    Agregar Clientes
+---------------------------------------------------------------------------------------------------------------
+*/
+if (isset($_POST['agregar_cli'])){
+    if (strlen($_POST['nombre_cli']) >= 1 && strlen($_POST['appat_cli']) >= 1 && strlen($_POST['apmat_cli']) >= 1 && strlen($_POST['tel_cli']) >= 1 && strlen($_POST['email_cli']) >= 1
+    && strlen($_POST['dir_cli']) >= 1 && strlen($_POST['rfc_cli']) >= 1 && strlen($_POST['curp_cli']) >= 1 && strlen($_POST['nodoc_cli']) >= 1 && strlen($_POST['ocr_cli']) >= 1){
+        $nombre_cli = trim($_POST['nombre_cli']);
+        $appat_cli = trim($_POST['appat_cli']);
+        $apmat_cli = trim($_POST['apmat_cli']);
+        $tel_cli = trim($_POST['tel_cli']);
+        $email_cli = trim($_POST['email_cli']);
+        $dir_cli = trim($_POST['dir_cli']);
+        $rfc_cli = trim($_POST['rfc_cli']);
+        $curp_cli = trim($_POST['curp_cli']);
+        $nodoc_cli = trim($_POST['nodoc_cli']);
+        $ocr_cli = trim($_POST['ocr_cli']);
+
+        $consulta = "INSERT INTO Clientes (nombre,appaterno,apmaterno,telefono,email,direccion,rfc,curp,num_doc,ocr) VALUES
+        ('$nombre_cli','$appat_cli','$apmat_cli','$tel_cli','$email_cli','$dir_cli','$rfc_cli','$curp_cli','$nodoc_cli','$ocr_cli')
+        ";
+
+        $resultado = mysqli_multi_query($conex,$consulta);
+        if ($resultado){
+            header ("Location:/Clientes/consultaClientes/index.php");
+            exit;
+        } else {
+            header ("Location:/Clientes/agregarClientes/index.php?error=Hubo un error al registrar el cliente nuevo.");
+            exit;
+        }
+    } else {
+        header ("Location:/Clientes/agregarClientes/index.php?error=Llene todos los campos por favor.");
+        exit;
+    }
+    memory_free_result($resultado);
+    mysqli_close($conex);
+    
+};
+
 ?>
