@@ -141,13 +141,15 @@ include("../../db.php");
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="rfc_cli">RFC</label>
-                    <input class="form-control" type="text" id="rfc_cli" name="rfc_cli"
-                        maxlength="13" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
+                    <input class="form-control" type="text" id="rfc_cli" name="rfc_cli" style="text-transform:uppercase;"
+                        maxlength="13" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)"
+                        onkeyup="javascript:this.value=this.value.toUpperCase();">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="curp_cli">CURP</label>
-                    <input class="form-control" type="text" id="curp_cli" name="curp_cli"
-                        maxlength="18" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
+                    <input class="form-control" type="text" id="curp_cli" name="curp_cli" style="text-transform:uppercase;"
+                        maxlength="18" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)"
+                        onkeyup="javascript:this.value=this.value.toUpperCase();">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="nodoc_cli">Numero de documento</label>

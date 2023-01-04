@@ -181,13 +181,15 @@ include("../../db.php");
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="placas_v">Placas</label>
-                    <input class="form-control" type="text" id="placas_v" name="placas_v"
-                        maxlength="7" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
+                    <input class="form-control" type="text" id="placas_v" name="placas_v" style="text-transform:uppercase;"
+                        maxlength="7" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)"
+                        onkeyup="javascript:this.value=this.value.toUpperCase();">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="noserie_v">No. de Serie</label>
-                    <input class="form-control" type="text" id="noserie_v" name="noserie_v"
-                        maxlength="20" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)">
+                    <input class="form-control" type="text" id="noserie_v" name="noserie_v" style="text-transform:uppercase;"
+                        maxlength="20" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)"
+                        onkeyup="javascript:this.value=this.value.toUpperCase();">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="carga_util_v">Carga Util</label>
