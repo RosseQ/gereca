@@ -28,23 +28,28 @@ if (isset($_POST['agregar_v'])){
         $precio_dia_v = trim($_POST['precio_dia_v']);
         $precio_semana_v = trim($_POST['precio_semana_v']);
         $precio_mes_v = trim($_POST['precio_mes_v']);
-        // $id_costo_v = mysql_query($conex,"SELECT id_Costo from Costos order by id_Costo DESC limit 1;");
-        // $id_costo_v = mysql_fetch_row($id_costo_q);
 
-        $consulta = "INSERT INTO Costos (precio_dia, precio_sem, precio_mes) VALUES ('$precio_dia_v', '$precio_semana_v', '$precio_mes_v');
-        SELECT id_Costo INTO @costov from Costos order by id_Costo DESC limit 1;
-        INSERT INTO Vehiculos (tipo_unidad, modelo, id_Cat_Clase_Vehiculo, id_Cat_Tipo, id_Cat_Adaptacion, placas, economico, numero_serie, carga_uti, id_Costo, id_VEstatus, id_DEstatus)
-        VALUES ('$tipounidad_v','$modelo_v', '$clase_vehiculo', '$tipo_vehiculo', '$adaptacion_v', '$placas_v', '$economico_v', '$noserie_v', '$carga_util_v', @costov, 1, 1);
-        ";
-
-        $resultado = mysqli_multi_query($conex,$consulta);
-        if ($resultado){
-            // http://localhost/Vehiculos/agregarVehiculos/index.php?
-            // header ("Location: C:\Users\ernes\Documents\GitHub\gereca\Vehiculos\agregarVehiculos\index.php");
-            header ("Location:/Vehiculos/consultaVehiculos/index.php");
-            exit;
+        $checkdata_q = "SELECT * from vehiculos WHERE economico = '$economico_v' OR placas = '$placas_v' OR numero_serie = '$noserie_v';";
+        $resultado = mysqli_query($conex,$checkdata_q);
+        if (!$resultado) {
+            $consulta = "INSERT INTO Costos (precio_dia, precio_sem, precio_mes) VALUES ('$precio_dia_v', '$precio_semana_v', '$precio_mes_v');
+            SELECT id_Costo INTO @costov from Costos order by id_Costo DESC limit 1;
+            INSERT INTO Vehiculos (tipo_unidad, modelo, id_Cat_Clase_Vehiculo, id_Cat_Tipo, id_Cat_Adaptacion, placas, economico, numero_serie, carga_uti, id_Costo, id_VEstatus, id_DEstatus)
+            VALUES ('$tipounidad_v','$modelo_v', '$clase_vehiculo', '$tipo_vehiculo', '$adaptacion_v', '$placas_v', '$economico_v', '$noserie_v', '$carga_util_v', @costov, 1, 1);
+            ";
+    
+            $resultado = mysqli_multi_query($conex,$consulta);
+            if ($resultado){
+                // http://localhost/Vehiculos/agregarVehiculos/index.php?
+                // header ("Location: C:\Users\ernes\Documents\GitHub\gereca\Vehiculos\agregarVehiculos\index.php");
+                header ("Location:/Vehiculos/consultaVehiculos/index.php");
+                exit;
+            } else {
+                header ("Location:/Vehiculos/agregarVehiculos/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
+                exit;
+            }
         } else {
-            header ("Location:/Vehiculos/agregarVehiculos/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
+            header ("Location:/Vehiculos/agregarVehiculos/index.php?error=Ingreso un dato existente en la base de datos.");
             exit;
         }
     } else {
