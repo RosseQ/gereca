@@ -59,7 +59,7 @@ if ($_POST){
     <link rel="icon" href="/assets/img/logo-icono.png">
 </head>
 
-<body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
+<body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
         <div class="container"><a class="navbar-brand logo" >RECESA | IDEALEASE</a>
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">

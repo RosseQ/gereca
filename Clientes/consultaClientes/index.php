@@ -66,38 +66,50 @@ include("../../db.php");
     </style>
 </head>
 
-<body style="background: url(&quot;assets/img/clipboard-image-1.png&quot;), #fd720d;">
+<body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">RECESA</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">RECESA|IDEALEASE</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             
             <div class="collapse navbar-collapse" id="navcol-1">
                 <div id="header">
                     <nav> <!-- Aqui estamos iniciando la nueva etiqueta nav -->
                         <ul class="nav">
-                            <li><a href="../../Menu/index.php">Inicio</a></li>
-                            <li><a href="">Status</a>
-                                
-                            </li>
-                            <li><a href="">Clientes</a>
+                            <li><a >Renta</a>
                                 <ul>
-                                    <li><a href="../../Clientes/AgregarClientes/index.php">Resgistrar Cliente</a></li>
-                                    <li><a href="../../Clientes/ConsultaClientes/index.php">Ver Clientes</a></li>
+                                    <li><a href="/ingresos/nuevoIngreso/index.php">Realizar renta</a></li>
+                                    <li><a href="/ingresos/verIngresos/index.php">Ver rentas</a></li>
+                                </ul> 
+                            </li>
+                            <li><a >Clientes</a>
+                                <ul>
+                                    <li><a href="/Clientes/AgregarClientes/index.php">Resgistrar Cliente</a></li>
+                                    <li><a href="/Clientes/ConsultaClientes/index.php">Ver Clientes</a></li>
                                 </ul>
                             </li>
-                            <li><a href="../Unidades/index.php">Unidades</a></li>
-                            <li><a href="../Unidades/index.php">Ususarios</a></li>
+                            <li><a >Vehiculos</a>
+                                <ul>
+                                    <li><a href="/Vehiculos/agregarVehiculos/index.php">Registrar vehiculo</a></li>
+                                    <li><a href="/Vehiculos/consultaVehiculos/index.php">Ver vehiculos</a></li>
+                                </ul>
+                            </li>
+                            <li><a>Mantenimiento</a>
+                                <ul>
+                                    <li><a href="/Mantenimientos/nuevoMantenimiento/index.php">Registrar mantenimiento</a></li>
+                                    <li><a href="/Mantenimientos/verMantenimientos/index.php">Ver mantenimiento</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </nav><!-- Aqui estamos cerrando la nueva etiqueta nav -->
                 </div>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="../../Menu/index.php">INICIO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../logout.php">CERRAR SESION</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../logout.php">CERRAR SESION</a></li>
                     
                 </ul>
             </div>
         </div>
     </nav>
-    <section class="clean-block clean-form dark" style="background: url(&quot;assets/img/clipboard-image-1.png&quot;);">
+    <section class="clean-block clean-form dark">
         <section class="clean-block clean-form dark" style="background: rgba(246,246,246,0);">
             <div class="container">
             &nbsp
