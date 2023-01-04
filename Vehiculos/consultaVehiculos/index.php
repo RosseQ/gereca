@@ -77,6 +77,43 @@ include("../../db.php");
             right:-140px;
             top:0px;
         }
+        body{
+            background-color: #ffffff;
+            font-family: Arial;
+        }
+
+        #main-container{
+            margin: 150px auto;
+            width: 600px;
+        }
+
+        table{
+            background-color: white;
+            text-align: left;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td{
+            padding: 20px;
+            text-indent: 10px;
+            font-size: 20px;
+        }
+
+        thead{
+            background-color: #246355;
+            border-bottom: solid 5px #0F362D;
+            color: white;
+        }
+
+        tr:nth-child(even){
+            background-color: #ddd;
+        }
+
+        tr:hover td{
+            background-color: #f3ffaa;
+            color: black;
+        }
     </style>
 </head>
 
@@ -181,26 +218,26 @@ include("../../db.php");
                     ?>
                         <tbody>
                             <tr>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW7'] ?></td> <!--economico-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW1'] ?></td> <!--no serie-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW2'] ?></td> <!--modelo-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW3'] ?></td> <!--clase de vehiculo-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW4'] ?></td> <!--categoria-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW5'] ?></td> <!--adaptacion-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW6'] ?></td> <!--placas-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW8'] ?></td> <!--no serie-->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ROW9'] ?> Ton.</td> <!--carga util-->
-                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['ROW10'] ?></td> <!--no serie-->
-                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['ROW11'] ?></td> <!--no serie-->
-                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['ROW12'] ?></td> <!--no serie-->
-                                <td style="background: rgba(13,114,255,0.36);">
+                                <td style=""><?php echo $mostrar['ROW7'] ?></td> <!--economico-->
+                                <td style=""><?php echo $mostrar['ROW1'] ?></td> <!--no serie-->
+                                <td style=""><?php echo $mostrar['ROW2'] ?></td> <!--modelo-->
+                                <td style=""><?php echo $mostrar['ROW3'] ?></td> <!--clase de vehiculo-->
+                                <td style=""><?php echo $mostrar['ROW4'] ?></td> <!--categoria-->
+                                <td style=""><?php echo $mostrar['ROW5'] ?></td> <!--adaptacion-->
+                                <td style=""><?php echo $mostrar['ROW6'] ?></td> <!--placas-->
+                                <td style=""><?php echo $mostrar['ROW8'] ?></td> <!--no serie-->
+                                <td style=""><?php echo $mostrar['ROW9'] ?> Ton.</td> <!--carga util-->
+                                <td style="">$<?php echo $mostrar['ROW10'] ?></td> <!--no serie-->
+                                <td style="">$<?php echo $mostrar['ROW11'] ?></td> <!--no serie-->
+                                <td style="">$<?php echo $mostrar['ROW12'] ?></td> <!--no serie-->
+                                <td style="text-align: center;">
                                     <form action="/registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
                                         <button type="submit" name="disponible_v" id="disponible_v" value="<?php echo $mostrar['ROW0'] ?>" 
-                                            style="background: none !important; border: none !important;" onclick="return ConfirmarRestaurar()"><?php echo $mostrar['ROW13'] ?>
+                                            style="background: none !important; border: none !important; font-weight: bold;" onclick="return ConfirmarRestaurar()"><?php echo $mostrar['ROW13'] ?>
                                         </button>
                                     </form>
                                 </td> <!--no serie-->
-                                <td style="background: rgba(13,114,255,0.36);" >
+                                <td style="" >
                                     <form action="/registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
                                         <button type="submit" name="eliminar_v" id="eliminar_v" value="<?php echo $mostrar['ROW0'] ?>" 
                                             style="background: none !important; border: none !important;" onclick="return ConfirmarDelete()">

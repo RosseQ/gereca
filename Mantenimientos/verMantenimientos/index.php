@@ -78,6 +78,43 @@ include("../../db.php");
             right:-140px;
             top:0px;
         }
+        body{
+            background-color: #ffffff;
+            font-family: Arial;
+        }
+
+        #main-container{
+            margin: 150px auto;
+            width: 600px;
+        }
+
+        table{
+            background-color: white;
+            text-align: left;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td{
+            padding: 20px;
+            text-indent: 10px;
+            font-size: 20px;
+        }
+
+        thead{
+            background-color: #246355;
+            border-bottom: solid 5px #0F362D;
+            color: white;
+        }
+
+        tr:nth-child(even){
+            background-color: #ddd;
+        }
+
+        tr:hover td{
+            background-color: #f3ffaa;
+            color: black;
+        }
     </style>
 </head>
 
@@ -167,14 +204,14 @@ include("../../db.php");
                     ?>
                         <tbody>
                             <tr>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ID']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['VEHICLE']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ECON']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['TYPE']?></td>
-                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['COST'] ?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE_1']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE_2']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE_3']?></td>
+                                <td style=""><?php echo $mostrar['ID']?></td>
+                                <td style=""><?php echo $mostrar['VEHICLE']?></td>
+                                <td style=""><?php echo $mostrar['ECON']?></td>
+                                <td style=""><?php echo $mostrar['TYPE']?></td>
+                                <td style="">$<?php echo $mostrar['COST'] ?></td>
+                                <td style=""><?php echo $mostrar['DATE_1']?></td>
+                                <td style=""><?php echo $mostrar['DATE_2']?></td>
+                                <td style=""><?php echo $mostrar['DATE_3']?></td>
                             </tr>
                         </tbody>
                     <?php 

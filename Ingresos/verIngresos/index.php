@@ -78,6 +78,43 @@ include("../../db.php");
             right:-140px;
             top:0px;
         }
+        body{
+            background-color: #ffffff;
+            font-family: Arial;
+        }
+
+        #main-container{
+            margin: 150px auto;
+            width: 600px;
+        }
+
+        table{
+            background-color: white;
+            text-align: left;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td{
+            padding: 20px;
+            text-indent: 10px;
+            font-size: 20px;
+        }
+
+        thead{
+            background-color: #246355;
+            border-bottom: solid 5px #0F362D;
+            color: white;
+        }
+
+        tr:nth-child(even){
+            background-color: #ddd;
+        }
+
+        tr:hover td{
+            background-color: #f3ffaa;
+            color: black;
+        }
     </style>
 </head>
 
@@ -172,15 +209,15 @@ include("../../db.php");
                     ?>
                         <tbody>
                             <tr>
-                                <!-- <td style="background: rgba(13,114,255,0.36);">$</td> -->
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['NAME']?> <?php echo $mostrar['FSURNAME']?> <?php echo $mostrar['MSURNAME']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['CAR'] ?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ECON']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['QUANTITY']?></td>
-                                <td style="background: rgba(13,114,255,0.36);">$<?php echo $mostrar['TOTAL']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE1']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE2']?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['DATE3']?></td>
+                                <!-- <td style="">$</td> -->
+                                <td style=""><?php echo $mostrar['NAME']?> <?php echo $mostrar['FSURNAME']?> <?php echo $mostrar['MSURNAME']?></td>
+                                <td style=""><?php echo $mostrar['CAR'] ?></td>
+                                <td style=""><?php echo $mostrar['ECON']?></td>
+                                <td style=""><?php echo $mostrar['QUANTITY']?></td>
+                                <td style="">$<?php echo $mostrar['TOTAL']?></td>
+                                <td style=""><?php echo $mostrar['DATE1']?></td>
+                                <td style=""><?php echo $mostrar['DATE2']?></td>
+                                <td style=""><?php echo $mostrar['DATE3']?></td>
                             </tr>
                         </tbody>
                     <?php 

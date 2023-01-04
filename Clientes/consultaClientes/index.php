@@ -63,6 +63,43 @@ include("../../db.php");
             right:-140px;
             top:0px;
         }
+        body{
+            background-color: #ffffff;
+            font-family: Arial;
+        }
+
+        #main-container{
+            margin: 150px auto;
+            width: 600px;
+        }
+
+        table{
+            background-color: white;
+            text-align: left;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td{
+            padding: 20px;
+            text-indent: 10px;
+            font-size: 20px;
+        }
+
+        thead{
+            background-color: #246355;
+            border-bottom: solid 5px #0F362D;
+            color: white;
+        }
+
+        tr:nth-child(even){
+            background-color: #ddd;
+        }
+
+        tr:hover td{
+            background-color: #f3ffaa;
+            color: black;
+        }
     </style>
 </head>
 
@@ -153,15 +190,15 @@ include("../../db.php");
                     ?>
                         <tbody>
                             <tr dtyle="opacity: 1.0">
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['NAME1'] ?> <?php echo $mostrar['NAME2'] ?> <?php echo $mostrar['NAME3'] ?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['TEL'] ?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['MAIL'] ?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['ADDR'] ?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['RFC'] ?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['CURP'] ?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['NDOC'] ?></td>
-                                <td style="background: rgba(13,114,255,0.36);"><?php echo $mostrar['OCR'] ?></td>
-                                <td style="background: rgba(13,114,255,0.36);" >
+                                <td style=""><?php echo $mostrar['NAME1'] ?> <?php echo $mostrar['NAME2'] ?> <?php echo $mostrar['NAME3'] ?></td>
+                                <td style=""><?php echo $mostrar['TEL'] ?></td>
+                                <td style=""><?php echo $mostrar['MAIL'] ?></td>
+                                <td style=""><?php echo $mostrar['ADDR'] ?></td>
+                                <td style=""><?php echo $mostrar['RFC'] ?></td>
+                                <td style=""><?php echo $mostrar['CURP'] ?></td>
+                                <td style=""><?php echo $mostrar['NDOC'] ?></td>
+                                <td style=""><?php echo $mostrar['OCR'] ?></td>
+                                <td style="" >
                                     <form action="/registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
                                         <button type="submit" name="eliminar_cli" id="eliminar_cli" value="<?php echo $mostrar['IID'] ?>" 
                                             style="background: none !important; border: none !important;" onclick="return ConfirmarDelete()">
