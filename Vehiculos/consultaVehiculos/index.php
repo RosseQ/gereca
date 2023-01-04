@@ -139,13 +139,14 @@ include("../../db.php");
                             Cat_Adaptacion.descripcion as 'ROW5', vehiculos.placas as 'ROW6',
                             vehiculos.economico as 'ROW7', vehiculos.numero_serie as 'ROW8', vehiculos.carga_uti as 'ROW9',
                             costos.precio_dia as 'ROW10', costos.precio_sem as 'ROW11', costos.precio_mes as 'ROW12',
-                            Cat_VEstatus.descripcion as 'ROW13'
+                            Cat_VEstatus.descripcion as 'ROW13', vehiculos.id_DEstatus as 'ROW14'
                             from vehiculos
                             INNER JOIN Cat_Clase_Vehiculo on vehiculos.id_Cat_Clase_Vehiculo = Cat_Clase_Vehiculo.id_Cat_Clase_Vehiculo
                             INNER JOIN Cat_Tipo on vehiculos.id_Cat_Tipo = Cat_Tipo.id_Cat_Tipo
                             INNER JOIN Cat_Adaptacion on vehiculos.id_Cat_Adaptacion = Cat_Adaptacion.id_Cat_Adaptacion
                             INNER JOIN Costos on vehiculos.id_Costo = Costos.id_Costo
                             INNER JOIN Cat_VEstatus on vehiculos.id_VEstatus = Cat_VEstatus.id_VEstatus
+                            WHERE id_DEstatus = 1
                             order by vehiculos.economico asc";
                             $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
