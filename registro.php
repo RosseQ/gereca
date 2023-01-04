@@ -31,25 +31,27 @@ if (isset($_POST['agregar_v'])){
 
         $checkdata_q = "SELECT * from vehiculos WHERE economico = '$economico_v' OR placas = '$placas_v' OR numero_serie = '$noserie_v';";
         $resultado = mysqli_query($conex,$checkdata_q);
-        if (!$resultado) {
-            $consulta = "INSERT INTO Costos (precio_dia, precio_sem, precio_mes) VALUES ('$precio_dia_v', '$precio_semana_v', '$precio_mes_v');
-            SELECT id_Costo INTO @costov from Costos order by id_Costo DESC limit 1;
-            INSERT INTO Vehiculos (tipo_unidad, modelo, id_Cat_Clase_Vehiculo, id_Cat_Tipo, id_Cat_Adaptacion, placas, economico, numero_serie, carga_uti, id_Costo, id_VEstatus, id_DEstatus)
-            VALUES ('$tipounidad_v','$modelo_v', '$clase_vehiculo', '$tipo_vehiculo', '$adaptacion_v', '$placas_v', '$economico_v', '$noserie_v', '$carga_util_v', @costov, 1, 1);
-            ";
-    
-            $resultado = mysqli_multi_query($conex,$consulta);
-            if ($resultado){
-                // http://localhost/Vehiculos/agregarVehiculos/index.php?
-                // header ("Location: C:\Users\ernes\Documents\GitHub\gereca\Vehiculos\agregarVehiculos\index.php");
-                header ("Location:/Vehiculos/consultaVehiculos/index.php");
+        if($resultado) {
+            if (mysqli_num_rows($resultado) > 0) {
+                header ("Location:/Vehiculos/agregarVehiculos/index.php?error=Ingreso un dato existente en la base de datos.");
                 exit;
             } else {
-                header ("Location:/Vehiculos/agregarVehiculos/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
-                exit;
+                $consulta = "INSERT INTO Costos (precio_dia, precio_sem, precio_mes) VALUES ('$precio_dia_v', '$precio_semana_v', '$precio_mes_v');
+                SELECT id_Costo INTO @costov from Costos order by id_Costo DESC limit 1;
+                INSERT INTO Vehiculos (tipo_unidad, modelo, id_Cat_Clase_Vehiculo, id_Cat_Tipo, id_Cat_Adaptacion, placas, economico, numero_serie, carga_uti, id_Costo, id_VEstatus, id_DEstatus)
+                VALUES ('$tipounidad_v','$modelo_v', '$clase_vehiculo', '$tipo_vehiculo', '$adaptacion_v', '$placas_v', '$economico_v', '$noserie_v', '$carga_util_v', @costov, 1, 1);
+                ";
+                $resultado = mysqli_multi_query($conex,$consulta);
+                if ($resultado){
+                    header ("Location:/Vehiculos/consultaVehiculos/index.php");
+                    exit;
+                } else {
+                    header ("Location:/Vehiculos/agregarVehiculos/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
+                    exit;
+                }
             }
         } else {
-            header ("Location:/Vehiculos/agregarVehiculos/index.php?error=Ingreso un dato existente en la base de datos.");
+            header ("Location:/Vehiculos/agregarVehiculos/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
             exit;
         }
     } else {
@@ -266,22 +268,25 @@ if (isset($_POST['agregar_cli'])){
         OR num_doc = '$nodoc_cli'
         OR ocr = '$ocr_cli';";
         $resultado = mysqli_query($conex,$checkdata_q);
-        if (!$resultado){
-
-            $consulta = "INSERT INTO Clientes (nombre,appaterno,apmaterno,telefono,email,direccion,rfc,curp,num_doc,ocr) VALUES
-            ('$nombre_cli','$appat_cli','$apmat_cli','$tel_cli','$email_cli','$dir_cli','$rfc_cli','$curp_cli','$nodoc_cli','$ocr_cli')
-            ";
-    
-            $resultado = mysqli_multi_query($conex,$consulta);
-            if ($resultado){
-                header ("Location:/Clientes/consultaClientes/index.php");
+        if ($resultado){
+            if (mysqli_num_rows($resultado) > 0) {
+                header ("Location:/Clientes/agregarClientes/index.php?error=Estos datos pertenecen a un cliente que ya existe.");
                 exit;
-            } else {
-                header ("Location:/Clientes/agregarClientes/index.php?error=Hubo un error al registrar el cliente nuevo.");
-                exit;
+            } else  {
+                $consulta = "INSERT INTO Clientes (nombre,appaterno,apmaterno,telefono,email,direccion,rfc,curp,num_doc,ocr) VALUES
+                ('$nombre_cli','$appat_cli','$apmat_cli','$tel_cli','$email_cli','$dir_cli','$rfc_cli','$curp_cli','$nodoc_cli','$ocr_cli')
+                ";
+                $resultado = mysqli_multi_query($conex,$consulta);
+                if ($resultado){
+                    header ("Location:/Clientes/consultaClientes/index.php");
+                    exit;
+                } else {
+                    header ("Location:/Clientes/agregarClientes/index.php?error=Hubo un error al registrar el cliente nuevo.");
+                    exit;
+                }
             }
         } else {
-            header ("Location:/Clientes/agregarClientes/index.php?error=Estos datos pertenecen a un cliente que ya existe.");
+            header ("Location:/Clientes/agregarClientes/index.php?error=Hubo un error al registrar el cliente nuevo.");
             exit;
         }
     } else {
