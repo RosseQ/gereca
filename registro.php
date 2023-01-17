@@ -133,22 +133,34 @@ if (isset($_POST['detmant_insert'])){
         $dias_mant = trim($_POST['dias_mant']);
         $fecha_hecho = trim($_POST['fecha_hecho']);
         if ($dias_mant > 0){
-            $consulta = "INSERT INTO detalle_mantenimiento (id_Mantenimiento, id_Vehiculo, costo, fecha_registro, fecha_hecho, fecha_regreso)
-            VALUES ('$mantenimiento_det', '$idVehiculo_det', '$costo_det', CURDATE(), '$fecha_hecho', date_add('$fecha_hecho', INTERVAL '$dias_mant' DAY));
-            UPDATE Vehiculos SET id_VEstatus = 3 WHERE id_Vehiculo = '$idVehiculo_det';
+            $datecheck = "select * from detalle_mantenimiento
+            where fecha_hecho BETWEEN '$fecha_hecho' and date_add('$fecha_hecho', INTERVAL '$dias_mant' DAY)
+            AND fecha_regreso BETWEEN '$fecha_hecho' and date_add('$fecha_hecho', INTERVAL '$dias_mant' DAY)
+            AND id_Vehiculo = '$idVehiculo_det';
             ";
-            $resultado = mysqli_multi_query($conex,$consulta);
-            if ($resultado){
-                // http://localhost/Vehiculos/agregarVehiculos/index.php?
-                // header ("Location: C:\Users\ernes\Documents\GitHub\gereca\Vehiculos\agregarVehiculos\index.php");
-                header ("Location:/Mantenimientos/verMantenimientos/index.php");
+            $resultado = mysqli_query($conex,$datecheck);
+            if (mysqli_num_rows($resultado) > 0) {
+                header ("Location:/Mantenimientos/nuevoMantenimiento/index.php?error=El vehiculo seleccionado no esta disponible durante la fecha seleccionada.");
                 exit;
+            } elseif (mysqli_num_rows($resultado) == 0) {
+                $consulta = "INSERT INTO detalle_mantenimiento (id_Mantenimiento, id_Vehiculo, costo, fecha_registro, fecha_hecho, fecha_regreso)
+                VALUES ('$mantenimiento_det', '$idVehiculo_det', '$costo_det', CURDATE(), '$fecha_hecho', date_add('$fecha_hecho', INTERVAL '$dias_mant' DAY));
+                UPDATE Vehiculos SET id_VEstatus = 3 WHERE id_Vehiculo = '$idVehiculo_det';
+                ";
+                $resultado = mysqli_multi_query($conex,$consulta);
+                if ($resultado){
+                    header ("Location:/Mantenimientos/verMantenimientos/index.php");
+                    exit;
+                } else {
+                    header ("Location:/Mantenimientos/nuevoMantenimiento/index.php?error=Hubo un error al registrar el nuevo mantenimiento.");
+                    exit;
+                }
             } else {
-                header ("Location:/Mantenimientos/nuevoMantenimiento/index.php?error=Hubo un error al registrar el vehiculo nuevo.");
+                header ("Location:/Mantenimientos/nuevoMantenimiento/index.php?error=Hubo un error al registrar el nuevo mantenimiento.");
                 exit;
             }
         } else {
-            header ("Location:/Ingresos/nuevoIngreso/index.php?error=El minimo de dias en mantenimiento es 1 dia.");
+            header ("Location:/Mantenimientos/nuevoMantenimiento/index.php?error=El minimo de dias en mantenimiento es 1 dia.");
             exit;
         }
     } else {
@@ -172,7 +184,6 @@ if (isset($_POST['detmant_insert'])){
 ---------------------------------------------------------------------------------------------------------------
 */
 
-//ESTA VERSION ISNERTA PERO SIGUE SIN ALMACENAR EL VALOR DEL PRECIO
 if (isset($_POST['nuevarenta'])){
     if (strlen($_POST['dias_i']) >= 1){
         $idCliente_i = trim($_POST['idCliente_i']);
@@ -205,21 +216,35 @@ if (isset($_POST['nuevarenta'])){
 
         if ($dias_i > 0)
         {
-            $consulta = "INSERT INTO detalle_renta (id_Vehiculo,cantidad) VALUES ('$idVehiculo_i', '$caldias');
-    
-            SELECT id_detalleRenta INTO @rent_det from detalle_renta order by id_detalleRenta DESC limit 1;
-    
-            INSERT INTO renta (id_cliente,id_detalleRenta,total,fecha_registro,fecha_hecho,fecha_regreso)
-            VALUES ('$idCliente_i', (SELECT @rent_det), ('$truprice' * '$dias_i'),
-            CURDATE(), '$fecha_hecho', date_add('$fecha_hecho', INTERVAL '$caldias' DAY));
-
-            UPDATE Vehiculos SET id_VEstatus = 2 WHERE Vehiculos.id_Vehiculo = '$idVehiculo_i';
+            $datecheck = "select * from renta INNER JOIN detalle_renta on renta.id_detalleRenta = detalle_renta.id_detalleRenta
+            where fecha_hecho BETWEEN '$fecha_hecho' and date_add('$fecha_hecho', INTERVAL '$caldias' DAY)
+            AND fecha_regreso BETWEEN '$fecha_hecho' and date_add('$fecha_hecho', INTERVAL '$caldias' DAY)
+            AND id_Vehiculo = '$idVehiculo_i';
             ";
-    
-            $resultado = mysqli_multi_query($conex,$consulta);
-            if ($resultado){
-                header ("Location:/Ingresos/verIngresos/index.php?error=Needs " . $truprice);
+            $resultado = mysqli_query($conex,$datecheck);
+            if (mysqli_num_rows($resultado) > 0) {
+                header ("Location:/Ingresos/nuevoIngreso/index.php?error=El vehiculo seleccionado no esta disponible durante la fecha seleccionada.");
                 exit;
+            } elseif (mysqli_num_rows($resultado) == 0) {
+                $consulta = "INSERT INTO detalle_renta (id_Vehiculo,cantidad) VALUES ('$idVehiculo_i', '$caldias');
+        
+                SELECT id_detalleRenta INTO @rent_det from detalle_renta order by id_detalleRenta DESC limit 1;
+        
+                INSERT INTO renta (id_cliente,id_detalleRenta,total,fecha_registro,fecha_hecho,fecha_regreso)
+                VALUES ('$idCliente_i', (SELECT @rent_det), ('$truprice' * '$dias_i'),
+                CURDATE(), '$fecha_hecho', date_add('$fecha_hecho', INTERVAL '$caldias' DAY));
+    
+                UPDATE Vehiculos SET id_VEstatus = 2 WHERE Vehiculos.id_Vehiculo = '$idVehiculo_i';
+                ";
+        
+                $resultado = mysqli_multi_query($conex,$consulta);
+                if ($resultado){
+                    header ("Location:/Ingresos/verIngresos/index.php");
+                    exit;
+                } else {
+                    header ("Location:/Ingresos/nuevoIngreso/index.php?error=Hubo un error al registrar la renta.");
+                    exit;
+                }
             } else {
                 header ("Location:/Ingresos/nuevoIngreso/index.php?error=Hubo un error al registrar la renta.");
                 exit;

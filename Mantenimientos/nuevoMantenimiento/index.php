@@ -138,14 +138,15 @@ include("../../db.php");
             <form action="/registro.php" method="POST" style="color: rgb(0,15,255);background: rgba(13,114,255,0.11);border-top-color: rgb(13,114,255);">
                 <div class="mb-3"><label class="form-label" for="idVehiculo_det">Vehiculo</label>
                     <select class="form-select" id="idVehiculo_det" name="idVehiculo_det">
-                        <?php 
-                            $consulta = "SELECT id_Vehiculo, tipo_unidad
-                            FROM vehiculos WHERE Vehiculos.id_VEstatus = 1
-                            AND Vehiculos.id_DEstatus = 1;";
+                        <?php
+                            $consulta = "SELECT id_Vehiculo, tipo_unidad, economico
+                            FROM vehiculos WHERE Vehiculos.id_DEstatus = 1;";
                             $resultado = mysqli_query($conex,$consulta);
                             while($mostrar = mysqli_fetch_array($resultado)){
                         ?>
-                            <option id="idVehiculo_det" name="idVehiculo_det" value="<?php echo $mostrar['id_Vehiculo'] ?>"><?php echo $mostrar['tipo_unidad'] ?></option>
+                            <option id="idVehiculo_det" name="idVehiculo_det" value="<?php echo $mostrar['id_Vehiculo'] ?>">
+                                <?php echo $mostrar['economico'] ?> - <?php echo $mostrar['tipo_unidad'] ?>
+                            </option>
                         <?php }?>
                     </select>
                 </div>

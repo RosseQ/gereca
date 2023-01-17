@@ -46,3 +46,36 @@ clientes.nombre as 'NAME1', clientes.appaterno as 'NAME2', clientes.appaterno as
 clientes.telefono as 'TEL', clientes.email as 'MAIL', clientes.direccion as 'ADDR',
 clientes.rfc as 'RFC', clientes.curp as 'CURP', clientes.num_doc as 'NDOC', clientes.ocr as 'OCR'
 FROM clientes ORDER BY clientes.id_cliente ASC;
+
+--CONSULTA VEHICULOS PARA VER SI EXITE RENTA EN INTERVALO DE FECHAS
+
+select * from renta
+select * from detalle_renta
+
+select * from renta
+where fecha_hecho >= '2022-11-20'
+and fecha_hecho <= date_add('2022-11-20', INTERVAL 30 DAY)
+
+select * from renta INNER JOIN detalle_renta on renta.id_detalleRenta = detalle_renta.id_detalleRenta
+where fecha_hecho BETWEEN '2023-01-04' and date_add('2023-01-04', INTERVAL 30 DAY)
+AND fecha_regreso BETWEEN '2023-01-04' and date_add('2023-01-04', INTERVAL 30 DAY)
+AND id_Vehiculo = 7
+
+SELECT date_add('2022-11-20', INTERVAL 1 DAY)
+
+--CONSULTA VEHICULOS PARA VER SI EXITE DETALLE MANTENIMIENTO EN INTERVALO DE FECHAS
+
+select * from detalle_mantenimiento
+
+select * from detalle_mantenimiento
+where fecha_hecho BETWEEN '2023-01-04' and date_add('2023-01-04', INTERVAL 30 DAY)
+AND fecha_regreso BETWEEN '2023-01-04' and date_add('2023-01-04', INTERVAL 30 DAY)
+AND id_Vehiculo = 1
+
+SELECT date_add('2022-11-20', INTERVAL 1 DAY)
+
+
+---
+select * from renta INNER JOIN detalle_renta on renta.id_detalleRenta = detalle_renta.id_detalleRenta
+where id_Vehiculo = 2
+ORDER BY id_Vehiculo DESC limit 1;
