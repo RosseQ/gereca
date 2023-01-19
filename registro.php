@@ -101,7 +101,8 @@ if (isset($_POST['disponible_v'])){
 if (isset($_POST['eliminar_v'])){
 
     $iid = $_POST['eliminar_v'];
-    $delete = "UPDATE Vehiculos SET id_DEstatus = 2 WHERE Vehiculos.id_Vehiculo = '$iid';";
+    // $delete = "DELETE from Vehiculos WHERE Vehiculos.id_Vehiculo = '$iid';"; //TRUE DELETE
+    $delete = "DELETE from Vehiculos WHERE Vehiculos.id_Vehiculo = '$iid';";
     $resultado = mysqli_query($conex,$delete);
         
     if ($resultado){
