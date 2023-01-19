@@ -30,6 +30,10 @@ include("../../db.php");
     <link rel="stylesheet" href="assets/css/Features-Centered-Icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
+    <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="datatables/DataTables-1.13.1/css/dataTables.bootstrap5.css"/>
+    <link rel="stylesheet" type="text/css" href="datatables/DataTables-1.13.1/css/dataTables.bootstrap5.min.css"/>
+    <script type="text/javascript" src="DataTables/datatables.min.js"></script>
     <link rel="icon" href="/assets/img/logo-icono.png">
     <style type="text/css">
         * {
@@ -123,7 +127,7 @@ include("../../db.php");
             
             <div class="collapse navbar-collapse" id="navcol-1">
                 <div id="header">
-                    <nav> <!-- Aqui estamos iniciando la nueva etiqueta nav -->
+                    <nav>
                         <ul class="nav">
                             <li><a >Renta</a>
                                 <ul>
@@ -150,7 +154,7 @@ include("../../db.php");
                                 </ul>
                             </li>
                         </ul>
-                    </nav><!-- Aqui estamos cerrando la nueva etiqueta nav -->
+                    </nav>
                 </div>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="../../Menu/index.php">INICIO</a></li>
@@ -177,11 +181,11 @@ include("../../db.php");
             </div>
             <?php } ?>
             <div class="table-responsive">
-                <table class="table">
+                <table class="table" id="tabla_v" >
                     <thead>
                         <tr>
-                            <th style="background: rgb(0, 0, 255);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);color: whitesmoke; margin: auto;">Economico</th>
-                            <!-- <th style="background: rgb(0, 0, 255);">Economico</th> -->
+                            <!-- <th style="background: rgb(0, 0, 255);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);color: whitesmoke; margin: auto;">Economico</th> -->
+                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Economico</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Tipo de Unidad</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Modelo</th>
                             <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Clase de Vehiculo</th>
@@ -285,6 +289,13 @@ include("../../db.php");
             }
 
         }
+    </script>
+    <script>
+        var tabla_v = document.querySelector("#tabla_v");
+        var dataTable = new DataTable(tabla_v,{
+            perPage: 10,
+            perPageSelect:[10,20,30,40]
+        });
     </script>
 
 </body>

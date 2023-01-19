@@ -176,9 +176,16 @@ include("../../db.php");
                     <input class="form-control" type="text" id="dias_i" name="dias_i" min="1" value=1
                         maxlength="4" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
+                <?php
+                    date_default_timezone_set('America/Phoenix');
+                    $month = date('m');
+                    $day = date('d');
+                    $year = date('Y');
+                    $today = $year . '-' . $month . '-' . $day;
+                ?>
                 <div class="mb-3">
                     <label class="form-label" for="fecha_hecho">Fecha de Renta</label>
-                    <input class="form-control" type="date" id="fecha_hecho" name="fecha_hecho">
+                    <input class="form-control" type="date" id="fecha_hecho" name="fecha_hecho" value="<?php echo $today;?>">
                 </div>
                 <div class="mb-3">
                     <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="nuevarenta" name="nuevarenta" value="Enviar">

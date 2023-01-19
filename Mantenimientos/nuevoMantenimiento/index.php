@@ -172,6 +172,13 @@ include("../../db.php");
                     <input class="form-control" type="text" id="dias_mant" name="dias_mant" min="1" value=1
                         maxlength="4" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
+                <?php
+                    date_default_timezone_set('America/Phoenix');
+                    $month = date('m');
+                    $day = date('d');
+                    $year = date('Y');
+                    $today = $year . '-' . $month . '-' . $day;
+                ?>
                 <div class="mb-3">
                     <label class="form-label" for="fecha_hecho">Fecha de Mantenimiento</label>
                     <input class="form-control" type="date" id="fecha_hecho" name="fecha_hecho">
