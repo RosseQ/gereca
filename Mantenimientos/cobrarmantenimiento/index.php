@@ -84,14 +84,14 @@ include("../../db.php");
         <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">RECESA|IDEALEASE</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             
             <div class="collapse navbar-collapse" id="navcol-1">
-                <div id="header">
+            <div id="header">
                     <nav> <!-- Aqui estamos iniciando la nueva etiqueta nav -->
-                    <ul class="nav">
+                        <ul class="nav">
                             <li><a >Renta</a>
                                 <ul>
                                     <li><a href="/ingresos/nuevoIngreso/index.php">Realizar renta</a></li>
                                     <li><a href="/ingresos/verIngresos/index.php">Ver rentas</a></li>
-                                    <li><a href="/Vehiculos/devolucion_vehiculo/index.php">Devolucion de Vehiculo</a></li>
+                                    <li><a href="/ingresos/devolucion_vehiculo/index.php">Camiones en renta</a></li>
                                 </ul> 
                             </li>
                             <li><a >Clientes</a>
@@ -104,14 +104,12 @@ include("../../db.php");
                                 <ul>
                                     <li><a href="/Vehiculos/agregarVehiculos/index.php">Registrar vehiculo</a></li>
                                     <li><a href="/Vehiculos/consultaVehiculos/index.php">Ver vehiculos</a></li>
-                                    <li><a href="/Vehiculos/devolucion_vehiculo/index.php">Devolucion de Vehiculo</a></li>
                                 </ul>
                             </li>
                             <li><a>Mantenimiento</a>
                                 <ul>
                                     <li><a href="/Mantenimientos/nuevoMantenimiento/index.php">Registrar mantenimiento</a></li>
-                                    <li><a href="/Mantenimientos/verMantenimientos/index.php">Ver mantenimiento</a></li>
-                                    <li><a href="/Mantenimientos/cobrarmantenimiento/index.php">Corte de mantenimiento</a></li>
+                                    <li><a href="/Mantenimientos/verMantenimientos/index.php">Ver mantenimiento</a></li>    
                                 </ul>
                             </li>
                         </ul>

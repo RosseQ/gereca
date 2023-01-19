@@ -84,13 +84,14 @@ include("../../db.php");
         <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">RECESA|IDEALEASE</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             
             <div class="collapse navbar-collapse" id="navcol-1">
-                <div id="header">
+            <div id="header">
                     <nav> <!-- Aqui estamos iniciando la nueva etiqueta nav -->
                         <ul class="nav">
                             <li><a >Renta</a>
                                 <ul>
                                     <li><a href="/ingresos/nuevoIngreso/index.php">Realizar renta</a></li>
                                     <li><a href="/ingresos/verIngresos/index.php">Ver rentas</a></li>
+                                    <li><a href="/ingresos/devolucion_vehiculo/index.php">Camiones en renta</a></li>
                                 </ul> 
                             </li>
                             <li><a >Clientes</a>
@@ -108,7 +109,7 @@ include("../../db.php");
                             <li><a>Mantenimiento</a>
                                 <ul>
                                     <li><a href="/Mantenimientos/nuevoMantenimiento/index.php">Registrar mantenimiento</a></li>
-                                    <li><a href="/Mantenimientos/verMantenimientos/index.php">Ver mantenimiento</a></li>
+                                    <li><a href="/Mantenimientos/verMantenimientos/index.php">Ver mantenimiento</a></li>    
                                 </ul>
                             </li>
                         </ul>
@@ -122,11 +123,11 @@ include("../../db.php");
             </div>
         </div>
     </nav>
+    &nbsp
     <section class="clean-block clean-form dark">
         <div class="container">
-        &nbsp
             <div class="block-heading">
-                <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(13,114,253);border-bottom-color: rgba(59,153,224,0);">Registrar Mantenimiento</h2>
+                <h2 class="text-info" style="color: var(--bs-blue);border-top-color: rgb(13,114,253);border-bottom-color: rgba(59,153,224,0);">Devolucion de vehiculo</h2>
             </div>
 
             <?php if(isset($_GET['error'])){ ?>
@@ -136,40 +137,38 @@ include("../../db.php");
             </div>
             <?php } ?>
             <form action="/registro.php" method="POST" style="color: rgb(0,15,255);background: rgba(13,114,255,0.11);border-top-color: rgb(13,114,255);">
-                <div class="mb-3"><label class="form-label" for="idVehiculo_det">Vehiculo</label>
-                    <select class="form-select" id="idVehiculo_det" name="idVehiculo_det">
-                        <?php
-                            $consulta = "SELECT id_Vehiculo, tipo_unidad, economico
-                            FROM vehiculos WHERE Vehiculos.id_DEstatus = 1;";
+                <div class="mb-3"><label class="form-label" for="idCliente_i">Cliente</label>
+                    <select class="form-select" id="idCliente_i" name="idCliente_i">
+                        <?php 
+                            $consulta = "SELECT id_Cliente, nombre, appaterno, apmaterno
+                            FROM Clientes";
                             $resultado = mysqli_query($conex,$consulta);
                             while($mostrar = mysqli_fetch_array($resultado)){
                         ?>
-                            <option id="idVehiculo_det" name="idVehiculo_det" value="<?php echo $mostrar['id_Vehiculo'] ?>">
+                            <option id="idCliente_i" name="idCliente_i" value="<?php echo $mostrar['id_Cliente'] ?>">
+                                <?php echo $mostrar['nombre'] ?> <?php echo $mostrar['appaterno'] ?> <?php echo $mostrar['apmaterno'] ?>
+                            </option>
+                        <?php }?>
+                    </select>
+                </div>
+                <div class="mb-3"><label class="form-label" for="idVehiculo_i">Vehiculo</label>
+                    <select class="form-select" id="idVehiculo_i" name="idVehiculo_i">
+                        <?php
+                            $consulta = "SELECT id_Vehiculo, tipo_unidad, economico
+                            FROM vehiculos WHERE Vehiculos.id_DEstatus = 1 AND Vehiculos.id_VEstatus = 1;";
+                            $resultado = mysqli_query($conex,$consulta);
+                            while($mostrar = mysqli_fetch_array($resultado)){
+                        ?>
+                            <option id="idVehiculo_i" name="idVehiculo_i" value="<?php echo $mostrar['id_Vehiculo'] ?>">
                                 <?php echo $mostrar['economico'] ?> - <?php echo $mostrar['tipo_unidad'] ?>
                             </option>
                         <?php }?>
                     </select>
                 </div>
-                <div class="mb-3"><label class="form-label" for="mantenimiento_det">Tipo de Mantenimiento</label>
-                    <select class="form-select" id="mantenimiento_det" name="mantenimiento_det">
-                        <?php 
-                            $consulta = "SELECT id_Mantenimiento, nombre_mantenimiento
-                            FROM mantenimiento";
-                            $resultado = mysqli_query($conex,$consulta);
-                            while($mostrar = mysqli_fetch_array($resultado)){
-                        ?>
-                            <option id="mantenimiento_det" name="mantenimiento_det" value="<?php echo $mostrar['id_Mantenimiento'] ?>"><?php echo $mostrar['nombre_mantenimiento'] ?></option>
-                        <?php }?>
-                    </select>
-                </div>
+                
                 <div class="mb-3">
-                    <label class="form-label" for="costo_det">Costo del Mantenimiento</label>
-                    <input class="form-control" type="text" id="costo_det" name="costo_det" value=0
-                        maxlength="255" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="dias_mant">Dias en mantenimiento</label>
-                    <input class="form-control" type="text" id="dias_mant" name="dias_mant" min="1" value=1
+                    <label class="form-label" for="dias_i">Dias extras a la fecha establecida (Precio por dia extra: $346.50)</label>
+                    <input class="form-control" type="text" id="dias_i" name="dias_i" min="1" value=1
                         maxlength="4" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
                 </div>
                 <?php
@@ -180,11 +179,11 @@ include("../../db.php");
                     $today = $year . '-' . $month . '-' . $day;
                 ?>
                 <div class="mb-3">
-                    <label class="form-label" for="fecha_hecho">Fecha de Mantenimiento</label>
-                    <input class="form-control" type="date" id="fecha_hecho" name="fecha_hecho">
+                    <label class="form-label" for="fecha_hecho">Fecha de Devolucion</label>
+                    <input class="form-control" type="date" id="fecha_hecho" name="fecha_hecho" value="<?php echo $today;?>">
                 </div>
                 <div class="mb-3">
-                    <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="detmant_insert" name="detmant_insert" value="Enviar">
+                <center>  <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="nuevarenta" name="nuevarenta" value="Enviar"></center>
                 </div>
             </form>
             
@@ -194,6 +193,10 @@ include("../../db.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
+    <!-- <script>
+        document.getElementById("current_date").innerHTML = Date();
+    </script> -->
+
     <!-- <script type="application/javascript">
         function calcularcosto() {
             var xtarifa = document.getElementById('tarifa_i').value;

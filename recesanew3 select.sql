@@ -79,3 +79,17 @@ SELECT date_add('2022-11-20', INTERVAL 1 DAY)
 select * from renta INNER JOIN detalle_renta on renta.id_detalleRenta = detalle_renta.id_detalleRenta
 where id_Vehiculo = 2
 ORDER BY id_Vehiculo DESC limit 1;
+
+--consulta vehiculos que esten rentados
+select clientes.nombre as 'NAME', clientes.appaterno as 'FSURNAME',
+clientes.apmaterno as 'MSURNAME', vehiculos.tipo_unidad as 'CAR', vehiculos.economico as 'ECON',
+renta.fecha_hecho as 'DATE_1', renta.fecha_regreso as 'DATE_2', Cat_VEstatus.descripcion as 'estatus'
+from renta 
+INNER JOIN clientes on renta.id_cliente = clientes.id_cliente
+INNER JOIN detalle_renta on renta.id_detalleRenta = detalle_renta.id_detalleRenta
+INNER JOIN vehiculos on detalle_renta.id_Vehiculo = vehiculos.id_Vehiculo
+INNER JOIN Cat_VEstatus on vehiculos.id_VEstatus = Cat_VEstatus.id_VEstatus 
+where Cat_VEstatus.descripcion = 'Rentado';
+
+select * from clientes 
+where clientes.nombre = 'pablo'

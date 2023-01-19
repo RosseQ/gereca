@@ -30,10 +30,7 @@ include("../../db.php");
     <link rel="stylesheet" href="assets/css/Features-Centered-Icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
-    <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
-    <link rel="stylesheet" type="text/css" href="datatables/DataTables-1.13.1/css/dataTables.bootstrap5.css"/>
-    <link rel="stylesheet" type="text/css" href="datatables/DataTables-1.13.1/css/dataTables.bootstrap5.min.css"/>
-    <script type="text/javascript" src="DataTables/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/assets/css/otros.css" />
     <link rel="icon" href="/assets/img/logo-icono.png">
     <style type="text/css">
         * {
@@ -168,91 +165,69 @@ include("../../db.php");
     <section class="clean-block clean-form dark">
         <section class="clean-block clean-form dark" style="background: rgba(246,246,246,0);">
             <div class="container">
-            &nbsp
                 <div class="block-heading">
-                    <h2 class="text-info">Ver Vehiculos</h2>
+                &nbsp
+                    <h2 class="text-info">RENTAS EN PROCESO</h2>
                     <p></p>
                 </div>
             </div>
 
-            <?php if(isset($_GET['error'])){ ?>
-            <div id="error" style="width: 100%; background: rgb(0,15,255); text-align: center; border-radius: 2px; padding: 4px; ">
-                <label style="color: whitesmoke;"><?php echo $_GET['error']; ?></label>
-                <span class="close" style="font-size: 24px; color: whitesmoke; margin: auto;" onclick="getElementById('error').style.display = 'none' ">&times;</span>
-            </div>
-            <?php } ?>
             <div class="table-responsive">
-                <table class="table" id="tabla_v" >
+
+                <?php if(isset($_GET['error'])){ ?>
+                <div id="error" style="width: 100%; background: rgb(0,15,255); text-align: center; border-radius: 2px; padding: 4px; ">
+                    <label style="color: whitesmoke;"><?php echo $_GET['error']; ?></label>
+                    <span class="close" style="font-size: 24px; color: whitesmoke; margin: auto;" onclick="getElementById('error').style.display = 'none' ">&times;</span>
+                </div>
+                <?php } ?>
+                <table class="table">
                     <thead>
                         <tr>
-                            <!-- <th style="background: rgb(0, 0, 255);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0);color: whitesmoke; margin: auto;">Economico</th> -->
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Economico</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Tipo de Unidad</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Modelo</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Clase de Vehiculo</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Categoria</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Adaptación</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Placas</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">No de Serie</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Carga Util</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Dia</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Semana</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Mes</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Disponibilidad</th>
-                            <th style="background: rgb(0, 0, 255);color: whitesmoke; margin: auto;">Eliminar</th>
+                            <th style="background: rgb(0, 0, 255);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0); color: whitesmoke; margin: auto;">Cliente</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Vehiculo</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Economico</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha de renta</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha de regreso</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Estatus</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Registrar Devolucion</th>
                         </tr>
                     </thead>
                     <?php 
-                            $consulta = "select vehiculos.id_vehiculo as 'ROW0', vehiculos.tipo_unidad as 'ROW1', vehiculos.modelo as 'ROW2',
-                            Cat_Clase_Vehiculo.descripcion as 'ROW3', Cat_Tipo.descripcion as 'ROW4',
-                            Cat_Adaptacion.descripcion as 'ROW5', vehiculos.placas as 'ROW6',
-                            vehiculos.economico as 'ROW7', vehiculos.numero_serie as 'ROW8', vehiculos.carga_uti as 'ROW9',
-                            costos.precio_dia as 'ROW10', costos.precio_sem as 'ROW11', costos.precio_mes as 'ROW12',
-                            Cat_VEstatus.descripcion as 'ROW13', vehiculos.id_DEstatus as 'ROW14'
-                            from vehiculos
-                            INNER JOIN Cat_Clase_Vehiculo on vehiculos.id_Cat_Clase_Vehiculo = Cat_Clase_Vehiculo.id_Cat_Clase_Vehiculo
-                            INNER JOIN Cat_Tipo on vehiculos.id_Cat_Tipo = Cat_Tipo.id_Cat_Tipo
-                            INNER JOIN Cat_Adaptacion on vehiculos.id_Cat_Adaptacion = Cat_Adaptacion.id_Cat_Adaptacion
-                            INNER JOIN Costos on vehiculos.id_Costo = Costos.id_Costo
-                            INNER JOIN Cat_VEstatus on vehiculos.id_VEstatus = Cat_VEstatus.id_VEstatus
-                            WHERE id_DEstatus = 1
-                            order by vehiculos.economico asc";
+
+                        $consulta = "select clientes.nombre as 'NAME', clientes.appaterno as 'FSURNAME',
+                        clientes.apmaterno as 'MSURNAME', vehiculos.tipo_unidad as 'CAR', vehiculos.economico as 'ECON',
+                        renta.fecha_hecho as 'DATE_1', renta.fecha_regreso as 'DATE_2', Cat_VEstatus.descripcion as 'estatus'
+                        from renta 
+                        INNER JOIN clientes on renta.id_cliente = clientes.id_cliente
+                        INNER JOIN detalle_renta on renta.id_detalleRenta = detalle_renta.id_detalleRenta
+                        INNER JOIN vehiculos on detalle_renta.id_Vehiculo = vehiculos.id_Vehiculo
+                        INNER JOIN Cat_VEstatus on vehiculos.id_VEstatus = Cat_VEstatus.id_VEstatus 
+                        
+                        where Cat_VEstatus.descripcion = 'Rentado'
+                        ORDER BY clientes.nombre asc;
+                        ";
                             $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
-                            
                     ?>
                         <tbody>
                             <tr>
-                                <td style=""><?php echo $mostrar['ROW7'] ?></td> <!--economico-->
-                                <td style=""><?php echo $mostrar['ROW1'] ?></td> <!--no serie-->
-                                <td style=""><?php echo $mostrar['ROW2'] ?></td> <!--modelo-->
-                                <td style=""><?php echo $mostrar['ROW3'] ?></td> <!--clase de vehiculo-->
-                                <td style=""><?php echo $mostrar['ROW4'] ?></td> <!--categoria-->
-                                <td style=""><?php echo $mostrar['ROW5'] ?></td> <!--adaptacion-->
-                                <td style=""><?php echo $mostrar['ROW6'] ?></td> <!--placas-->
-                                <td style=""><?php echo $mostrar['ROW8'] ?></td> <!--no serie-->
-                                <td style=""><?php echo $mostrar['ROW9'] ?> Ton.</td> <!--carga util-->
-                                <td style="">$<?php echo $mostrar['ROW10'] ?></td> <!--no serie-->
-                                <td style="">$<?php echo $mostrar['ROW11'] ?></td> <!--no serie-->
-                                <td style="">$<?php echo $mostrar['ROW12'] ?></td> <!--no serie-->
-                                <td style="text-align: center;">
-                                    <form action="/registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
-                                        <button type="submit" name="disponible_v" id="disponible_v" value="<?php echo $mostrar['ROW0'] ?>" 
-                                            style="background: none !important; border: none !important; font-weight: bold;" onclick="return ConfirmarRestaurar()"><?php echo $mostrar['ROW13'] ?>
-                                        </button>
-                                    </form>
-                                </td> <!--no serie-->
-                                <td style="" >
-                                    <form action="/registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
-                                        <button type="submit" name="eliminar_v" id="eliminar_v" value="<?php echo $mostrar['ROW0'] ?>" 
-                                            style="background: none !important; border: none !important;" onclick="return ConfirmarDelete()">
-                                            <img src="/assets/img/deletear.png" width="50" height="50" />
+                                <!-- <td style="">$</td> -->
+                                <td style=""><?php echo $mostrar['NAME']?> <?php echo $mostrar['FSURNAME']?> <?php echo $mostrar['MSURNAME']?></td>
+                                <td style=""><?php echo $mostrar['CAR'] ?></td>
+                                <td style=""><?php echo $mostrar['ECON']?></td>
+                                <td style=""><?php echo $mostrar['DATE_1']?></td>
+                                <td style=""><?php echo $mostrar['DATE_2']?></td>
+                                <td style=""><?php echo $mostrar['estatus']?></td>
+                                <td style="">
+                                    <form action="/ingresos/devolucion_vehiculo/devolucion_registro.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
+                                        <button type="submit" name="modifacar_r" id="modifacar_r"
+                                                    style="background: none !important; border: none !important;" onclick="">
+                                                    <img src="/assets/img/modificar.png" width="50" height="50" />
                                         </button>
                                     </form>
                                 </td>
                             </tr>
                         </tbody>
-                        
                     <?php 
                         }
                     ?>
@@ -260,12 +235,18 @@ include("../../db.php");
             </div>
         </section>
     </section>
-    
+    <!-- <div class="text-center row gy-3 row-cols-md-2">
+        <form action="../usarRefacciones/index.php">
+            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Usar Refaccion</button>
+        </form>
+        <form action="../agregarRefacciones/index.php">
+            <button class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);border-color: rgba(255,255,255,255);border-radius: 27px;width: 225px;margin: 5px;">Agregar Refaccion</button>
+        </form>
+    </div> -->
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
-    <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
 
     <script type="text/javascript">
         function ConfirmarDelete()
@@ -277,26 +258,7 @@ include("../../db.php");
             } else {
                 return false;
             }
-
         }
-        function ConfirmarRestaurar()
-        {
-            var respuesta = confirm("¿Cambiar disponibilidad de vehiculo?");
-
-            if (respuesta == true){
-                return true;
-            } else {
-                return false;
-            }
-
-        }
-    </script>
-    <script>
-        var tabla_v = document.querySelector("#tabla_v");
-        var dataTable = new DataTable(tabla_v,{
-            perPage: 10,
-            perPageSelect:[10,20,30,40]
-        });
     </script>
 
 </body>

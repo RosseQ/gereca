@@ -122,13 +122,14 @@ include("../../db.php");
         <div class="container"><a class="navbar-brand logo" href="../../Menu/index.php">RECESA|IDEALEASE</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             
             <div class="collapse navbar-collapse" id="navcol-1">
-                <div id="header">
+            <div id="header">
                     <nav> <!-- Aqui estamos iniciando la nueva etiqueta nav -->
                         <ul class="nav">
                             <li><a >Renta</a>
                                 <ul>
                                     <li><a href="/ingresos/nuevoIngreso/index.php">Realizar renta</a></li>
                                     <li><a href="/ingresos/verIngresos/index.php">Ver rentas</a></li>
+                                    <li><a href="/ingresos/devolucion_vehiculo/index.php">Camiones en renta</a></li>
                                 </ul> 
                             </li>
                             <li><a >Clientes</a>
@@ -146,7 +147,7 @@ include("../../db.php");
                             <li><a>Mantenimiento</a>
                                 <ul>
                                     <li><a href="/Mantenimientos/nuevoMantenimiento/index.php">Registrar mantenimiento</a></li>
-                                    <li><a href="/Mantenimientos/verMantenimientos/index.php">Ver mantenimiento</a></li>
+                                    <li><a href="/Mantenimientos/verMantenimientos/index.php">Ver mantenimiento</a></li>    
                                 </ul>
                             </li>
                         </ul>
@@ -197,7 +198,7 @@ include("../../db.php");
                             clientes.nombre as 'NAME1', clientes.appaterno as 'NAME2', clientes.appaterno as 'NAME3',
                             clientes.telefono as 'TEL', clientes.email as 'MAIL', clientes.direccion as 'ADDR',
                             clientes.rfc as 'RFC', clientes.curp as 'CURP', clientes.num_doc as 'NDOC', clientes.ocr as 'OCR'
-                            FROM clientes ORDER BY clientes.id_cliente ASC";
+                            FROM clientes ORDER BY clientes.nombre asc";
                             $resultado = mysqli_query($conex,$consulta);
                         while($mostrar = mysqli_fetch_array($resultado)){
                             
