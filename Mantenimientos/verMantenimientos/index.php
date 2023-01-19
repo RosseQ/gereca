@@ -214,10 +214,16 @@ include("../../db.php");
                                 <td style=""><?php echo $mostrar['DATE_2']?></td>
                                 <td style=""><?php echo $mostrar['DATE_3']?></td>
                                 <td style="">
-                                <form action="/Mantenimientos/cobrarmantenimiento/index.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
+                                <!-- <form action="/Mantenimientos/cobrarmantenimiento/index.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
                                     <button type="submit" name="modifacar_r" id="modifacar_r"
                                                 style="background: none !important; border: none !important;" onclick="">
                                                 <img src="/assets/img/modificar.png" width="50" height="50" />
+                                    </button>
+                                </form> -->
+                                <form action="/Mantenimientos/cobrarmantenimiento/index.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
+                                    <button type="submit" name="costo_update" id="costo_update" value="<?php echo $mostrar['ID'] ?>" 
+                                        style="background: none !important; border: none !important;" onclick="return ConfirmarDelete()">
+                                        <img src="/assets/img/modificar.png" width="50" height="50" />
                                     </button>
                                 </form>
                                 
@@ -247,7 +253,7 @@ include("../../db.php");
     <script type="text/javascript">
         function ConfirmarDelete()
         {
-            var respuesta = confirm("¿Estas seguro que Deceas Eliminarlo?");
+            var respuesta = confirm("¿Estas seguro que Deceas Editar?");
 
             if (respuesta == true){
                 return true;

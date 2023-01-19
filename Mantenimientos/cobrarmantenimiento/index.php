@@ -136,6 +136,13 @@ include("../../db.php");
                 <span class="close" style="font-size: 24px; color: whitesmoke; margin: auto;" onclick="getElementById('error').style.display = 'none' ">&times;</span>
             </div>
             <?php } ?>
+            
+            <?php if (isset($_POST['costo_update'])){
+                $mantid = $_POST['costo_update'];?>
+                <label style="color: whitesmoke;"><?php echo $mantid; ?></label>
+            <?php }else{ ?>
+                <label style="color: whitesmoke;"><?php echo $mantid; ?></label>
+            <?php }?>
             <form action="/registro.php" method="POST" style="color: rgb(0,15,255);background: rgba(13,114,255,0.11);border-top-color: rgb(13,114,255);">
                 <div class="mb-3"><label class="form-label" for="idVehiculo_det">Vehiculo</label>
                     <select class="form-select" id="idVehiculo_det" name="idVehiculo_det">
@@ -145,7 +152,7 @@ include("../../db.php");
                             $resultado = mysqli_query($conex,$consulta);
                             while($mostrar = mysqli_fetch_array($resultado)){
                         ?>
-                            <option id="idVehiculo_det" name="idVehiculo_det" value="<?php echo $mostrar['id_Vehiculo'] ?>">
+                            <option id="idVehiculo_det" name="idVehiculo_det" value="<?php echo $_POST['costo_update'];?>">
                                 <?php echo $mostrar['economico'] ?> - <?php echo $mostrar['tipo_unidad'] ?>
                             </option>
                         <?php }?>

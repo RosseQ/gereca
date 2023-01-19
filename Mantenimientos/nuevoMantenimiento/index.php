@@ -182,7 +182,7 @@ include("../../db.php");
                 ?>
                 <div class="mb-3">
                     <label class="form-label" for="fecha_hecho">Fecha de Mantenimiento</label>
-                    <input class="form-control" type="date" id="fecha_hecho" name="fecha_hecho">
+                    <input class="form-control" type="date" id="fecha_hecho" name="fecha_hecho" value="<?php echo $today;?>">
                 </div>
                 <div class="mb-3">
                     <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="detmant_insert" name="detmant_insert" value="Enviar">
