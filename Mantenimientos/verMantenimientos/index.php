@@ -176,7 +176,6 @@ include("../../db.php");
                     <thead>
                         <tr>
                             <th style="background: rgb(0, 0, 255);border-color: rgb(0,0,0);border-top-color: rgb(0,0,0); color: whitesmoke; margin: auto;">ID</th>
-                            <!-- <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Cliente</th> -->
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Vehiculo</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Economico</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Tipo de Mantenimiento</th>
@@ -184,6 +183,7 @@ include("../../db.php");
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha de Salida</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha de Regreso</th>
                             <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Fecha de Registro</th>
+                            <th style="background: rgb(0, 0, 255); color: whitesmoke; margin: auto;">Registrar costo mantenimiento</th>
                         </tr>
                     </thead>
                     <?php 
@@ -212,6 +212,15 @@ include("../../db.php");
                                 <td style=""><?php echo $mostrar['DATE_1']?></td>
                                 <td style=""><?php echo $mostrar['DATE_2']?></td>
                                 <td style=""><?php echo $mostrar['DATE_3']?></td>
+                                <td style="">
+                                <form action="/Mantenimientos/cobrarmantenimiento/index.php" method="post" style="padding: 0 !important; margin: 0 !important; background: none; border: none;">
+                                    <button type="submit" name="modifacar_r" id="modifacar_r"
+                                                style="background: none !important; border: none !important;" onclick="">
+                                                <img src="/assets/img/modificar.png" width="50" height="50" />
+                                    </button>
+                                </form>
+                                
+                                </td>
                             </tr>
                         </tbody>
                     <?php 

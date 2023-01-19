@@ -1,10 +1,4 @@
--- drop database recesanew1;
--- create database recesanew1;
--- use recesanew1;
-
--- SET FOREIGN_KEY_CHECKS=0;
--- drop TABLE costos;
--- SET FOREIGN_KEY_CHECKS=1;
+CREATE DATABASE recesanew1
 
 CREATE TABLE Cat_Adaptacion  (
   id_Cat_Adaptacion int NOT NULL auto_increment,
