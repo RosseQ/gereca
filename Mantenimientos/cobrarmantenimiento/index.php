@@ -136,24 +136,23 @@ include("../../db.php");
                 <span class="close" style="font-size: 24px; color: whitesmoke; margin: auto;" onclick="getElementById('error').style.display = 'none' ">&times;</span>
             </div>
             <?php } ?>
-            
-            <?php if (isset($_POST['costo_update'])){
-                $mantid = $_POST['costo_update'];?>
-                <label style="color: whitesmoke;"><?php echo $mantid; ?></label>
-            <?php }else{ ?>
-                <label style="color: whitesmoke;"><?php echo $mantid; ?></label>
-            <?php }?>
-            <form action="/registro.php" method="POST" style="color: rgb(0,15,255);background: rgba(13,114,255,0.11);border-top-color: rgb(13,114,255);">
-                <div class="mb-3"><label class="form-label" for="idVehiculo_det">Vehiculo</label>
-                    <select class="form-select" id="idVehiculo_det" name="idVehiculo_det">
+            <form action="/registro.php" method="POST" class="w-auto p-3" style="color: rgb(0,15,255);background: rgba(13,114,255,0.11);border-top-color: rgb(13,114,255);">
+                <div class="mb-3"><label class="form-label" for="idDetMant">Vehiculo</label>
+                    <select class="form-select" id="idDetMant" name="idDetMant">
                         <?php
-                            $consulta = "SELECT id_Vehiculo, tipo_unidad, economico
-                            FROM vehiculos WHERE Vehiculos.id_DEstatus = 1;";
+                            $mantid = $_POST['costo_update'];
+                            $consulta = "SELECT id_detalleMantenimiento as 'id_det',
+                            id_mantenimiento as 'id_mant', detalle_mantenimiento.id_vehiculo as 'id_veh',
+                            costo as 'cost', fecha_hecho as 'date1', fecha_regreso as 'date2',
+                            fecha_registro as 'date3', vehiculos.tipo_unidad as 'vehiculo'
+                            FROM detalle_mantenimiento
+                            INNER JOIN vehiculos on detalle_mantenimiento.id_vehiculo = vehiculos.id_vehiculo
+                            ;";
                             $resultado = mysqli_query($conex,$consulta);
                             while($mostrar = mysqli_fetch_array($resultado)){
                         ?>
-                            <option id="idVehiculo_det" name="idVehiculo_det" value="<?php echo $_POST['costo_update'];?>">
-                                <?php echo $mostrar['economico'] ?> - <?php echo $mostrar['tipo_unidad'] ?>
+                            <option id="idDetMant" name="idDetMant" value="<?php echo $_POST['costo_update'];?>">
+                                <?php echo $mostrar['id_det'] ?> - <?php echo $mostrar['vehiculo'] ?> - (Registrado en <?php echo $mostrar['date3'] ?>)
                             </option>
                         <?php }?>
                     </select>
@@ -165,7 +164,7 @@ include("../../db.php");
                 </div>
                 
                 <div class="mb-3">
-                    <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="detmant_insert" name="detmant_insert" value="Enviar">
+                    <input class="btn btn-primary" type="submit" style="background: rgb(0, 0, 255);" id="detmant_update" name="detmant_update" value="Enviar">
                 </div>
             </form>
             
